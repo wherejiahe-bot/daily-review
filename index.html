@@ -6,40 +6,207 @@
 <title>每日复盘 — Daily Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,510;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',-apple-system,sans-serif;background:#f5f5f5;min-height:100vh;background-image:radial-gradient(ellipse at 30% 0%,rgba(100,100,200,0.06) 0%,transparent 60%),radial-gradient(ellipse at 70% 100%,rgba(200,100,100,0.04) 0%,transparent 60%);color:#1a1a1a;display:flex;flex-direction:column}
-.container{max-width:840px;margin:0 auto;padding:0 24px;width:100%}
-.glass-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06)}
-.glass-header .container{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
-.glass-header .logo{font-size:18px;font-weight:700;letter-spacing:-0.3px;color:#1a1a1a}
-.glass-header .logo span{color:#888;font-weight:400}
-.hero{text-align:center;padding:80px 24px 60px}
-.hero h1{font-size:40px;font-weight:700;letter-spacing:-0.5px;margin-bottom:12px}
-.hero p{font-size:16px;color:#666;line-height:1.5}
-.hero .badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:600;background:rgba(48,209,88,0.12);color:#248a3d;margin-bottom:20px}
-.page{flex:1}.footer{text-align:center;padding:32px 0;font-size:13px;color:#999;border-top:1px solid rgba(0,0,0,0.04);margin-top:60px}
-.section-title{font-size:15px;font-weight:600;color:#444;letter-spacing:0.3px;text-transform:uppercase;margin-bottom:16px}
-.timeline{position:relative;padding-left:28px}.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:rgba(0,0,0,0.08);border-radius:1px}
-.timeline-item{position:relative;padding:16px 20px;margin-bottom:8px;background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:14px;border:1px solid rgba(0,0,0,0.04);transition:all 0.2s}.timeline-item:hover{box-shadow:0 4px 20px rgba(0,0,0,0.04);transform:translateY(-1px)}
-.timeline-item::before{content:'';position:absolute;left:-24px;top:22px;width:10px;height:10px;border-radius:50%;background:#30d158;border:2px solid #f5f5f5}
-.timeline-item .date{font-size:12px;font-weight:600;color:#999;letter-spacing:0.2px;margin-bottom:4px}
-.timeline-item .title{font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
-.timeline-item .desc{font-size:13px;color:#666;line-height:1.5}
-.card{background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;border:1px solid rgba(0,0,0,0.04);padding:28px 32px;margin-bottom:20px;transition:all 0.2s}
-.card:hover{box-shadow:0 4px 24px rgba(0,0,0,0.04);transform:translateY(-2px)}
-.card .label{font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
-.card .value{font-size:15px;color:#1a1a1a;line-height:1.5}
-.section-spacer{height:1px;background:linear-gradient(to right,transparent,rgba(0,0,0,0.06),transparent);margin:48px 0}
-.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-a{color:#1a1a1a;text-decoration:none}a:hover{color:#000}
-@media(max-width:640px){.hero h1{font-size:28px}.hero{padding:48px 24px 40px}.card{padding:20px}}
+:root {
+  --blue: #2B7FD8;
+  --gold: #F4D758;
+  --red: #E84A5F;
+  --cream: #fefcf6;
+  --ink: #1A1A2E;
+  --ink-light: #4A4A5A;
+  --ink-faint: #8A8A9A;
+  --card-bg: #fff;
+  --border: rgba(26,26,26,.08);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+::selection { background: var(--gold); color: var(--ink); }
+body {
+  font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.container { max-width: 840px; margin: 0 auto; padding: 0 24px; width: 100%; }
+.app-header {
+  position: sticky; top: 0; z-index: 100;
+  height: 56px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.app-header h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.app-header .sub { font-size: 13px; color: var(--ink-faint); }
+.hero {
+  text-align: center;
+  padding: 72px 24px 48px;
+  position: relative;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.hero .badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(43,127,216,0.08);
+  color: var(--blue);
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.hero p { font-size: 15px; color: var(--ink-light); line-height: 1.6; }
+.page { flex: 1; margin-top: 40px; }
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+  padding-bottom: 4px;
+}
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px; top: 8px; bottom: 8px;
+  width: 2px;
+  background: var(--border);
+  border-radius: 1px;
+}
+.timeline-item {
+  position: relative;
+  padding: 18px 22px;
+  margin-bottom: 12px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  transition: transform .2s, box-shadow .2s;
+  border: 1px solid var(--border);
+}
+.timeline-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -22px; top: 24px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 2px solid var(--cream);
+}
+.timeline-item .date {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  letter-spacing: 0.2px;
+  margin-bottom: 6px;
+}
+.timeline-item .title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.timeline-item .title a { color: var(--ink); }
+.timeline-item .title a:hover { color: var(--blue); }
+.timeline-item .desc {
+  font-size: 13px;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  border: 1px solid var(--border);
+  transition: transform .2s, box-shadow .2s;
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+.card .label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+.card .value { font-size: 15px; color: var(--ink); line-height: 1.5; }
+.card .value.num {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--blue);
+}
+.section-spacer {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 48px 0;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.footer {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 13px;
+  color: var(--ink-faint);
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+}
+.footer a { color: var(--ink-faint); text-decoration: underline; }
+.footer a:hover { color: var(--blue); }
+@media (max-width: 640px) {
+  .hero h1 { font-size: 28px; }
+  .hero { padding: 48px 16px 36px; }
+  .card { padding: 18px 20px; }
+}
 </style>
 </head>
 <body>
-<header class="glass-header"><div class="container"><div class="logo">📋 复盘 <span>· Daily Review</span></div><nav style="font-size:14px;color:#888">由 WorkBuddy 自动生成</nav></div></header>
-<section class="hero"><div class="container"><div class="badge">🔄 每日更新</div><h1>每日复盘</h1><p>WorkBuddy 每日 22:30 自动生成 · 记录工作、提炼经验、持续进化</p></div></section>
+<header class="app-header">
+  <h1>📋 复盘</h1>
+  <span class="sub">由 WorkBuddy 自动生成</span>
+</header>
+<section class="hero">
+  <div class="badge">🔄 每日更新</div>
+  <h1>每日复盘</h1>
+  <p>WorkBuddy 每日 22:30 自动生成 · 记录工作、提炼经验、持续进化</p>
+</section>
 <div class="page"><div class="container">
 <div class="section-title">📆 复盘记录</div>
 <div class="timeline">
@@ -49,10 +216,10 @@ a{color:#1a1a1a;text-decoration:none}a:hover{color:#000}
 <div class="section-spacer"></div>
 <div class="section-title">📊 总览</div>
 <div class="grid-2">
-<div class="card"><div class="label">累计天数</div><div class="value" style="font-size:28px;font-weight:700">2</div></div>
+<div class="card"><div class="label">累计天数</div><div class="value num">2</div></div>
 <div class="card"><div class="label">最新复盘</div><div class="value">2026-06-09</div></div>
 </div>
 </div></div>
-<footer class="footer"><div class="container"><p>由 WorkBuddy 每日 22:30 自动复盘 · <a href="https://github.com/wherejiahe-bot/daily-review" style="color:#888;text-decoration:underline">GitHub 仓库</a></p></div></footer>
+<footer class="footer"><div class="container"><p>由 WorkBuddy 每日 22:30 自动复盘 · <a href="https://github.com/wherejiahe-bot/daily-review">GitHub 仓库</a></p></div></footer>
 </body>
 </html>
