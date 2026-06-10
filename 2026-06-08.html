@@ -3,91 +3,187 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2026-06-08 复盘 — Daily Review</title>
+<title>2026-06-08 每日复盘 — Daily Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,510;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',-apple-system,sans-serif;background:#f5f5f5;min-height:100vh;background-image:radial-gradient(ellipse at 30% 0%,rgba(100,100,200,0.06) 0%,transparent 60%),radial-gradient(ellipse at 70% 100%,rgba(200,100,100,0.04) 0%,transparent 60%);color:#1a1a1a}
-.container{max-width:840px;margin:0 auto;padding:0 24px;width:100%}
-.glass-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.72);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.06)}
-.glass-header .container{display:flex;align-items:center;justify-content:space-between;padding:16px 24px}
-.glass-header .logo{font-size:18px;font-weight:700;letter-spacing:-0.3px}.glass-header .logo a{color:#1a1a1a;text-decoration:none}
-.glass-header .logo span{color:#888;font-weight:400}
-.hero{text-align:center;padding:60px 24px 40px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-0.5px;margin-bottom:8px}
-.hero .meta{font-size:14px;color:#888}
-.hero .badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:16px}
-.badge-green{background:rgba(48,209,88,0.12);color:#248a3d}
-.badge-blue{background:rgba(0,113,227,0.10);color:#0058b0}
-.badge-orange{background:rgba(255,159,10,0.12);color:#b86800}
-.card{background:rgba(255,255,255,0.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:16px;border:1px solid rgba(0,0,0,0.04);padding:28px 32px;margin-bottom:20px;transition:all 0.2s}
-.card:hover{box-shadow:0 4px 24px rgba(0,0,0,0.04);transform:translateY(-2px)}
-.section-title{font-size:15px;font-weight:600;color:#444;letter-spacing:0.3px;text-transform:uppercase;margin-bottom:16px;margin-top:40px}
-.section-spacer{height:1px;background:linear-gradient(to right,transparent,rgba(0,0,0,0.06),transparent);margin:32px 0}
-.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.tag{display:inline-block;padding:2px 10px;border-radius:6px;font-size:12px;font-weight:500;background:rgba(0,0,0,0.04);color:#666;margin:2px}
-.lesson-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-size:14px;font-weight:700;color:#fff;margin-right:12px;flex-shrink:0}
-.lesson{display:flex;align-items:flex-start;margin-bottom:12px}.lesson-body{flex:1}.lesson-body .scene{font-size:12px;color:#999;margin-bottom:2px}.lesson-body .exp{font-size:14px;color:#1a1a1a;line-height:1.5}
-.flaw{background:rgba(255,69,58,0.06);border:1px solid rgba(255,69,58,0.10);padding:20px 24px;border-radius:12px;margin-bottom:12px}
-.flaw .title{font-size:14px;font-weight:600;color:#c62828;margin-bottom:4px}
-.flaw .detail{font-size:13px;color:#666;line-height:1.5}
-.footer{text-align:center;padding:32px 0;font-size:13px;color:#999;border-top:1px solid rgba(0,0,0,0.04);margin-top:60px}
-.footer a{color:#888;text-decoration:underline}
-@media(max-width:640px){.hero h1{font-size:24px}.hero{padding:40px 24px 32px}.card{padding:20px}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c47a7a;--red-light:rgba(196,122,122,0.10);
+  --blue:#6a8ab8;--blue-light:rgba(106,138,184,0.10);
+  --orange:#c49a5a;--orange-light:rgba(196,154,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(14px,2vw,18px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.app-header h1 a{color:var(--ink);text-decoration:none}
+.app-header nav a{font-size:13px;color:var(--ink-secondary);text-decoration:none;padding:4px 10px;border-radius:6px}
+.app-header nav a:hover{background:var(--accent-light);color:var(--accent)}
+
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date-display{font-size:11px;color:var(--ink-tertiary);font-weight:500;letter-spacing:1.5px;margin-bottom:4px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(24px,4.5vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em}
+.hero .sub{font-size:clamp(12px,1.8vw,14px);color:var(--ink-secondary);margin-top:4px}
+.hero .badge{display:inline-block;padding:4px 14px;border-radius:100px;font-size:12px;font-weight:600;background:var(--orange-light);color:var(--orange);margin-bottom:12px}
+.hero .divider{display:block;width:36px;height:2px;background:var(--accent);margin:16px auto 0;border-radius:2px;opacity:0.5}
+
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:16px}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat-item{text-align:center;padding:12px 4px;background:rgba(0,0,0,0.02);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.stat-item .num{font-size:clamp(18px,3vw,24px);font-weight:700;color:var(--ink);line-height:1.2}
+.stat-item .lbl{font-size:10px;color:var(--ink-tertiary);margin-top:2px;font-weight:500}
+
+.section-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;margin-bottom:14px;margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}
+
+.exp-card{padding:18px 22px;margin-bottom:12px;background:var(--bg-card);border-left:3px solid var(--green);border-radius:var(--radius);border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border);box-shadow:var(--shadow-sm);transition:box-shadow 0.2s}
+.exp-card:hover{box-shadow:var(--shadow-md)}
+.exp-card .num{font-size:11px;font-weight:700;color:var(--green);letter-spacing:0.3px;margin-bottom:4px}
+.exp-card .ctitle{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px;line-height:1.3}
+.exp-card .content{font-size:13.5px;color:var(--ink-secondary);line-height:1.6}
+
+.regret-card{padding:18px 22px;margin-bottom:12px;background:var(--bg-card);border:1px solid var(--red-light);border-radius:var(--radius);box-shadow:var(--shadow-sm);transition:box-shadow 0.2s}
+.regret-card:hover{box-shadow:var(--shadow-md)}
+.regret-card .num{font-size:11px;font-weight:700;color:var(--red);letter-spacing:0.3px;margin-bottom:4px}
+.regret-card .ctitle{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:8px}
+.regret-card .content{font-size:13.5px;color:var(--ink-secondary);line-height:1.6}
+
+.tag{display:inline-block;padding:2px 10px;border-radius:6px;font-size:12px;font-weight:500;background:rgba(0,0,0,0.03);color:var(--ink-tertiary);margin:2px}
+
+.footer{text-align:center;padding:24px 20px;font-size:11px;color:var(--ink-quaternary)}
+
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:16px;border-radius:var(--radius)}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
 </style>
 </head>
 <body>
-<header class="glass-header"><div class="container"><div class="logo"><a href="index.html">📋 复盘</a> <span>· 2026-06-08</span></div><nav style="font-size:14px;color:#888"><a href="index.html" style="color:#888;text-decoration:none">← 返回</a></nav></div></header>
-<section class="hero"><div class="container"><span class="badge badge-green">🔥 繁忙日</span><h1>2026-06-08 复盘</h1><div class="meta">周一 · 完成 15+ 项任务 · 评分 8/10</div></div></section>
+
+<header class="app-header">
+  <h1><a href="index.html">每日复盘</a></h1>
+  <nav><a href="index.html">← 返回</a></nav>
+</header>
+
 <div class="container">
 
-<div class="section-title">📌 三条最佳经验</div>
+  <section class="hero">
+    <div class="badge">2026-06-08 · 周一 · 繁忙日</div>
+    <h2>状态梳理验证<br>技能体系重构</h2>
+    <div class="sub">15+ 项任务 · 源头原则铁律诞生</div>
+    <span class="divider"></span>
+  </section>
 
-<div class="lesson"><span class="lesson-num" style="background:#248a3d">1</span><div class="lesson-body"><div class="scene">场景：用户指出轮穴描述错误 → 要求查RAG</div><div class="exp"><strong>源头原则铁律</strong> — 涉及霎哈嘉知识必须先查原文再输出。建立了P0~P3四级响应机制，写进了lobster-comm和MEMORY.md。用户纠正时：先信他说的对→查原文→只解释来源不辩解。</div></div></div>
+  <!-- Stats -->
+  <div class="card">
+    <div class="card-title">今日概览</div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="num">15+</div><div class="lbl">任务完成</div></div>
+      <div class="stat-item"><div class="num">3</div><div class="lbl">经验沉淀</div></div>
+      <div class="stat-item"><div class="num">3</div><div class="lbl">反思项</div></div>
+      <div class="stat-item"><div class="num">5</div><div class="lbl">GitHub 推送</div></div>
+    </div>
+  </div>
 
-<div class="lesson"><span class="lesson-num" style="background:#0058b0">2</span><div class="lesson-body"><div class="scene">场景：用户买泡棉胶只需要6cm却买了两大卷 → 反思消费</div><div class="exp"><strong>花小钱办大事</strong> — 任何花钱先想三步：能不买吗？能少买吗？能花小钱办大事吗？写进MEMORY.md作为永久核心原则。今天买充电线也验证了"能借就不买"。</div></div></div>
+  <!-- Experiences -->
+  <div class="section-title">✅ 三条最佳经验</div>
 
-<div class="lesson"><span class="lesson-num" style="background:#b86800">3</span><div class="lesson-body"><div class="scene">场景：用户疲倦了还硬等儿子 → 身体更差</div><div class="exp"><strong>9点以后不等了</strong> — 累了先照顾自己，不等孩子不强撑。原21:50自动化改到20:50，内容变为休息提醒。边界不是不爱，是先稳住自己才能爱别人。</div></div></div>
+  <div class="exp-card">
+    <div class="num">#1</div>
+    <div class="ctitle">源头原则铁律</div>
+    <div class="content">
+      <p><strong>场景</strong>：用户指出轮穴描述错误 → 要求查 RAG。</p>
+      <p><strong>经验</strong>：涉及霎哈嘉知识必须先查原文再输出。建立了 P0~P3 四级响应机制，写进了 lobster-comm 和 MEMORY.md。用户纠正时：先信他说的对 → 查原文 → 只解释来源不辩解。</p>
+    </div>
+  </div>
 
-<div class="section-spacer"></div>
-<div class="section-title">⚠️ 做得不好的事</div>
+  <div class="exp-card">
+    <div class="num">#2</div>
+    <div class="ctitle">花小钱办大事</div>
+    <div class="content">
+      <p><strong>场景</strong>：买泡棉胶只需要 6cm 却买了两大卷 → 反思消费。</p>
+      <p><strong>经验</strong>：任何花钱先想三步：能不买吗？能少买吗？能花小钱办大事吗？写进 MEMORY.md 作为永久核心原则。今天买充电线也验证了"能借就不买"。</p>
+    </div>
+  </div>
 
-<div class="flaw"><div class="title">① 女神护身颂解释错误</div><div class="detail">我把女神护身颂说成"左脉火力拉起来"，完全不对。第一次查RAG又把"女神"和"女神护身颂(Kavach)"混为一谈，第二次才查准——Kavach=盾牌/班丹，对应心轮，不是左脉。教训：搜索关键词要精确，不能笼统搜。</div></div>
+  <div class="exp-card">
+    <div class="num">#3</div>
+    <div class="ctitle">9 点以后不等了</div>
+    <div class="content">
+      <p><strong>场景</strong>：用户疲倦了还硬等儿子 → 身体更差。</p>
+      <p><strong>经验</strong>：累了先照顾自己，不等孩子不强撑。原 21:50 自动化改到 20:50，内容变为休息提醒。边界不是不爱，是先稳住自己才能爱别人。</p>
+    </div>
+  </div>
 
-<div class="flaw"><div class="title">② GitHub token 用错版本</div><div class="detail">mem0中存的token和github_push.py里的不一致，导致第一次推送失败。教训：凭证类信息用多个来源交叉验证，不能只信mem0文本记录。已写入REFLECTION.md。</div></div>
+  <!-- Regrets -->
+  <div class="section-title" style="color:var(--red)">❌ 需要改进</div>
 
-<div class="flaw"><div class="title">③ "足三里痛"瞎猜对应轮穴</div><div class="detail">用户说足三里痛，我凭感觉猜"对应XX轮穴"。用户纠正后查RAG确认无此对应，用户自己的解释（吸收对方负面）更合理。教训：不知道就说不知道，不瞎猜。</div></div>
+  <div class="regret-card">
+    <div class="num">反思 #1</div>
+    <div class="ctitle">女神护身颂解释错误</div>
+    <div class="content">
+      把女神护身颂说成"左脉火力拉起来"，完全不对。第一次查 RAG 又把"女神"和"女神护身颂(Kavach)"混为一谈。教训：搜索关键词要精确，不能笼统搜。
+    </div>
+  </div>
 
-<div class="section-spacer"></div>
-<div class="section-title">🛠️ 技能变化</div>
+  <div class="regret-card">
+    <div class="num">反思 #2</div>
+    <div class="ctitle">GitHub token 用错版本</div>
+    <div class="content">
+      mem0 中存的 token 和 github_push.py 里的不一致，导致首次推送失败。教训：凭证类信息用多个来源交叉验证，不能只信 mem0 文本记录。
+    </div>
+  </div>
 
-<div class="card" style="padding:20px 24px">
-<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-<span class="tag">✅ 合并2个技能</span>
-<span class="tag">✅ 新建3个技能</span>
-<span class="tag">✅ 更新3个核心skill</span>
-<span class="tag">🗑️ 标注13个建议删除</span>
+  <div class="regret-card">
+    <div class="num">反思 #3</div>
+    <div class="ctitle">"足三里痛"瞎猜对应轮穴</div>
+    <div class="content">
+      用户说足三里痛，凭感觉猜"对应 XX 轮穴"。用户纠正后查 RAG 确认无此对应，用户自己的解释（吸收对方负面）更合理。教训：不知道就说不知道，不瞎猜。
+    </div>
+  </div>
+
+  <!-- Skill changes -->
+  <div class="section-title">🔧 技能变化</div>
+
+  <div class="card">
+    <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px">
+      <span class="tag">✅ 合并 2 个技能</span>
+      <span class="tag">✅ 新建 3 个技能</span>
+      <span class="tag">✅ 更新 3 个核心 skill</span>
+      <span class="tag">🗑️ 建议删除 13 个</span>
+    </div>
+    <div style="font-size:13px;color:var(--ink-secondary);line-height:1.6">
+      <strong>A 组合并</strong>：sahaj-yoga-kb-protocol → sahaj-yoga-universal<br>
+      <strong>B 组合并</strong>：sahaj-conversation → lobster-comm<br>
+      <strong>新建</strong>：sahaja-x-evaluation、lobster-mem0 更新<br>
+      <strong>统计页面</strong>：新增维护状态列
+    </div>
+  </div>
+
+  <div class="footer">
+    每日复盘 · 由 WorkBuddy 自动生成
+  </div>
+
 </div>
-<div style="font-size:13px;color:#666;line-height:1.6">
-<strong>A组合并</strong>：sahaj-yoga-kb-protocol → sahaj-yoga-universal（刚强众生框架+话题分类）<br>
-<strong>B组合并</strong>：sahaj-conversation → lobster-comm（对话位置校准）<br>
-<strong>新建</strong>：sahaja-x-evaluation、sahaja-rag-to-ima（已存在）、lobster-mem0更新<br>
-<strong>统计页面</strong>：新增维护状态列（经常使用/建议保留/建议删除/已合并/已删除）
-</div>
-</div>
-
-<div class="section-spacer"></div>
-<div class="section-title">📈 今日数据</div>
-<div class="grid-2">
-<div class="card"><div class="label">任务数</div><div class="value" style="font-size:24px;font-weight:700">15+</div></div>
-<div class="card"><div class="label">修改文件</div><div class="value" style="font-size:24px;font-weight:700">20+</div></div>
-<div class="card"><div class="label">GitHub推送</div><div class="value" style="font-size:24px;font-weight:700">5次</div></div>
-<div class="card"><div class="label">日期</div><div class="value" style="font-size:24px;font-weight:700">06-08</div></div>
-</div>
-
-</div>
-<footer class="footer"><div class="container"><p>由 WorkBuddy 每日 22:30 自动复盘 · <a href="https://github.com/wherejiahe-bot/daily-review">GitHub 仓库</a></p></div></footer>
 </body>
 </html>

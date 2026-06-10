@@ -6,220 +6,121 @@
 <title>每日复盘 — Daily Review</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
 <style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root {
-  --blue: #2B7FD8;
-  --gold: #F4D758;
-  --red: #E84A5F;
-  --cream: #fefcf6;
-  --ink: #1A1A2E;
-  --ink-light: #4A4A5A;
-  --ink-faint: #8A8A9A;
-  --card-bg: #fff;
-  --border: rgba(26,26,26,.08);
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
 }
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-::selection { background: var(--gold); color: var(--ink); }
-body {
-  font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
-  background: var(--cream);
-  color: var(--ink);
-  line-height: 1.6;
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: var(--blue); text-decoration: none; }
-a:hover { text-decoration: underline; }
-.container { max-width: 840px; margin: 0 auto; padding: 0 24px; width: 100%; }
-.app-header {
-  position: sticky; top: 0; z-index: 100;
-  height: 56px;
-  background: var(--cream);
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-}
-.app-header h1 {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-}
-.app-header .sub { font-size: 13px; color: var(--ink-faint); }
-.hero {
-  text-align: center;
-  padding: 72px 24px 48px;
-  position: relative;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 50%;
-  transform: translateX(-50%);
-  width: 40px; height: 3px;
-  background: var(--gold);
-  border-radius: 2px;
-}
-.hero .badge {
-  display: inline-block;
-  padding: 4px 14px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  background: rgba(43,127,216,0.08);
-  color: var(--blue);
-  margin-bottom: 16px;
-}
-.hero h1 {
-  font-family: 'Noto Serif SC', serif;
-  font-size: clamp(32px, 6vw, 48px);
-  font-weight: 900;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-.hero p { font-size: 15px; color: var(--ink-light); line-height: 1.6; }
-.page { flex: 1; margin-top: 40px; }
-.section-title {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 20px;
-  border-bottom: 2px solid var(--gold);
-  display: inline-block;
-  padding-bottom: 4px;
-}
-.timeline { position: relative; padding-left: 28px; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 10px; top: 8px; bottom: 8px;
-  width: 2px;
-  background: var(--border);
-  border-radius: 1px;
-}
-.timeline-item {
-  position: relative;
-  padding: 18px 22px;
-  margin-bottom: 12px;
-  background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,.04);
-  transition: transform .2s, box-shadow .2s;
-  border: 1px solid var(--border);
-}
-.timeline-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,.06);
-}
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: -22px; top: 24px;
-  width: 10px; height: 10px;
-  border-radius: 50%;
-  background: var(--blue);
-  border: 2px solid var(--cream);
-}
-.timeline-item .date {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-faint);
-  letter-spacing: 0.2px;
-  margin-bottom: 6px;
-}
-.timeline-item .title {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.timeline-item .title a { color: var(--ink); }
-.timeline-item .title a:hover { color: var(--blue); }
-.timeline-item .desc {
-  font-size: 13px;
-  color: var(--ink-light);
-  line-height: 1.6;
-}
-.card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 24px 28px;
-  box-shadow: 0 2px 12px rgba(0,0,0,.04);
-  border: 1px solid var(--border);
-  transition: transform .2s, box-shadow .2s;
-}
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,.06);
-}
-.card .label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-faint);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 6px;
-}
-.card .value { font-size: 15px; color: var(--ink); line-height: 1.5; }
-.card .value.num {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--blue);
-}
-.section-spacer {
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border), transparent);
-  margin: 48px 0;
-}
-.grid-2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-}
-.footer {
-  text-align: center;
-  padding: 40px 0;
-  font-size: 13px;
-  color: var(--ink-faint);
-  border-top: 1px solid var(--border);
-  margin-top: 60px;
-}
-.footer a { color: var(--ink-faint); text-decoration: underline; }
-.footer a:hover { color: var(--blue); }
-@media (max-width: 640px) {
-  .hero h1 { font-size: 28px; }
-  .hero { padding: 48px 16px 36px; }
-  .card { padding: 18px 20px; }
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+
+.hero{text-align:center;padding:48px 20px 36px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(28px,5vw,36px);font-weight:900;color:var(--ink);letter-spacing:-0.01em}
+.hero .sub{font-size:clamp(13px,2vw,15px);color:var(--ink-secondary);margin-top:6px;font-weight:400}
+.hero .divider{display:block;width:40px;height:2px;background:var(--accent);margin:20px auto 0;border-radius:2px;opacity:0.5}
+
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:16px}
+
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat-item{text-align:center;padding:14px 6px;background:rgba(0,0,0,0.02);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.stat-item .num{font-size:clamp(22px,3.5vw,28px);font-weight:700;color:var(--ink);line-height:1.2}
+.stat-item .lbl{font-size:11px;color:var(--ink-tertiary);margin-top:2px;font-weight:500}
+
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:1px;background:var(--border-strong)}
+.timeline-item{position:relative;padding:14px 0 14px 4px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-24px;top:16px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 2px var(--accent-mid)}
+.timeline-item .date{font-size:12px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.3px;margin-bottom:2px}
+.timeline-item .title{font-size:15px;font-weight:600;color:var(--ink)}
+.timeline-item .title a{color:var(--ink);text-decoration:none}
+.timeline-item .title a:hover{color:var(--accent)}
+.timeline-item .desc{font-size:13px;color:var(--ink-secondary);line-height:1.5;margin-top:3px}
+
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:32px 12px 28px}
+  .card{padding:18px;border-radius:var(--radius)}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .timeline{padding-left:20px}
+  .timeline-dot{left:-20px}
 }
 </style>
 </head>
 <body>
+
 <header class="app-header">
-  <h1>📋 复盘</h1>
-  <span class="sub">由 WorkBuddy 自动生成</span>
-</header>
-<section class="hero">
-  <div class="badge">🔄 每日更新</div>
   <h1>每日复盘</h1>
-  <p>WorkBuddy 每日 22:30 自动生成 · 记录工作、提炼经验、持续进化</p>
-</section>
-<div class="page"><div class="container">
-<div class="section-title">📆 复盘记录</div>
-<div class="timeline">
-<div class="timeline-item"><div class="date">2026-06-09 · 周二</div><div class="title"><a href="2026-06-09.html">状态突破 · 神意照黄庭 Day1 启动</a></div><div class="desc">经验：纯洁的愿望是关键、额轮堵了不清理额轮、滕州战场亡灵验证。反思：女神护身颂时长瞎编、给了精确编码还多问。</div></div>
-<div class="timeline-item"><div class="date">2026-06-08 · 周一</div><div class="title"><a href="2026-06-08.html">状态梳理验证 + 技能体系重构</a></div><div class="desc">经验：源头原则铁律、花小钱办大事、9点不等了。完成大量技能合并和统计页面重构。</div></div>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <h2>每日复盘</h2>
+    <div class="sub">记录工作 · 提炼经验 · 持续进化</div>
+    <span class="divider"></span>
+  </section>
+
+  <!-- Stats -->
+  <div class="card">
+    <div class="card-title">总览</div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="num">3</div><div class="lbl">复盘记录</div></div>
+      <div class="stat-item"><div class="num">6+</div><div class="lbl">经验沉淀</div></div>
+      <div class="stat-item"><div class="num">08</div><div class="lbl">始于六月</div></div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="card">
+    <div class="card-title">复盘记录</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-10 · 周三</div>
+        <div class="title"><a href="2026-06-10.html">PPVI 白色版规范化 · 源头原则第六次落实</a></div>
+        <div class="desc">轮穴术语第六次纠正 → 源头原则强制闭环 · 走路姿势经验 · PPVI白色版覆盖所有页面 · daily-review 独立仓库</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-09 · 周二</div>
+        <div class="title"><a href="2026-06-09.html">状态突破 · 神意照黄庭 Day1</a></div>
+        <div class="desc">纯洁的愿望是突破关键 · 额轮堵了不清理额轮 · 滕州战场亡灵验证 · 女神护身颂时长瞎编反思</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-08 · 周一</div>
+        <div class="title"><a href="2026-06-08.html">状态梳理验证 + 技能体系重构</a></div>
+        <div class="desc">源头原则铁律 · 花小钱办大事 · 技能合并和统计页面重构</div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
-<div class="section-spacer"></div>
-<div class="section-title">📊 总览</div>
-<div class="grid-2">
-<div class="card"><div class="label">累计天数</div><div class="value num">2</div></div>
-<div class="card"><div class="label">最新复盘</div><div class="value">2026-06-09</div></div>
-</div>
-</div></div>
-<footer class="footer"><div class="container"><p>由 WorkBuddy 每日 22:30 自动复盘 · <a href="https://github.com/wherejiahe-bot/daily-review">GitHub 仓库</a></p></div></footer>
+
 </body>
 </html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-10 每日复盘 — Daily Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c47a7a;--red-light:rgba(196,122,122,0.10);
+  --blue:#6a8ab8;--blue-light:rgba(106,138,184,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(14px,2vw,18px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.app-header nav a{font-size:13px;color:var(--ink-secondary);text-decoration:none;padding:4px 10px;border-radius:6px;transition:background 0.15s}
+.app-header nav a:hover{background:var(--accent-light);color:var(--accent)}
+
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date-display{font-size:11px;color:var(--ink-tertiary);font-weight:500;letter-spacing:1.5px;margin-bottom:4px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(24px,4.5vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em}
+.hero .sub{font-size:clamp(12px,1.8vw,14px);color:var(--ink-secondary);margin-top:4px}
+.hero .divider{display:block;width:36px;height:2px;background:var(--accent);margin:16px auto 0;border-radius:2px;opacity:0.5}
+
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:16px}
+
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat-item{text-align:center;padding:12px 4px;background:rgba(0,0,0,0.02);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.stat-item .num{font-size:clamp(18px,3vw,24px);font-weight:700;color:var(--ink);line-height:1.2}
+.stat-item .lbl{font-size:10px;color:var(--ink-tertiary);margin-top:2px;font-weight:500}
+
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:1px;background:var(--border-strong)}
+.timeline-item{position:relative;padding-bottom:18px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-24px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 2px var(--accent-mid)}
+.timeline-dot.red{background:var(--red);box-shadow:0 0 0 2px var(--red-light)}
+.timeline-dot.green{background:var(--green);box-shadow:0 0 0 2px var(--green-light)}
+.timeline-dot.blue{background:var(--blue);box-shadow:0 0 0 2px var(--blue-light)}
+.timeline-time{font-size:11px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px;margin-bottom:2px}
+.timeline-content{font-size:14px;color:var(--ink);line-height:1.6}
+.timeline-content strong{font-weight:600}
+.tag{display:inline-block;font-size:10px;padding:1px 8px;border-radius:100px;font-weight:600;margin-right:3px;vertical-align:middle}
+.tag-redo{background:var(--red-light);color:var(--red)}
+.tag-fix{background:var(--blue-light);color:var(--blue)}
+.tag-insight{background:var(--green-light);color:var(--green)}
+.tag-accent{background:var(--accent-light);color:var(--accent)}
+
+.learning-item{padding:14px 0;border-bottom:1px solid var(--border)}
+.learning-item:last-child{border-bottom:0;padding-bottom:0}
+.learning-item .meta{font-size:11px;color:var(--ink-tertiary);font-weight:500;margin-bottom:4px}
+.learning-item .body{font-size:14px;color:var(--ink);line-height:1.7}
+
+.tag-pill{display:inline-block;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;margin-bottom:8px}
+.tag-red{background:var(--red-light);color:var(--red)}
+.tag-green{background:var(--green-light);color:var(--green)}
+.tag-gold{background:var(--accent-light);color:var(--accent)}
+
+.reflection-box{padding:14px 18px;background:var(--accent-light);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;margin-top:10px}
+.reflection-box p{font-size:13px;line-height:1.7;color:#5a4a30;margin-bottom:6px}
+.reflection-box p:last-child{margin-bottom:0}
+
+.plan-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0}
+.plan-item .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:8px;opacity:0.6}
+.plan-item .text{font-size:14px;color:var(--ink-secondary)}
+
+.footer{text-align:center;padding:24px 20px;font-size:11px;color:var(--ink-quaternary)}
+
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:16px;border-radius:var(--radius)}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .timeline{padding-left:20px}
+  .timeline-dot{left:-20px}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1><a href="index.html" style="color:var(--ink);text-decoration:none">每日复盘</a></h1>
+  <nav><a href="index.html">← 返回</a></nav>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="date-display">WEDNESDAY · 2026-06-10 · 六月初五</div>
+    <h2>PPVI 白色版规范化<br>源头原则第六次落实</h2>
+    <div class="sub">轮穴术语 · 白色版设计 · 仓库独立</div>
+    <span class="divider"></span>
+  </section>
+
+  <!-- Stats -->
+  <div class="card">
+    <div class="card-title">今日概览</div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="num">4</div><div class="lbl">任务完成</div></div>
+      <div class="stat-item"><div class="num">2</div><div class="lbl">经验沉淀</div></div>
+      <div class="stat-item"><div class="num">1</div><div class="lbl">反思项</div></div>
+      <div class="stat-item"><div class="num">1</div><div class="lbl">GitHub 推送</div></div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="card">
+    <div class="card-title">时间线</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <span class="timeline-dot red"></span>
+        <div class="timeline-time">07:47</div>
+        <div class="timeline-content">
+          <span class="tag tag-redo">纠错</span>
+          <strong>第六次被纠正轮穴术语</strong><br>
+          「让每个轮穴回到自己的位置」→ 正确说法：「彰显出每个轮穴的特质」<br>
+          <span style="font-size:12px;color:var(--ink-tertiary);">已查 RAG 确认无原文出处 · 已更新 skill + 4 条自动化 prompt</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot blue"></span>
+        <div class="timeline-time">07:55</div>
+        <div class="timeline-content">
+          <span class="tag tag-fix">修复</span>
+          <strong>100天日记修复</strong><br>
+          日记卡片改为「每日日记」—— 所有日期可选查看，记录可点击跳转
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot green"></span>
+        <div class="timeline-time">08:00</div>
+        <div class="timeline-content">
+          <span class="tag tag-insight">经验</span>
+          <strong>走路姿势三要点</strong><br>
+          腰椎平顺 · 上身挺拔 · 大拇脚趾球走路<br>
+          <span style="font-size:12px;color:var(--ink-tertiary);">和陆姨交流分享，已记录到用户级 MEMORY.md</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot" style="background:var(--accent);box-shadow:0 0 0 2px var(--accent-mid)"></span>
+        <div class="timeline-time">08:00</div>
+        <div class="timeline-content">
+          <span class="tag tag-accent">设计</span>
+          <strong>100天项目 → PPVI 白色版</strong><br>
+          纯白底色 / 淡金强调 / 玻璃拟态卡片 / 严格字体层级 / 已推 GitHub Pages
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot" style="background:var(--accent);box-shadow:0 0 0 2px var(--accent-mid)"></span>
+        <div class="timeline-time">08:24</div>
+        <div class="timeline-content">
+          <span class="tag tag-accent">设计</span>
+          <strong>每日复盘 → PPVI 白色版</strong><br>
+          新建 review.html（后迁至独立仓库），与 100天统一视觉风格
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot blue"></span>
+        <div class="timeline-time">08:37</div>
+        <div class="timeline-content">
+          <span class="tag tag-fix">调整</span>
+          <strong>复盘移至独立 daily-review 仓库</strong><br>
+          全部 PPVI 白色版重写：index.html + 06-08 + 06-09 + 06-10
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Learnings -->
+  <div class="card">
+    <div class="card-title">经验沉淀</div>
+
+    <div class="learning-item">
+      <span class="tag-pill tag-red">第六次纠正</span>
+      <div class="body">
+        <strong>轮穴描述用语规范</strong><br>
+        「回到位置」「归位」是自创说法，无原文出处。<br>
+        正确说法：<strong>「彰显出每个轮穴的特质」</strong>（与 Shri Mataji 1977 讲话 "chakras start manifesting" 对应）。
+      </div>
+      <div class="reflection-box">
+        <p>同一个问题第六次反复——<strong>源头原则没有真正落实</strong>。每次写灵性内容时，第一反应应该是"查原文"，不是"凭记忆写"。已更新 skill 和自动化配置，永久禁止自创轮穴描述用语。</p>
+      </div>
+    </div>
+
+    <div class="learning-item">
+      <span class="tag-pill tag-green">身体经验</span>
+      <div class="body">
+        <strong>走路姿势要点</strong><br>
+        ① <strong>腰椎平顺</strong> — 不撅屁股，胯回正，小腹自然收起<br>
+        ② <strong>上身挺拔</strong> — 双手向下撑（与头顶对称），通过"向下撑"实现挺拔<br>
+        ③ <strong>大拇脚趾球走路</strong> — 双脚间距大一些，微微内扣，保护膝盖
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Reflection -->
+  <div class="card">
+    <div class="card-title">今日反思</div>
+    <div class="reflection-box">
+      <p><strong>关于术语被纠正了六次这件事。</strong></p>
+      <p>同样的错误反复出现，说明"知道"和"做到"之间有鸿沟。源头原则不是一条建议，是一个强制步骤。每次涉及霎哈嘉内容时，应该先问自己三个问题——这是已经写在系统 prompt 里的规则，但执行层面没有真正闭环。</p>
+      <p>已做的补救：更新 skill 配置 + 自动化 prompt + 在 log 中记录。剩下的就是让每次调用都走这个流程。</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    每日复盘 · 由 WorkBuddy 自动生成
+  </div>
+
+</div>
+</body>
+</html>
