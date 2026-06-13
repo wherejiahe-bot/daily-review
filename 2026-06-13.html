@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-13 — 每日全局复盘</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,510;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-weight:400;color:#1a1a1a;
+  background:#f5f5f5;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;
+  background:radial-gradient(ellipse at 30% 0%,rgba(180,180,255,0.06) 0%,transparent 60%),
+             radial-gradient(ellipse at 70% 100%,rgba(255,180,180,0.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+h1{font-size:clamp(2.4rem,5vw,3.6rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:600;letter-spacing:-0.02em;line-height:1.25;margin-bottom:0.75rem;padding-top:2rem}
+h3{font-size:clamp(1.125rem,2vw,1.4rem);font-weight:600;letter-spacing:-0.01em;line-height:1.35;margin-bottom:0.5rem;padding-top:1.5rem}
+p{font-size:clamp(0.95rem,1.2vw,1.05rem);color:#444;line-height:1.65;max-width:65ch;margin-bottom:1rem}
+code{font-family:'JetBrains Mono',monospace;font-size:0.875em;background:#eee;padding:0.15em 0.4em;border-radius:4px}
+.container{max-width:900px;margin:0 auto;padding:0 24px}
+.section-spacer{height:2px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:1.5rem 0 0.5rem}
+.glass-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(245,245,247,0.78);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  padding:14px 0;
+}
+.glass-header .container{display:flex;align-items:center;justify-content:space-between}
+.glass-header .logo{
+  font-weight:600;font-size:0.95rem;letter-spacing:-0.015em;
+  display:flex;align-items:center;
+}
+.glass-header .logo a{color:#1a1a1a;text-decoration:none}
+.glass-header nav{display:flex;gap:8px;flex-wrap:wrap}
+.glass-header nav a{
+  color:#555;text-decoration:none;font-size:0.8rem;font-weight:500;
+  padding:6px 12px;border-radius:6px;transition:all 0.2s;
+}
+.glass-header nav a:hover{background:rgba(0,0,0,0.06);color:#1a1a1a}
+.hero{padding:6rem 0 3.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(100,100,255,0.08),transparent 70%);
+  pointer-events:none;
+}
+.hero .subtitle{
+  font-size:clamp(0.9rem,1.5vw,1.05rem);color:#666;max-width:580px;margin:0 auto 1.5rem;line-height:1.6;
+}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.hero-badge{
+  display:inline-block;font-size:0.72rem;font-weight:500;padding:4px 12px;border-radius:100px;
+  background:rgba(0,0,0,0.05);color:#555;letter-spacing:0.01em;
+}
+.hero-badge.accent{background:#1a1a2e;color:#fff}
+.card{
+  background:rgba(255,255,255,0.72);
+  backdrop-filter:blur(12px) saturate(160%);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);
+  border:1px solid rgba(255,255,255,0.5);
+  border-radius:16px;
+  padding:1.75rem 2rem;
+  margin-bottom:1.25rem;
+  transition:box-shadow 0.25s,transform 0.25s;
+}
+.card:hover{box-shadow:0 8px 40px rgba(0,0,0,0.06);transform:translateY(-2px)}
+.card strong{font-weight:600;color:#1a1a1a}
+.status{display:inline-flex;align-items:center;gap:5px;font-size:0.78rem;font-weight:500;padding:3px 10px;border-radius:100px}
+.status-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.status-green{background:#e8f5e9;color:#2e7d32}.status-green .status-dot{background:#2e7d32}
+.status-amber{background:#fff8e1;color:#f57f17}.status-amber .status-dot{background:#f57f17}
+.status-red{background:#ffebee;color:#c62828}.status-red .status-dot{background:#c62828}
+.status-blue{background:#e3f2fd;color:#1565c0}.status-blue .status-dot{background:#1565c0}
+.tag{display:inline-block;font-size:0.72rem;font-weight:500;padding:2px 8px;border-radius:4px;background:#eee;color:#555;margin:1px 2px}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.timeline{position:relative;padding-left:2rem;margin:1.5rem 0}
+.timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#1a1a2e,#888,transparent)}
+.timeline-item{position:relative;margin-bottom:1.75rem}
+.timeline-item::before{content:'';position:absolute;left:-1.65rem;top:0.5rem;width:14px;height:14px;border-radius:50%;background:#1a1a2e;border:3px solid #f5f5f5}
+.timeline-item h3{margin-bottom:0.25rem;padding-top:0}
+.timeline-item .meta{font-size:0.8rem;color:#888;margin-bottom:0.5rem}
+.skill-node{display:inline-flex;align-items:center;gap:6px;background:#1a1a2e;color:#fff;padding:4px 12px;border-radius:100px;font-size:0.78rem;font-weight:500;margin:3px 4px}
+.footer{margin-top:4rem;padding:2rem 0;text-align:center;border-top:1px solid rgba(0,0,0,0.06);font-size:0.8rem;color:#999}
+.footer a{color:#1565c0;text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.overview-stat{display:inline-flex;align-items:baseline;gap:4px;background:#f0f0f0;padding:4px 12px;border-radius:8px;font-size:0.9rem;margin:4px}
+.overview-stat .num{font-weight:700;font-size:1.4rem;color:#1a1a1a}
+.overview-stat .label{color:#666;font-size:0.8rem}
+.warning-card{
+  background:rgba(255,235,238,0.72);
+  backdrop-filter:blur(12px) saturate(160%);
+  border:2px solid #ffcdd2;
+  border-radius:16px;
+  padding:1.75rem 2rem;
+  margin-bottom:1.25rem;
+}
+.warning-card strong{color:#c62828}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card,.hero,.timeline-item{animation:fadeUp 0.5s ease-out both}
+.card:nth-child(2){animation-delay:0.08s}
+.card:nth-child(3){animation-delay:0.16s}
+.card:nth-child(4){animation-delay:0.24s}
+@media(max-width:640px){
+  .glass-header .container{flex-direction:column;gap:8px}
+  .glass-header nav a{font-size:0.72rem;padding:4px 8px}
+  .hero{padding:4rem 0 2.5rem}
+  .card{padding:1.25rem 1.25rem;border-radius:12px}
+}
+</style>
+</head>
+<body>
+
+<header class="glass-header">
+  <div class="container">
+    <div class="logo"><a href="https://wherejiahe-bot.github.io/daily-review/">🦞 全局复盘</a></div>
+    <nav>
+      <a href="#overview">概览</a>
+      <a href="#experiences">经验</a>
+      <a href="#reflections">反思</a>
+      <a href="#timeline">脉络</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>2026-06-13 全局复盘</h1>
+    <p class="subtitle">
+      今日主线：五遍原则写入SOUL.md、方案整合商思维、物料提前准备、看清妻子模式、早安提醒修复。
+    </p>
+    <div class="hero-badges">
+      <span class="hero-badge accent">📋 6项活动</span>
+      <span class="hero-badge">SOUL.md升级</span>
+      <span class="hero-badge">方案整合商</span>
+      <span class="hero-badge">早安提醒修复</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <h2>今日概览</h2>
+    <div class="grid-2">
+      <div class="card">
+        <div>
+          <span class="overview-stat"><span class="num">6</span><span class="label"> 项活动</span></span>
+          <span class="overview-stat"><span class="num">2</span><span class="label"> 工作区</span></span>
+          <span class="overview-stat"><span class="num">1</span><span class="label"> 系统升级</span></span>
+        </div>
+      </div>
+      <div class="card">
+        <div>
+          <span class="overview-stat"><span class="num">2</span><span class="label"> 条经验</span></span>
+          <span class="overview-stat"><span class="num">2</span><span class="label"> 条反思</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-spacer"></div>
+
+  <!-- EXPERIENCES -->
+  <section id="experiences">
+    <h2>三条最佳经验</h2>
+
+    <div class="card">
+      <strong style="font-size:1.1rem">经验一：五遍原则 — 迭代5次没解决就换思路</strong>
+      <p style="margin-top:0.5rem;margin-bottom:0">
+        amruta中英文对齐搞到凌晨2:30仍无进展。核心发现：同一个AI在同一小时内迭代4-5次还解决不了，说明<strong>核心算法/思路有问题</strong>。此时不应继续死磕，而应去网上找这个领域更大的已有解决方案。AI不是方案开发商，是方案整合商。
+      </p>
+      <div style="margin-top:0.75rem">
+        <span class="tag">AI使用</span>
+        <span class="tag">迭代策略</span>
+        <span class="tag">五遍原则</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <strong style="font-size:1.1rem">经验二：结构化存储优于语义搜索</strong>
+      <p style="margin-top:0.5rem;margin-bottom:0">
+        06:50早安提醒每次靠mem0语义搜索"今天做什么"，但mem0是语义搜索不是结构化存储，"明天"变"今天"后搜不准。解决：创建today-plan.md结构化文件，主人说了就持久化写入，自动化优先读结构化文件。结论：<strong>AI不能靠猜，说了就存。</strong>
+      </p>
+      <div style="margin-top:0.75rem">
+        <span class="tag">持久化</span>
+        <span class="tag">结构化存储</span>
+        <span class="tag">自动化</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <strong style="font-size:1.1rem">经验三：物料提前准备，尊重客观规律</strong>
+      <p style="margin-top:0.5rem;margin-bottom:0">
+        规划做排骨但排骨冻在冷冻层、准备画画但椰子水没倒。教训：到点干不了不是规划错了，是<strong>物料没提前备好</strong>。无论做什么事——写代码、修行、做饭——到点能顺利推进的前提是准备工作已完成。
+      </p>
+      <div style="margin-top:0.75rem">
+        <span class="tag">准备</span>
+        <span class="tag">客观规律</span>
+        <span class="tag">通用原则</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-spacer"></div>
+
+  <!-- REFLECTIONS -->
+  <section id="reflections">
+    <h2>做得不够的事</h2>
+
+    <div class="warning-card">
+      <strong>反思一：amruta中英文对齐——在细节里死磕到凌晨2:30</strong>
+      <p style="margin-top:0.5rem;margin-bottom:0">
+        凌晨折腾中英文对齐，用同一个人工AI反复迭代4-5次仍无进展，没有停下来换思路或查资料。直接改进方法：设定迭代上限为3次，超3次立即停止、搜索网上已有方案、换AI或换策略。
+      </p>
+    </div>
+
+    <div class="warning-card">
+      <strong>反思二：早安提醒的问题应该更早发现</strong>
+      <p style="margin-top:0.5rem;margin-bottom:0">
+        mem0语义搜索搜不准"今天的计划"这个问题，可能早就存在了，但直到17:40才被系统性修复。改进方法：每次自动化任务运行后记录一次运行结果，对比实际输出与预期，发现偏差立即排查。
+      </p>
+    </div>
+  </section>
+
+  <div class="section-spacer"></div>
+
+  <!-- TIMELINE -->
+  <section id="timeline">
+    <h2>今日脉络</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="meta">09:48 — Claw工作区</div>
+        <h3>amruta中英文对齐失败 → 提炼五遍原则</h3>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">09:50 — Claw工作区</div>
+        <h3>睡眠5.5h，追求"事在推进+内在自洽"</h3>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">09:57 — Claw工作区</div>
+        <h3>方案整合商思维确立 — 不什么都自己研发</h3>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">10:00→10:16 — Claw工作区</div>
+        <h3>五遍原则写入SOUL.md ✅</h3>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">10:45 — Claw工作区</div>
+        <h3>生活经验：物料要提前准备</h3>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">11:28 — Claw工作区</div>
+        <h3>放下之后看清妻子的行为模式</h3>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">17:40 — Claw工作区</div>
+        <h3>修复06:50早安提醒 — 创建today-plan.md结构化存储</h3>
+      </div>
+      <div class="timeline-item">
+        <div class="meta">21:55 — 0号龙虾工作区</div>
+        <h3>技能使用统计自动更新 — 103个技能，255次调用</h3>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    🦞 0号龙虾 · 每日全局复盘 &mdash; <a href="https://wherejiahe-bot.github.io/daily-review/">返回导航</a><br>
+    2026-06-13 &bull; 自动化执行
+  </div>
+</footer>
+
+</body>
+</html>
