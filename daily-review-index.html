@@ -24,7 +24,7 @@
   --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
 }
 body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
 .container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
 
 .app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
@@ -46,7 +46,7 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 .stat-item .lbl{font-size:11px;color:var(--ink-tertiary);margin-top:2px;font-weight:500}
 
 .timeline{position:relative;padding-left:24px}
-.timeline::before{content:"";position:absolute;left:7px;top:4px;bottom:4px;width:1px;background:var(--border-strong)}
+.timeline::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:1px;background:var(--border-strong)}
 .timeline-item{position:relative;padding:14px 0 14px 4px}
 .timeline-item:last-child{padding-bottom:0}
 .timeline-dot{position:absolute;left:-24px;top:16px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 2px var(--accent-mid)}
@@ -85,14 +85,14 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
   <div class="card">
     <div class="card-title">总览</div>
     <div class="stats-row">
-      <div class="stat-item"><div class="num">12</div><div class="lbl">复盘记录</div></div>
-      <div class="stat-item"><div class="num">10+</div><div class="lbl">经验沉淀</div></div>
+      <div class="stat-item"><div class="num">6</div><div class="lbl">复盘记录</div></div>
+      <div class="stat-item"><div class="num">15+</div><div class="lbl">经验沉淀</div></div>
       <div class="stat-item"><div class="num">08</div><div class="lbl">始于六月</div></div>
     </div>
   </div>
 
   <!-- Timeline -->
-  <div class="card">
+    <div class="card">
     <div class="card-title">复盘记录</div>
     <div class="timeline">
 
@@ -101,13 +101,6 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
         <div class="date">2026-06-19 · 周五</div>
         <div class="title"><a href="2026-06-19.html">模型配置·深夜战斗·拳击陪练</a></div>
         <div class="desc">Llama模型修复，WorkBuddy切Codex，陪孩子打拳击</div>
-      <div class="timeline-item">
-        <span class="timeline-dot"></span>
-        <div class="date">2026-06-20 · 周六</div>
-        <div class="title"><a href="2026-06-20.html">记忆体系统一 · 自动化过滤优化 · 模型对比</a></div>
-        <div class="desc">统一MEMORY.md路径，安装cc-connect，多模型对比</div>
-      </div>
-
       </div>
 
       <div class="timeline-item">
@@ -133,12 +126,73 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellips
 
       <div class="timeline-item">
         <span class="timeline-dot"></span>
-        <div class="date">2026-06-15 · 周一</div>
-        <div class="title"><a href="2026-06-15.html">记忆梳理经验 · 自动推送验证成功 · 技能体系重构陷入停滞</a></div>
-        <div class="desc">经验：Skill清理释放上下文（146→46，降幅68%）/ amruta-actions流水线首次全部5分钟成功 / 五层归因找到中断根因。反思：语义去重阈值0.85误删短句 / GitHub推送偶发网络失败。P0：修复pairs.json写入逻辑 + 优化去重阈值。</div>
+        <div class="date">2026-06-13 · 周六</div>
+        <div class="title"><a href="2026-06-13.html">五遍原则写入SOUL · 方案整合商思维 · 早安提醒修复</a></div>
+        <div class="desc">经验：五遍原则（迭代5次没解决换思路）/ 结构化存储优于语义搜索 / 物料提前准备</div>
       </div>
 
       <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-12 · 周五</div>
+        <div class="title"><a href="2026-06-12.html">AI分工法 · 第三职业产品矩阵落地 · 灵性突破"我不是这些"</a></div>
+        <div class="desc">经验：AI分工法（一个AI卡住叫另一个AI出方案）/ 第三职业7层产品矩阵定型</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-11 · 周四</div>
+        <div class="title"><a href="2026-06-11.html">批量记忆梳理 · 技能统计自动化验证 · 第三职业理论层停滞</a></div>
+        <div class="desc">经验：批量记忆梳理法验证有效（5文件一次写入）/ 技能统计自动化已成熟</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-10 · 周三</div>
+        <div class="title"><a href="2026-06-10.html">PPVI白色版规范化 · 单线程工作法验证 · 术语第六次纠错</a></div>
+        <div class="desc">经验：PPVI白色版设计系统实战验证 / 单线程+等待时回到灵的状态=高质量工作</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-09 · 周二</div>
+        <div class="title"><a href="2026-06-09.html">状态突破 · 神意照黄庭 Day1</a></div>
+        <div class="desc">纯洁的愿望是突破关键 · 额轮堵了不清理额轮 · 滕州战场亡灵验证</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-08 · 周一</div>
+        <div class="title"><a href="2026-06-08.html">状态梳理验证 + 技能体系重构</a></div>
+        <div class="desc">源头原则铁律 · 花小钱办大事 · 技能合并和统计页面重构</div>
+      </div>
+
+    </div>
+  </div>
+        <div class="desc">Llama模型修复，WorkBuddy切Codex，陪孩子打拳击</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-18 · 周四</div>
+        <div class="title"><a href="2026-06-18.html">免费模型局限·连接母亲·编程疲劳</a></div>
+        <div class="desc">色欲驱动离开电脑，自我按摩内省，面对内在真实</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-17 · 周三</div>
+        <div class="title"><a href="2026-06-17.html">根轮清理·个人特质发现·三鲜汤面</a></div>
+        <div class="desc">左边根轮堵塞第3天，发现占便宜和装逼心理特质</div>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-dot"></span>
+        <div class="date">2026-06-16 · 周二</div>
+        <div class="title"><a href="2026-06-16.html">项目规划·灵性表达·PPVI设计先行</a></div>
+        <div class="desc">PPVI设计先行 + 三轮对比法测模型 + 通知用本地弹窗</div>
+      </div>
+
+  <div class="timeline-item">
         <span class="timeline-dot"></span>
         <div class="date">2026-06-13 · 周六</div>
         <div class="title"><a href="2026-06-13.html">五遍原则写入SOUL · 方案整合商思维 · 早安提醒修复</a></div>

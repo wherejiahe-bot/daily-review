@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日复盘 · 2026-06-12</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,510;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, 'Microsoft YaHei', sans-serif;
+      background: #f5f5f5;
+      background-image:
+        radial-gradient(ellipse at 30% 0%, rgba(21,101,192,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 100%, rgba(198,40,40,0.04) 0%, transparent 60%);
+      min-height: 100vh;
+      color: #1a1a1a;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+    /* Glass Header */
+    .glass-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      padding: 12px 0;
+    }
+    .glass-header .container {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .glass-header .logo {
+      font-size: 14px; font-weight: 600; color: #1a1a1a;
+      text-decoration: none; letter-spacing: -0.3px;
+    }
+    .glass-header .logo span { color: #888; font-weight: 400; }
+    .glass-header nav a {
+      font-size: 13px; color: #666; text-decoration: none;
+      padding: 6px 12px; border-radius: 6px; transition: all 0.2s;
+      margin-left: 4px;
+    }
+    .glass-header nav a:hover { background: rgba(0,0,0,0.04); color: #1a1a1a; }
+
+    /* Hero */
+    .hero {
+      text-align: center; padding: 64px 0 48px;
+    }
+    .hero .date-tag {
+      display: inline-block;
+      padding: 4px 14px; border-radius: 20px;
+      background: rgba(21,101,192,0.08); color: #1565c0;
+      font-size: 12px; font-weight: 500; letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 36px; font-weight: 700; color: #1a1a1a;
+      letter-spacing: -1px; line-height: 1.2; margin-bottom: 12px;
+    }
+    .hero .subtitle {
+      font-size: 16px; color: #666;
+      max-width: 500px; margin: 0 auto 20px;
+    }
+    .hero .stats-row {
+      display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;
+    }
+    .hero .stat {
+      text-align: center;
+    }
+    .hero .stat .num {
+      font-size: 28px; font-weight: 700; color: #1a1a1a; display: block;
+    }
+    .hero .stat .label {
+      font-size: 12px; color: #888; text-transform: uppercase;
+      letter-spacing: 0.5px; margin-top: 2px;
+    }
+
+    /* Section */
+    .section-title {
+      font-size: 14px; font-weight: 600; color: #888;
+      text-transform: uppercase; letter-spacing: 0.8px;
+      margin-bottom: 20px; padding-top: 8px;
+    }
+
+    .section-spacer {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.06), transparent);
+      margin: 48px 0;
+    }
+
+    /* Cards */
+    .card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 16px; padding: 28px 32px;
+      margin-bottom: 20px;
+      transition: all 0.25s ease;
+    }
+    .card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+    .card .card-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #1565c0; color: #fff;
+      font-size: 14px; font-weight: 600; margin-bottom: 12px;
+    }
+    .card .card-number.green { background: #2e7d32; }
+    .card .card-number.purple { background: #6a1b9a; }
+    .card h3 {
+      font-size: 18px; font-weight: 600; color: #1a1a1a;
+      margin-bottom: 8px; letter-spacing: -0.3px;
+    }
+    .card .meta {
+      font-size: 12px; color: #888; margin-bottom: 12px;
+    }
+    .card p {
+      font-size: 14px; color: #444; line-height: 1.7;
+      margin-bottom: 6px;
+    }
+    .card .tag {
+      display: inline-block;
+      padding: 2px 10px; border-radius: 12px;
+      font-size: 11px; font-weight: 500;
+      margin: 2px 3px;
+    }
+    .tag-blue { background: rgba(21,101,192,0.08); color: #1565c0; }
+    .tag-green { background: rgba(46,125,50,0.08); color: #2e7d32; }
+    .tag-orange { background: rgba(245,127,23,0.08); color: #e65100; }
+    .tag-purple { background: rgba(106,27,154,0.08); color: #6a1b9a; }
+    .tag-red { background: rgba(198,40,40,0.08); color: #c62828; }
+
+    /* Reflection card (red border) */
+    .reflection-card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(198,40,40,0.25);
+      border-radius: 16px; padding: 28px 32px;
+      margin-bottom: 20px;
+      transition: all 0.25s ease;
+    }
+    .reflection-card:hover {
+      box-shadow: 0 8px 32px rgba(198,40,40,0.06);
+      transform: translateY(-2px);
+    }
+    .reflection-card .card-icon {
+      font-size: 24px; margin-bottom: 8px;
+    }
+    .reflection-card h3 {
+      font-size: 16px; font-weight: 600; color: #c62828;
+      margin-bottom: 6px;
+    }
+    .reflection-card .meta {
+      font-size: 12px; color: #888; margin-bottom: 10px;
+    }
+    .reflection-card p {
+      font-size: 14px; color: #444; line-height: 1.7;
+      margin-bottom: 6px;
+    }
+    .reflection-card .improvement {
+      margin-top: 12px; padding: 12px 16px;
+      background: rgba(198,40,40,0.04);
+      border-radius: 10px;
+      font-size: 13px; color: #555;
+    }
+    .reflection-card .improvement strong {
+      color: #c62828;
+    }
+
+    /* Skills section */
+    .skills-grid {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 8px;
+    }
+    .skill-node {
+      display: inline-flex; align-items: center;
+      padding: 4px 12px; border-radius: 20px;
+      font-size: 12px; font-weight: 500;
+    }
+    .skill-node.new { background: rgba(21,101,192,0.08); color: #1565c0; }
+    .skill-node.update { background: rgba(245,127,23,0.08); color: #e65100; }
+    .skill-node.stable { background: rgba(46,125,50,0.08); color: #2e7d32; }
+
+    /* Footer */
+    .footer {
+      text-align: center; padding: 32px 0 16px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      margin-top: 48px;
+    }
+    .footer a {
+      color: #888; text-decoration: none; font-size: 13px;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: #1a1a1a; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card, .reflection-card { animation: fadeUp 0.5s ease both; }
+    .card:nth-child(2) { animation-delay: 0.08s; }
+    .card:nth-child(3) { animation-delay: 0.16s; }
+    .card:nth-child(4) { animation-delay: 0.24s; }
+    .reflection-card:nth-child(2) { animation-delay: 0.08s; }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .container { padding: 0 16px; }
+      .hero { padding: 40px 0 32px; }
+      .hero h1 { font-size: 26px; }
+      .card, .reflection-card { padding: 20px; }
+      .hero .stats-row { gap: 20px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .glass-header { background: #fff; backdrop-filter: none; border-color: #ddd; }
+      .card, .reflection-card { background: #fff; backdrop-filter: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="glass-header">
+  <div class="container">
+    <a href="https://wherejiahe-bot.github.io/daily-review/" class="logo">📋 每日复盘 <span>· Daily Review</span></a>
+    <nav>
+      <a href="https://wherejiahe-bot.github.io/daily-review/">← 返回导航</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="date-tag">2026 · 06 · 12</div>
+    <h1>每日复盘</h1>
+    <p class="subtitle">周五 · 自动化改进 + 第三职业定型 + AI分工法 + 灵性突破"我不是这些"</p>
+    <div class="stats-row">
+      <div class="stat">
+        <span class="num">8</span>
+        <span class="label">今日任务</span>
+      </div>
+      <div class="stat">
+        <span class="num">3</span>
+        <span class="label">关键经验</span>
+      </div>
+      <div class="stat">
+        <span class="num">+6</span>
+        <span class="label">技能变化</span>
+      </div>
+      <div class="stat">
+        <span class="num">1</span>
+        <span class="label">灵性突破</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+
+  <!-- Best Experiences -->
+  <div class="section-title">🏆 最佳经验</div>
+
+  <div class="card" style="animation-delay:0s;">
+    <div class="card-number purple">1</div>
+    <h3>AI分工法</h3>
+    <div class="meta">场景：amruta中英文对齐 · 标点不一致问题</div>
+    <p>一个AI执行力强但不聪明的时候，叫另一个免费AI（豆包专家）来出方案，让执行型AI去执行。</p>
+    <p>不消耗token，聪明干活。在amruta中英文对齐问题上反复验证有效——AI写了30多次算法都没完全解决，换了思路后找到方向。</p>
+    <p style="margin-top:10px;"><strong>可复用：</strong>任何复杂的编程/算法任务，一个AI卡住了就找另一个AI给思路</p>
+    <div style="margin-top:10px;">
+      <span class="tag tag-purple">AI协作</span>
+      <span class="tag tag-purple">amruta</span>
+      <span class="tag tag-purple">模式复现</span>
+    </div>
+  </div>
+
+  <div class="card" style="animation-delay:0.08s;">
+    <div class="card-number">2</div>
+    <h3>第三职业产品矩阵落地</h3>
+    <div class="meta">场景：从模糊想法到可执行框架</div>
+    <p><strong>目标客户锁定</strong>为「愿意付费的真正求道者」——不是睡眠不好的、不是焦虑内耗的，太泛了。</p>
+    <p><strong>7层产品矩阵：</strong>免费短视频引流 → 9.9元打卡群 → 100元状态梳理/体呼吸 → 600元一周陪跑 → 99元小班月卡 → 199-299元录播课。每层服务结束后送免费冥想，引导至霎哈嘉。</p>
+    <p><strong>账号定位：</strong>「滕州陈家禾」站桩日常，不剪辑不滤镜不剧本。</p>
+    <p><strong>核心原则：</strong>对霎哈嘉同修免费，对外人收费；每天不超1小时。</p>
+    <div style="margin-top:10px;">
+      <span class="tag tag-blue">职业规划</span>
+      <span class="tag tag-blue">产品矩阵</span>
+      <span class="tag tag-blue">商业落地</span>
+    </div>
+  </div>
+
+  <div class="card" style="animation-delay:0.16s;">
+    <div class="card-number green">3</div>
+    <h3>灵性突破——"我不是这些"</h3>
+    <div class="meta">场景：下午进入静观状态后记录</div>
+    <p>"我不是这些，我不是这些，我什么也不是。"——不论做什么，不论感受到什么，不论有任何的交集——<strong>我不是这些</strong>。</p>
+    <p>我什么也不需要做。慢慢进入安静、清凉的状态。外面一切发生，就让它发生。在生命能量的推动下慢慢去做，不着急，没有任何着急。</p>
+    <p>这不是一个想法，是<strong>亲身进入的状态</strong>。静观（witness consciousness）——从"我是这个身体/这些情绪"中抽离出来。</p>
+    <div style="margin-top:10px;">
+      <span class="tag tag-green">灵性</span>
+      <span class="tag tag-green">静观</span>
+      <span class="tag tag-green">实修体验</span>
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Reflections -->
+  <div class="section-title">⚠️ 反思</div>
+
+  <div class="reflection-card" style="animation-delay:0.24s;">
+    <div class="card-icon">⚠️</div>
+    <h3>状态波动大，灵的状态不稳</h3>
+    <div class="meta">影响：注意力被拉走一上午+肚子热了一下午</div>
+    <p>上午刷了半小时抖音，状态被拉走。女神护身颂没念，注意力不好也不凉。下午折腾amruta对齐太兴奋，"脑子嗡嗡的、有点直、肚子热了一下午"。色欲课题今天也出现了。</p>
+    <p><strong>根本原因：</strong>兴奋/挫折/新鲜感都会把注意力从顶轮拉下来。</p>
+    <div class="improvement">
+      <strong>改进方法：</strong>
+      · 定一个检查点：每次切换任务前，先停3秒感受头顶<br>
+      · 把"我不是这些"作为手机锁屏提醒<br>
+      · 无论多兴奋，先回灵的状态再继续做事
+    </div>
+  </div>
+
+  <div class="reflection-card" style="animation-delay:0.32s;">
+    <div class="card-icon">⚠️</div>
+    <h3>凌晨做重大决策</h3>
+    <div class="meta">影响：第三职业决策的时机可能不是最佳</div>
+    <p>第三职业的决策（产品矩阵/目标客户/账号搭建）是凌晨和其他AI对话做的。重大决策需要在清醒、灵的状态下做，凌晨的能量状态不是最佳时机。</p>
+    <div class="improvement">
+      <strong>改进方法：</strong>凌晨只记录想法不做决定，第二天下午重新审视再确认。
+    </div>
+  </div>
+
+  <div class="section-spacer"></div>
+
+  <!-- Skills -->
+  <div class="section-title">🛠️ 技能变化</div>
+
+  <div class="card" style="animation-delay:0.4s;">
+    <div class="skills-grid">
+      <span class="skill-node new">🆕 money-init</span>
+      <span class="skill-node new">🆕 money-find</span>
+      <span class="skill-node new">🆕 money-verify</span>
+      <span class="skill-node new">🆕 money-plan</span>
+      <span class="skill-node new">🆕 money-retro</span>
+      <span class="skill-node new">🆕 money-status</span>
+      <span class="skill-node update">🔄 上班提醒 × 2</span>
+      <span class="skill-node update">🔄 daily-wechat-reminder</span>
+      <span class="skill-node update">🔄 100天神意照黄庭</span>
+    </div>
+    <p style="margin-top:12px; font-size:13px; color:#666;">
+      cheat-on-money 系列 6 个子skill 全部安装就位 · 上班提醒自动化和早安逻辑已优化 · 100天提醒文案更新
+    </p>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <a href="https://wherejiahe-bot.github.io/daily-review/">← 返回导航页 · 每日复盘索引</a>
+  </div>
+</footer>
+
+</body>
+</html>

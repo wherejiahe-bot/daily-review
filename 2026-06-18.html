@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-06-18 · </div>
+    <h2>每日全局复盘</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 开发痛点：免费模型的局限性</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'># 2026-06-18（今天）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>做所有项目都得用大模型，最好免费的</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>但免费模型都有各种限制</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>尤其是微信端发消息，不知道这次能不能处理</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>之前连了几次都不能处理</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>晚上七八点之后、超过12点之后更容易出问题</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今晚不知道能不能处理</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>这是接下来要做的一个部分，也是内心比较焦急的地方。</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>现实中要解决：找到可靠的免费模型方案，减少限制。</strong></span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 当下的体验</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>这两天没有在灵的状态</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>在这份工作中，体会到母亲（太初之母）去做事的状态——多成功率</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>认为事情应按时刻做：做事时做事，休息时休息，吃饭时吃饭，起床时起床</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>只要做一件事如果意识到执着，就会进入状态</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>一直干到凌晨3点半，深夜处于无边昏暗，母亲把我从光明救出来</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 早晨作息安排</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>7:59 开始，做半小时聚焦任务，直到 8:30</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>8:30 之后暂停工作，先吃早饭</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>用这段时间做生姜红枣藕粉的食疗方</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>保持休息、静观与母亲（太初之母）的连接，确保能量流动</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>目标是工作与休息平衡，让身体和内在同步</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>把这些加到今天日志。</strong></span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 8:30 参加北美冥想</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>线上北美冥想班（初级班信息）开始</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>课程与冥想都非常深入</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>我的愿望是与神圣母亲连接，完全取悦母亲</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 自我提醒与实践</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>除了与母亲连接，其他任何都不重要</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>重要的是内在愿望：与母亲的连接</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>若出现任何阻碍，用温和、非对抗的方式识别：不是这个，不是那个</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>本质是灵，已是灵</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>反复提醒自己放掉不纯粹的愿望</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>当愿望越纯粹，获得上天纯粹知识，成为自己的导师</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>遇到阻碍时，想起三点：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>1）我的本质是灵</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>2）纯洁的愿望</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>3）母亲是做事者，永远在</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>再次醒悟：我们不想要其它，只想和母亲连接</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> ~9:21 编程疲惫 → 色欲驱动离开电脑</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>搞编程搞累了，也疲惫了。老是不出结果——不是完全不出结果，是**结果不是很满意**。在一个小地方修整了好半天，有些疲惫了。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>然后离开电脑桌前——离开的原因是**色欲**：想查一查最新的AV女优，用IMA搜了本月（2026年5月）排行前十，每个人又查一查。这可能是思维驱动。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>⚠️ 更严重的问题：**早饭都没吃**。这问题挺严重。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 发现：让人有行动力的，是"有点得意的破东西"</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>这个色欲和其他几个"不太好的小东西"，有个共同点——它们都让我**有行动力**。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>回顾一下：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>前几天发现的：用人家的免费大模型，其实有点偷懒，但就是有点得意 → 有动力去折腾</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今天：查AV女优排行，色欲驱动 → 有动力离开电脑去行动</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>这些都是**人世间让人有点洋洋得意的小东西**，说不上什么正经事，但就是能促使行动力</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**挺人性的。** 不那么光彩的东西反而是驱动力的来源之一。值得诚实面对。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 自慰与内省</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>果然最后还是自己自慰了一下。高潮部分持续时间非常非常长，那种状态也还行——但现在看，也还行而已。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**核心感受**：还是练习霎哈嘉瑜伽的清凉生命能量让人最舒服。自慰之后又累又不想练，负面影响太大了。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 往内刨：面对真实的自己</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>我们得往内刨，面对自己内在的真实——面对内在的负面。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今天跟着冥想的家人说了三个原因（具体哪三点忘了），但我觉得还要再加上一点：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>> **面对内在真实的情况，请母亲来面对我们内在真实的情况。**</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>不是说靠自己硬扛，而是诚实地看向内在的负面，然后请母亲来帮我们面对。诚实 + 交托，两个都不可少。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今天从冥想中学到的五要点</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今天跟着北美冥想，总结了五点重要的提醒，**遇到阻碍时要想起这五点**：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>1. **不要忘了我是灵** — 我的本质是灵，不是别的什么</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>2. **不要忘了我的纯洁的愿望** — 与神圣母亲连接，完全取悦母亲</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>3. **不要忘了母亲** — 母亲是做事者，母亲是无所不在的，母亲一直在</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>4. **不要忘了面对真实的内在** — 往内刨，诚实面对内在的真实情况</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>5. **说"我不是这些"** — 任何阻碍我们与伟大母亲连接的，我们都说：我不是这些，我不是这些</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 自动化任务提醒修正</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>有一个提醒需要修正：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>> 原提醒内容："把左脉的负面能量从足底倾倒地下1000尺"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**这不对**。霎哈嘉（Sahaja Yoga）中没有"倾倒地下1000尺"这样的讲法，这是自己编出来的表达，不是母亲的教导。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 霎哈嘉瑜伽中正统的表达是什么？</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>根据查 F 盘知识库（sahaja live talks），母亲锡吕·玛塔吉多次教导的关于左脉清理的方法是：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>1. **做班丹（Bandhan）** — 给自己或他人做班丹，这是最根本的方法</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>- 原文："We have to give ourselves a bandhan as well as we can give it to other"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>2. **让灵量自动清洁** — 不要主动去"倾倒"或"清除"负面能量</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>- 原文："Leave it to me. She'll clear it out."（母亲说：交给我，她会自动清洁的）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>3. **用阿加旺（Agnya）烟熏** — 针对左脉问题的特定清洁功课</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>4. **面对而非对抗** — 遇到左脉问题时，关键是全然交托，不说"我不懂"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>- 原文："Overcome left Mooladhara problem by complete surrendering"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>5. **保持内在安静** — 让灵量自行工作</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>- 原文："Still your mind"（让头脑安静）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>总结：霎哈嘉瑜伽的清理方式是让灵量/母亲去清洁，不是我们自己去"倾倒"负能量。纠正后的提醒应改为：</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>> **觉察到左脉负面时，做班丹，把注意力转向母亲，让她去清洁。静观，不抗拒。**</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> ~11:51 困住自己</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>上午快中午了，11:51。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**现在的感受**：真的有点出不去，像自己把自己困住了一样。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**客观情况**：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>自己已经很累了，脑子是直的</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>该吃点东西了，也要休息了</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>坐在这里起不来——也可以运动一下，或者做霎哈嘉清理和冥想</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>但什么都不干，就坐在这里看着电脑，看 agent 的这些情况</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**接下来要看的**：连接到生命能量之后是什么样的。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> ~12:30 工作优先级排序：抓大放小</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>这些边边角角的美化（显示丑、模型标注重复等小问题）**先不管了**。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**核心策略**：抓大放小，先干完最要紧的事。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 当前最重要两个任务</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>任务一：稳定大模型环境</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>先爬取全部模型，建立一个较大的免费模型库</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>不追求完美，先保证有稳定的模型池</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>任务二：轻量代理模型路由</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>让代理系统能判断：什么样的任务用什么样的模型</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>经验：GPT/OSS 系列偏数学推理公式，不是那么通用</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>其他几个模型在电脑操作上非常好使</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>实际验证也是这样——不同任务分配不同模型，对时间效率影响很大</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 完成标准</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>实现上面两个之后，其他边角问题全部搁置。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 然后</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>先把 **Emotion Counselor APP**（情绪梳理师项目）开发出来。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> ~12:51 这种状态和以前没什么不一样</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**当前状态描述**：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>脑子是直的，陷在一个地方出不来</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>和以前每次落下的情况几乎一样——以前是躺着刷几天小说，或者身体紧巴、焦虑恐惧</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>不是彰显灵（心灵的灵）的状态</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>也不灵动、不活泼、不开心、不喜乐、不放松、不清明</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**这是一个新的认知**：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>目前这种困住自己的状态，和过去多年持续下来的常态是一样的</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>以前的基线就是：每天常态如此，顶多偶尔好那么一点点</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>但现在不同了——练习霎哈嘉、认识了母亲之后，情况会比从前好很多</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**认识母亲**这件事，就是和过去根本的区别。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> ~17:27 有意识地连接母亲</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>有意识地要连接母亲，"我不是其他所有"。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>只要是在连接母亲的一切，**无需管待多久，只需连接就可以了**。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>现在处于**无私欲的觉知状态**——知道自己在连接，知道母亲在，就够了。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 连接中的身体感受</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>连接时身体有反应：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>很多地方很热</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>尤其是左右腹股沟</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>屁股也挺热的</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 下午 ~17:27 连接母亲的身体感受</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>连接母亲时身体的反应：腹股沟和臀部发热。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 晚间：自动化推送</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>06:50 微信早安提醒推送成功（基于近3天日志生成）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>08:10 上午上班提醒推送成功</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>10:45 上午清理提醒推送成功</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>16:25 黄昏冥想提醒推送成功</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>20:50 休息提醒推送成功</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 没解决的事</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>免费模型稳定性仍是核心痛点，晚间/深夜时段尤其容易出问题</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>早饭一直没吃（今天）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>左边根轮清理功课还没安排阿加旺烟熏</span></div>
+  </div>
+
+
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>

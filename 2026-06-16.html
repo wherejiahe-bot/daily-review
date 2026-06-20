@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="date">2026-06-16 · 周二</div>
+    <h2>每日全局复盘</h2>
+  </section>
+
+  <!-- 关键内容 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">🔑</span> 今日关键词</div>
+    <div class="tag-list">
+      <span class="tag">情绪梳理师APP启动</span>
+      <span class="tag">26模型连通性测试</span>
+      <span class="tag">文件管理重构</span>
+    </div>
+  </div>
+
+  <!-- 最佳经验 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">✨</span> 最佳经验</div>
+    <div class="bp-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>PPVI设计先行</strong> — 拿到完整设计体系再写HTML，前端质量明显提升</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">2</span>
+      <span class="text-content"><strong>三轮对比法测模型连通性</strong> — 间隔递增（1s→2s→3s），连续两轮成功才算稳定</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">3</span>
+      <span class="text-content"><strong>通知用本地弹窗</strong> — PowerShell ShowBalloonTip 比微信可靠，微信会发不到，弹窗你一定能看到</span>
+    </div>
+  </div>
+
+  <!-- 做的不好的 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">⚠️</span> 待改进</div>
+    <div class="bug-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>通知机制说一套做一套</strong> — 测试跑完没通知，主人等了6分钟</span>
+    </div>
+    <div class="bug-item">
+      <span class="num">2</span>
+      <span class="text-content"><strong>改models.json只改了工作空间的</strong> — 没改用户目录的，改了等于白改</span>
+    </div>
+  </div>
+
+  <!-- 灵性感悟 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">🙏</span> 灵性感悟</div>
+    <div class="bp-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>家人聊天是"语言库的钥匙"</strong> — 跟陈江移等家人聊天会激活感悟和表达能力，应保持这种交流方式</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">2</span>
+      <span class="text-content"><strong>"神是做事者" — 斧头比喻</strong> — 我们只是一把斧头，不必担心自己生锈、毁坏。焦虑=我在努力做斧头的主人，放下=信任更高的力量</span>
+    </div>
+  </div>
+
+  <!-- 明日重点 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📌</span> 明日重点</div>
+    <ul class="future-list">
+      <li>情绪梳理师APP安装依赖并测试</li>
+      <li>amruta翻译对齐继续验证</li>
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+
+</div>
+
+</body>
+</html>

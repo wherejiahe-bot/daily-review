@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-15 (June 14 回顾)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.08);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+
+.header{text-align:center;padding:48px 0 32px}
+.header h1{font-family:var(--font-serif);font-weight:900;font-size:2rem;letter-spacing:2px}
+.header .date{font-size:0.875rem;color:var(--ink-tertiary);margin-top:4px}
+.header .sub{font-size:0.8rem;color:var(--ink-quaternary);margin-top:2px}
+
+.score-card{display:flex;justify-content:center;gap:16px;margin-bottom:32px;flex-wrap:wrap}
+.score-item{background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:var(--radius);padding:16px 24px;text-align:center;box-shadow:var(--shadow-sm);flex:1;min-width:100px}
+.score-item .label{font-size:0.75rem;color:var(--ink-tertiary);text-transform:uppercase;letter-spacing:1px}
+.score-item .value{font-size:2rem;font-weight:700;margin-top:4px;font-family:var(--font-serif)}
+.score-item .value.good{color:var(--green)}
+.score-item .value.ok{color:var(--accent)}
+.score-item .value.bad{color:var(--red)}
+
+.section{margin-bottom:28px}
+.section-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border-strong)}
+.section-header .icon{font-size:1.2rem}
+.section-header h2{font-size:1rem;font-weight:600;color:var(--ink-secondary);letter-spacing:1px}
+
+.card{background:var(--bg-card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:12px;box-shadow:var(--shadow-sm);transition:all 0.2s}
+.card:hover{background:var(--bg-card-hover);box-shadow:var(--shadow-md)}
+.card.good{border-left:3px solid var(--green);background:linear-gradient(135deg,var(--green-light),var(--bg-card))}
+.card.bad{border-left:3px solid var(--red);background:linear-gradient(135deg,var(--red-light),var(--bg-card))}
+.card.highlight{border-left:3px solid var(--accent);background:linear-gradient(135deg,var(--accent-light),var(--bg-card))}
+.card .num{font-family:var(--font-serif);color:var(--accent);font-size:0.75rem;margin-bottom:4px}
+.card h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+.card p{font-size:0.875rem;color:var(--ink-secondary);line-height:1.6}
+.card .tag{display:inline-block;font-size:0.7rem;padding:2px 8px;border-radius:4px;margin-top:8px;background:var(--accent-light);color:var(--accent)}
+
+.event-tag{display:inline-block;font-size:0.65rem;padding:1px 6px;border-radius:3px;margin-right:4px;font-weight:500}
+.event-tag.p0{background:var(--red-light);color:var(--red)}
+.event-tag.p1{background:var(--accent-light);color:var(--accent)}
+.event-tag.p2{background:var(--green-light);color:var(--green)}
+
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--border-strong)}
+.timeline-item{position:relative;padding-bottom:16px}
+.timeline-item::before{content:'';position:absolute;left:-17px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.timeline-item .time{font-size:0.75rem;color:var(--ink-tertiary);margin-bottom:2px}
+.timeline-item .desc{font-size:0.875rem;color:var(--ink-secondary)}
+
+.footer{text-align:center;padding:32px 0;font-size:0.75rem;color:var(--ink-quaternary)}
+.footer a{color:var(--accent);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+
+@media(max-width:480px){
+  .header{padding:32px 0 24px}
+  .header h1{font-size:1.5rem}
+  .score-item{min-width:80px;padding:12px 16px}
+  .score-item .value{font-size:1.5rem}
+  .card{padding:16px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>每日复盘</h1>
+    <div class="date">2026 年 6 月 15 日 · 回顾 6 月 14 日工作</div>
+    <div class="sub">Skill清理大刀阔斧 · amruta流水线首次全通 · 根因分析到位</div>
+  </div>
+
+  <div class="score-card">
+    <div class="score-item">
+      <div class="label">评分</div>
+      <div class="value ok">7.5/10</div>
+    </div>
+    <div class="score-item">
+      <div class="label">任务完成</div>
+      <div class="value ok">12</div>
+    </div>
+    <div class="score-item">
+      <div class="label">新增技能</div>
+      <div class="value">—</div>
+    </div>
+    <div class="score-item">
+      <div class="label">修复Bug</div>
+      <div class="value">5</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="icon">🏆</span><h2>今日最佳实践</h2></div>
+
+    <div class="card good">
+      <div class="num">#1</div>
+      <h3>Skill清理 146→46，上下文解放</h3>
+      <p>禁用 100+ 不常用 Skill，46 个核心 Skill 描述从 ~5,400 字符压缩到 1,239（降幅 77%）。<br>这是最重的一刀——根因分析确认 Skill 上下文膨胀是系统中断和消息截断的罪魁祸首（146 Skill 挤占 30K 字符预算，85 个被压缩到 88 字符）。<br>效果立竿见影：后续自动化消息不再被截断。</p>
+      <span class="tag">系统优化</span>
+      <span class="tag">P0</span>
+    </div>
+
+    <div class="card good">
+      <div class="num">#2</div>
+      <h3>amruta-actions 流水线首次全部成功</h3>
+      <p>GitHub Actions 手动触发 #140，step1→step2→step3 全部 job conclusion=success。<br>耗时约 5 分钟。邮件到达 QQ 邮箱。<br>验证了整套架构的可靠性——从 amruta.today 抓取 → 翻译 → 去重 → 发邮件 → 存档的完整链路已跑通。</p>
+      <span class="tag">流水线</span>
+      <span class="tag">基础设施</span>
+    </div>
+
+    <div class="card good">
+      <div class="num">#3</div>
+      <h3>系统中断根因：五层归因，数据说话</h3>
+      <p>从 SQLite、session log、sandbox log、mem0 四个源交叉验证，量化统计每个自动化任务的成功/失败/中断/错过次数。<br>五大根因按影响排序，每个都有日志证据+数据佐证。<br>核心发现：不是模型坏了，是 Skill 上下文膨胀导致 ~30% 的隐性截断。已提交 Feature Request 到 WorkBuddy 官方邮箱。</p>
+      <span class="tag">调试</span>
+      <span class="tag">根因分析</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="icon">⚠️</span><h2>待改进</h2></div>
+
+    <div class="card bad">
+      <div class="num">✗ 1</div>
+      <h3>语义去重阈值 0.85 过于激进</h3>
+      <p>amruta-daily-push 的 semantic_dedup() 阈值 0.85 对短句误删严重。<br>例如 "I don't know what they're going to make out of that" 是递进句，不应被删。<br>建议：对 &lt;15 词的句子跳过去重，或使用更高阈值（0.90+）。<br><strong>P0 待办</strong>：修复 pairs.json 写入时机——当前在 dedup 之后才写入，导致存档 HTML 缺了 5 句。</p>
+    </div>
+
+    <div class="card bad">
+      <div class="num">✗ 2</div>
+      <h3>GitHub 推送偶发网络失败</h3>
+      <p>系统中断分析报告中已 commit 到 devlog 仓库，但因 GitHub 连接问题未能 push。<br>curl 检查连通性应该成为推送前的标准步骤。<br>另外仓库分支名可能为 master 而非 main，推送前应先确认。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="icon">📋</span><h2>今日关键事件</h2></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">全天</div>
+        <div class="desc"><span class="event-tag p1">amruta</span> amruta-actions 翻译方案修正——不再自己翻译，用 IMA 知识库 + GitHub Actions 自动执行</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">白天</div>
+        <div class="desc"><span class="event-tag p2">灵性</span> 核心认知更新：全部靠太初之母的注意力——不是"训练母亲"，是母亲把注意力放在你身上</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">白天</div>
+        <div class="desc"><span class="event-tag p0">系统</span> amruta-actions #140 首次全部成功 ✅，5分钟完成 step1→step2→step3→邮件</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">下午-晚上</div>
+        <div class="desc"><span class="event-tag p0">系统</span> amruta-daily-push 流水线审查：发现去重未生效 + pairs.json 写入时机错误 + 邮件 vs 存档不一致根因</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">22:40</div>
+        <div class="desc"><span class="event-tag p0">系统</span> 系统中断与消息不完整根因分析：五大根因，Skill上下文膨胀是罪魁祸首</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">23:22</div>
+        <div class="desc"><span class="event-tag p0">优化</span> <strong>Skill 清理执行：146 → 46</strong>（降幅 68%），描述字符从 ~5,400 → 1,239（降幅 77%）</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">23:36</div>
+        <div class="desc"><span class="event-tag p0">优化</span> 12个自动化任务 prompt 精简：17,000+ 字符 → 2,240 字符</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">23:50</div>
+        <div class="desc"><span class="event-tag p2">例行</span> 每日全局复盘自动化执行完毕</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="icon">🎯</span><h2>明日 P0 待办</h2></div>
+    <div class="card highlight">
+      <h3>1. 修复 pairs.json 写入逻辑</h3>
+      <p>在 semantic_dedup() 之前保存原始 pairs 到 pairs.json，确保存档 HTML 不丢句子</p>
+    </div>
+    <div class="card highlight">
+      <h3>2. 优化语义去重阈值</h3>
+      <p>0.85 对 &lt;15 词短句过于激进 → 提高至 0.90+，或跳过短句去重</p>
+    </div>
+    <div class="card highlight">
+      <h3>3. 继续 Skill 体系优化</h3>
+      <p>观察清理后效果，必要时恢复被误删的 Skill</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-header"><span class="icon">📊</span><h2>数据速览</h2></div>
+    <div class="card good">
+      <h3>Skill 清理前后对比</h3>
+      <table style="width:100%;font-size:0.85rem;border-collapse:collapse;margin-top:8px">
+        <tr><td style="padding:5px 0;color:var(--ink-tertiary)">Skill 数量</td><td style="text-align:right;font-weight:600">146 → 46</td><td style="text-align:right;color:var(--green);padding-left:12px">▼ 68%</td></tr>
+        <tr><td style="padding:5px 0;color:var(--ink-tertiary)">描述字符</td><td style="text-align:right;font-weight:600">~5,400 → 1,239</td><td style="text-align:right;color:var(--green);padding-left:12px">▼ 77%</td></tr>
+        <tr><td style="padding:5px 0;color:var(--ink-tertiary)">自动化 prompt</td><td style="text-align:right;font-weight:600">17,000+ → 2,240</td><td style="text-align:right;color:var(--green);padding-left:12px">▼ 87%</td></tr>
+        <tr><td style="padding:5px 0;color:var(--ink-tertiary)">系统中断</td><td style="text-align:right;font-weight:600" colspan="2">根因已定位，Feature Request 已提交</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>📅 2026-06-15 02:07 · 自动化每日复盘</p>
+    <p><a href="https://wherejiahe-bot.github.io/daily-review/" target="_blank">https://wherejiahe-bot.github.io/daily-review/</a></p>
+    <p style="margin-top:8px;font-size:0.7rem">— 诚实优先 · 结果要具体 —</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-06-17 · </div>
+    <h2>每日全局复盘</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 身体清理记录</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'># 2026-06-17（今天）</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 左边根轮（Mooladhara）清理 — 第3天</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>左侧臀部固定位置痛，已有3天</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>放烛火能好一些，但没有完全清干净</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>前两天用火清理时，堵塞的东西会跑：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content' style='padding-left:20px;color:var(--ink-secondary);font-size:13px;'>一部分往上跑到腰部</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content' style='padding-left:20px;color:var(--ink-secondary);font-size:13px;'>一部分往下跑到左大腿</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**下一步计划**：用阿加旺烟熏左边根轮，坚持每天做</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 两侧足三里（小腿）不舒服</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>左小腿、右小腿足三里位置不舒服</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>可能原因：这几天晚上睡得晚，也可能是其他原因</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>相应功课需要做</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 每日清理功课（重点）</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 部位 | 方法 | 说明 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>|------|------|------|</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 左边根轮 | 阿加旺烟熏 | 第3天，堵塞会跑（上到腰、下到大腿），坚持每天做 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 左心轮 | 功课清理 | 新增 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 右心轮 | 功课清理 | 新增 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 心轮中部 | 功课清理 | 新增 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>先从心轮做起，优先处理。</strong></span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 身体状态与觉知</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**上午 ~10:00**：去吃饭了（9:40 左右）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**下午**：出去倒了垃圾</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**现在**：站起来工作了。把电脑放在够得着的地方，站着操作</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>慢慢可能是太初之母能量的影响，也有自己刻意去觉知</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>状态比较好，没有陷入执着电脑/Agent 这些事</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日状态流水</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**下午**：能量容易通了，不执着电脑/Agent</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**饿了**：想吃东西，想做点饭</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**计划**：生姜红枣藕粉（补气补血补精）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content' style='padding-left:20px;color:var(--ink-secondary);font-size:13px;'>今天没弄成 → 明天上午弄</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日饮食</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**~17:00**：打豆浆喝，营养很好</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**晚饭**：吃了烤饼</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**~19:30**：自己做三鲜汤面条——火腿、豆腐、香菇、鸡蛋、小青菜，撒白胡椒和盐，太美味了</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>还吃了儿子剩的半碗小米莲子百合粥（爸爸做的）</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 1. 占小便宜的心理</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>做一件事情如果觉得没意思，但能占个小便宜，我会很开心。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>能用 NVIDIA 免费的模型就很爽</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>WorkBuddy 内置的收费模型（DeepSeek V4、MiniMax 等）能免费用，消耗积分的那种，我很开心</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>不是钱的问题，是"占了便宜"的感觉</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 2. 装逼心理</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>情绪梳理师 APP 做出来好玩，拿去装逼。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>别人也看不见，我装逼给自己看</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>跟别人聊天时能时刻查阅资料，尤其是霎哈嘉瑜伽资料</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>沐浴在太初之母的生命能量之中，我很爽</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>"随时有知识在手"本身就是一种满足</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 3. （待补充）</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今天还在想的其他特性...</span></div>
+  </div>
+
+
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>

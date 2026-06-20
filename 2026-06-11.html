@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-11 复盘 — Daily Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,510;14..32,600;14..32,700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f5f5f5;
+  --bg-card:rgba(255,255,255,0.72);--bg-card-hover:rgba(255,255,255,0.88);
+  --ink:#1a1a1a;--ink-secondary:#555;--ink-tertiary:#888;--ink-quaternary:#bbb;
+  --border:rgba(0,0,0,0.06);--border-strong:rgba(0,0,0,0.10);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05);
+  --accent:#1565c0;--accent-light:rgba(21,101,192,0.08);--accent-mid:rgba(21,101,192,0.15);
+  --green:#2e7d32;--green-light:rgba(46,125,50,0.08);
+  --orange:#f57f17;--orange-light:rgba(245,127,23,0.08);
+  --red:#c62828;--red-light:rgba(198,40,40,0.06);--red-border:rgba(198,40,40,0.20);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC','Inter',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 70% 50% at 20% 5%,rgba(180,180,255,0.06) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 40% at 80% 95%,rgba(255,180,180,0.04) 0%,transparent 60%);
+  pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+
+/* Glass header */
+.glass-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;
+  background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);
+  -webkit-backdrop-filter:blur(20px) saturate(1.2);
+  border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);
+  display:flex;align-items:center;justify-content:space-between}
+.glass-header .logo{font-family:var(--font-serif);font-size:16px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:0.02em}
+.glass-header .logo:hover{color:var(--accent)}
+.glass-header nav{display:flex;gap:8px}
+.glass-header nav a{font-size:13px;color:var(--ink-tertiary);text-decoration:none;padding:4px 12px;border-radius:100px;transition:all 0.2s;font-weight:500}
+.glass-header nav a:hover{background:var(--accent-light);color:var(--accent)}
+
+/* Hero */
+.hero{text-align:center;padding:48px 20px 36px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(28px,5vw,36px);font-weight:900;color:var(--ink);letter-spacing:-0.01em}
+.hero .sub{font-size:15px;color:var(--ink-secondary);margin-top:6px;font-weight:400}
+.hero .badge-row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:16px}
+.hero .badge{font-size:12px;padding:4px 14px;border-radius:100px;font-weight:600;letter-spacing:0.3px}
+.hero .badge.green{background:var(--green-light);color:var(--green)}
+.hero .badge.blue{background:var(--accent-light);color:var(--accent)}
+.hero .badge.orange{background:var(--orange-light);color:var(--orange)}
+.hero .divider{display:block;width:40px;height:2px;background:var(--accent);margin:20px auto 0;border-radius:2px;opacity:0.5}
+
+/* Cards */
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);
+  border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;
+  box-shadow:var(--shadow-sm);transition:all 0.3s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:16px}
+
+/* Cards with number header */
+.experience-card{counter-increment:exp;position:relative}
+.experience-card::before{content:counter(exp);position:absolute;top:-12px;right:20px;
+  font-family:var(--font-serif);font-size:52px;font-weight:900;color:var(--accent-mid);line-height:1;pointer-events:none}
+.card-row{display:block;counter-reset:exp}
+
+/* Reflection card - red border */
+.reflection-card{border:1.5px solid var(--red-border);background:var(--red-light)}
+.reflection-card .card-title{color:var(--red)}
+.reflection-item{margin-bottom:16px}
+.reflection-item:last-child{margin-bottom:0}
+.reflection-item h4{font-size:14px;font-weight:600;color:var(--red);margin-bottom:4px}
+.reflection-item p{font-size:14px;color:var(--ink-secondary);line-height:1.6}
+.reflection-item .fix{display:inline-block;margin-top:6px;font-size:13px;color:var(--green);font-weight:500}
+.reflection-item .fix::before{content:'→ '}
+
+/* Stats grid */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat-item{text-align:center;padding:14px 6px;background:rgba(0,0,0,0.02);border-radius:var(--radius-sm);border:1px solid var(--border)}
+.stat-item .num{font-size:clamp(22px,3.5vw,28px);font-weight:700;color:var(--ink);line-height:1.2}
+.stat-item .lbl{font-size:11px;color:var(--ink-tertiary);margin-top:2px;font-weight:500}
+
+/* Body content */
+.body-text{font-size:14px;color:var(--ink-secondary);line-height:1.7}
+.body-text strong{color:var(--ink);font-weight:600}
+.body-text .tag{display:inline-block;font-size:12px;padding:2px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500;margin-right:4px}
+
+/* Skill change tags */
+.skill-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.skill-tag{font-size:12px;padding:3px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.skill-tag.updated{background:var(--green-light);color:var(--green)}
+.skill-tag.new{background:var(--orange-light);color:var(--orange)}
+
+/* Section spacer */
+.section-spacer{height:1px;background:linear-gradient(90deg,transparent,var(--border-strong),transparent);margin:24px 0}
+
+/* Footer */
+.footer{text-align:center;padding:24px 20px;border-top:1px solid var(--border);margin-top:20px}
+.footer a{color:var(--ink-tertiary);text-decoration:none;font-size:13px;font-weight:500;transition:color 0.2s}
+.footer a:hover{color:var(--accent)}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeUp 0.5s ease-out both}
+.card:nth-child(1){animation-delay:0s}
+.card:nth-child(2){animation-delay:0.08s}
+.card:nth-child(3){animation-delay:0.16s}
+.card:nth-child(4){animation-delay:0.24s}
+.card:nth-child(5){animation-delay:0.32s}
+
+@media(max-width:600px){
+  .glass-header{top:12px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:32px 12px 28px}
+  .card{padding:18px;border-radius:var(--radius)}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header class="glass-header">
+  <a href="index.html" class="logo">每日复盘</a>
+  <nav>
+    <a href="index.html">← 返回导航</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>2026-06-11 · 周四</h2>
+  <div class="sub">批量记忆梳理 · 技能统计自动化 · 探索行动待启动</div>
+  <div class="badge-row">
+    <span class="badge blue">#记忆系统</span>
+    <span class="badge green">#自动化</span>
+    <span class="badge orange">#第三职业</span>
+  </div>
+  <span class="divider"></span>
+</section>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="card">
+    <div class="card-title">今日概览</div>
+    <div class="stats-row">
+      <div class="stat-item"><div class="num">122</div><div class="lbl">扫描日志数</div></div>
+      <div class="stat-item"><div class="num">91</div><div class="lbl">技能统计</div></div>
+      <div class="stat-item"><div class="num">230</div><div class="lbl">本周调用</div></div>
+      <div class="stat-item"><div class="num">5</div><div class="lbl">梳理文件</div></div>
+    </div>
+  </div>
+
+  <!-- Experiences (counter-based) -->
+  <div class="card-row">
+
+    <div class="card experience-card">
+      <div class="card-title">经验一</div>
+      <div class="body-text">
+        <strong>批量记忆梳理法验证有效</strong><span class="tag">记忆系统</span>
+        <br>
+        一次读取5个对话记录文件，提炼完整决策脉络后一次性写入 mem0 + MEMORY.md + REFLECTION.md。比零散操作效率高数倍，信息一致性更好，适用于定期回顾和知识整合场景。
+      </div>
+    </div>
+
+    <div class="card experience-card">
+      <div class="card-title">经验二</div>
+      <div class="body-text">
+        <strong>技能统计自动化已稳定成熟</strong><span class="tag">自动化</span>
+        <br>
+        22:00 data-sync 自动运行，覆盖91个技能、122个日志文件、本周230次调用。每日分布清晰（33→29→23→40→32→46→27），推送正常，说明这套自动化已经稳定投产。
+      </div>
+    </div>
+
+    <div class="card experience-card">
+      <div class="card-title">经验三</div>
+      <div class="body-text">
+        <strong>scan.py 必须跑在 Git Bash 下</strong><span class="tag">踩坑记录</span>
+        <br>
+        scan.py 在 PowerShell 中运行会失败——PowerShell 的 subprocess 会破坏 grep 参数。这个脚本有硬性环境依赖，不能跨 shell 执行，已沉淀为技能配置的一部分。
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Reflections -->
+  <div class="card reflection-card">
+    <div class="card-title">反思与改进</div>
+
+    <div class="reflection-item">
+      <h4>① 第三职业探索停留在理论层</h4>
+      <p>虽然梳理了完整决策脉络（不做玄学、保留心理咨询、AI训练师方向、中医路线、大六壬APP），但实质行动没有推进。梳理知识是必要的，但不能替代行动。</p>
+      <div class="fix">从"梳理知识"进入"最小行动"阶段——每天15分钟，选一个方向做一件可交付的事</div>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <div class="reflection-item">
+      <h4>② 睡眠质量影响第二天状态</h4>
+      <p>昨晚只睡了3.5小时（03:10~06:55），多次做梦。睡眠不足直接拉低白天的输出质量和灵性状态。</p>
+      <div class="fix">提前就寝时间，状态不对就停止工作。睡眠是第一优先级</div>
+    </div>
+  </div>
+
+  <!-- Skill changes -->
+  <div class="card">
+    <div class="card-title">技能变化</div>
+    <div class="body-text">
+      今日无新建或更新技能。技能使用统计自动化运行正常。
+    </div>
+    <div class="skill-tags">
+      <span class="skill-tag">scan.py 环境依赖</span>
+    </div>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <a href="index.html">← 返回导航</a>
+</footer>
+
+</body>
+</html>

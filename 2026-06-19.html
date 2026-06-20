@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-19</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-06-19 · </div>
+    <h2>每日全局复盘</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 夜间模型使用感受</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'># 2026-06-19（今天）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今晚使用 GPT OSS 120B，响应速度快（1-3秒），感觉顺畅、舒服，智能足够高，具备代码、图像、音频等多模态能力。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>虽然模型表现很好，但想再加入几个同类型免费模型作为备选，形成更大的模型库。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>目标是服务 Emotion Counselor APP 项目开发，需要先收集免费大模型，要求响应快且具备开发能力（代码、图像、音频）。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>计划先爬取所有免费模型，做速度测试并手动排序，后续再实现轻量代理路由，根据任务选择模型。当前重点是先完善模型库，再专注 Emotion Counselor APP 开发。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 探索签到功能的想法</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>具备足够智能且响应在 1‑3 秒的大模型后，想让 uuMIT 去尝试实现之前未完成的签到功能。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>速度慢的模型会导致任务中断、占用内存、浪费时间，影响其他任务的进行。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>计划先让 uuMIT 在当前模型环境下快速原型，验证可行性，再考虑在轻量代理中加入模型选择逻辑。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>若效果满意，将其纳入后续开发流水线，帮助 Emotion Counselor APP 的用户交互体验。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 凌晨语音冥想</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>凌晨2点语音输入"不是三次Namaskaram，不是那些"（negation meditation）— 连接太初之母的睡前冥想。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>对一切阻碍连接母亲的东西说"我不是这些"。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>AI生成的那条提醒有很大问题，以下是查 Sahaja RAG 后修正的内容。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 AI 生成的原文问题</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>昨晚凌晨2:xx 某个模型自动推送了睡前提醒，内容有多处不符合霎哈嘉教导：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>1. ~~"三次 Namaskaram，献给太初之母、精神导师迈克尔、你自己的灵"~~ — Namaskaram 的对象不对。RAG 查到的是：向母亲问"我是灵吗？""我是自己的导师吗？""请给我纯粹的知识"，重复3次、10次不等，分别放在心口、左上腹、左下腹。不是向"迈克尔导师"献 Namaskaram。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>2. ~~"右手放在左边胸口，想"我是主的工具，不是做的那个""~~ — 右手确实要放左胸（心轮），但正确的话是反复自问"母亲，我是纯粹的灵吗？"重复12次，而非一句"我是主的工具"。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>3. ~~"10分钟旋转冥想"~~ — 没有"10分钟"这个固定时长。RAG 原文说冥想就是让灵量自然流动，不需做任何努力（no effort），不是计时冥想。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>4. ~~"我是主的斧头"~~ — "斧头比喻"是卢艳隹自己感悟的表达，不是母亲的教导。RAG 中找不到类似说法。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 查 RAG 后的修正参考</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>向母亲自问（1991-08-18 布拉格公开讲座）：</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>右手放心口 → 三次问："母亲，我是一个灵吗？"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>右手移至左上腹 → 三次问："母亲，我是自己的导师吗？"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>右手移至左下腹 → 六次问："母亲，请给我纯粹的知识。"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>右手抚触各轮（多处讲座）：</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>心口→左上腹主宰轮→左下腹神圣法则轮→右肩宽恕轮→前额→脑后→囟门骨，顺时针转头皮7次。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>冥想（1980-01-01 伦敦）：</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>冥想不是刻意去做，而是"让灵量自会起作用"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>"最好的方式是不做任何努力"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>"你在冥想中，不是去冥想"</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 模型现状三层困局</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>1. **非 NVIDIA 模型**（如 agnes-2.0-flash）好用但要花钱；NVIDIA 免费但请求频次高、速度慢</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>2. **部分 NVIDIA 模型**智能但速度不稳定 — 人多就卡</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>3. **一直快的如 GPT-OSS-120B** 能干活但中文执行有时不好</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 07:45 models.json 更新</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>~/.workbuddy/models.json 恢复为对象格式 + availableModels</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>移除了 DeepSeek V4 Flash & Pro（已从 models 中删除）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>保留 7 个模型，全部在 availableModels 中可见</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>深��Seek V4 Flash/Pro 已被删除，不在列表中</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 08:44 静坐 3 分钟体验</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>8:44 静坐 3 分钟，状态非常好。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>8:32 先静坐 5 分钟，实际入了 2 分钟</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>两分钟状态真的非常好，虽然很短</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>放下所有任务，先不干活，先入静</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 "Florence" 是谁？</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>Sahaja RAG 中检索"Florence"未找到相关人物，母亲讲话中无此名</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>需要确认来源</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 注意力位置校正</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>RAG 查到母亲的原话：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**"注意力放在顶轮"** — 正确说法，不是"放在顶轮中"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>囟门骨区域上方 — 母亲原话："将你的注意力集中在头顶囟门骨区域的上方"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>不是"放在心中"，而是**对着心轮**或**在心轮处**</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>母亲说："把注意力放在顶轮，就这样，什么都别说"（1985-05-04）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>母亲还说："你必须在顶轮中确立对应的神祇，但这位神祇必须首先在心轮中确立"</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 📌 RAG 速度问题</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>Qdrant 本地向量库 42589 条记录，search_sahaja_rag.py 每次都嵌入+向量搜索，不是秒级的</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>上次两次调用都等了很久，原因是 embedding 计算量大 + 向量数据库查询慢</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 10:57 Llama 3.1 模型配置修复</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>问题 1：NVIDIA API 报 400 `"auto" tool choice requires --enable-auto-tool-choice` → **解决：设 supportsToolCall=false，不带 tool_choice:auto 调用**</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>问题 2：NVIDIA API 报 context 超限（72018 tokens）→ **解决：maxInputTokens 从 262144 改为 8000**</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>测试通过：短消息调用成功返回 "Hi there!"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>结论：Llama 3.1 Nemotron Nano VL 8b v1 上下文窗口仅 16384 tokens，且不支持 auto tool choice，只能用于纯文本生成</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 14:48 WorkBuddy 模型被禁用，计划下午切 Codex</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>14:46 发现 WorkBuddy 老禁用配置的模型，导致没法正常用</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>打算洗完澡休息之后，下午四五点以后换 Codex 干活</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今天先用 WorkBuddy 处理完收尾，下午四五点切到 Codex 重新配环境，配好就开始干活</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 18:58 拳击陪练</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>下午6点多，拿沙发靠垫当拳靶，陪孩子打了一会儿拳击</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>时间不长，但孩子累得动弹不得了——锻炼效果达标</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今日身份：孩子的拳击训练师 🥊</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 23:56 Codex 晚上战斗</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>一晚上基本都在搞 Codex 的事情</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>**好消息：Codex 现在能正常使用了！** 🎉 非常大的胜利</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>做了很多工作让它稳定跑起来</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>接下来的事：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>1. 给 Codex 配配置类的东西（复用之前的配置、定规范）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>2. 给 Codex 找主力大模型 + 备用大模型</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>3. 这事儿还在进行中</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 附录：今日各工作空间发生了什么</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| ⏰ | 工作空间 | 做了什么 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>|---|---|---|</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 凌晨 | personal-diary | 睡前语音冥想"不是这些"（negation meditation），查RAG修正AI推送的4处不实内容 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 06:50 | personal-diary | 早安提醒推送成功 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 07:45 | Claw | 恢复 models.json 为对象格式，加入 availableModels 字段，7个模型全部可见 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 08:32 | personal-diary | 静坐2分钟，状态非常好 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 08:44 | personal-diary | 再静坐3分钟，状态非常好 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 09:10 | Claw | 语言校正查RAG，纠正注意力位置说法（"放在顶轮"而非"顶轮中"） |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 09:10 | Claw-No1 | RAG速度测试：单次查询约14.56秒，连续5次平均约18.2秒 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 10:09~10:57 | Claw / free-models | Llama 3.1 模型配置调试：auto-tool-choice 400错误排查、maxInputTokens 调至8000、创建llama31_wrapper.py脚本和skill |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 10:45 | free-models | 完善 `code free models 01.md`，为Mistral模型添加清晰标题和代码块 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| ~12:00 | free-models | 收集4款NVIDIA NIM模型API Key并写入Claw-No1的models.json，修正为NVIDIA NIM独立端点 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 14:10 | personal-diary | 下午上班提醒推送成功 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 14:48 | personal-diary | 计划切Codex（WorkBuddy模型被禁用），下午四五点后行动 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| ~15:00 | free-models | 新增3个OpenRouter免费模型到代理（GPT-OSS 120B、Nemotron 3 Ultra、Gemma 4 31B），更新start-guard.bat为绝对路径，服务重启完成，24模型在线 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| ~16:00 | 办公龙虾 | 目录重命名：0号龙虾→Claw-No1，龙人龙虾→uumit，更新所有脚本路径引用 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 18:58 | personal-diary | 拳击陪练（陪孩子打拳击） |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 20:50 | personal-diary | 休息提醒推送成功 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| ~21:00 | uumit | 接10个AI任务并完成 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 23:56 | Claw | Codex 晚上战斗：终于搞定正常使用！🎉 接下来配配置、找主力/备用大模型 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 22:00 | skill-usage-report | 技能使用统计日更：重写scan_v3.py，扫描10天日志（6/10→6/19），今日1,798次工具调用，累计20,056 |</span></div>
+  </div>
+
+
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
