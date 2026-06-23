@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-06-23 · 周二</div>
+    <h2>火祭 · DS2API · 代理架构完善</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>火祭圆满完成，能量很好</strong><br>中午12:20到达陈岗的家（火祭现场），克服重重阻碍如愿到达。下午14:41做好准备，16:05完成火祭，主人自评"能量挺好的"。<br><strong>可复用经验</strong>：火祭的阻碍不需要太在意，关键是到了就做。哪怕比预期晚了半天，做了就是做了，能量自然会好。</span></div>
+
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>DS2API 安装成功，DeepSeek V4本地化</strong><br>从 CJackHwang/ds2api v4.6.1 安装预编译 Windows 二进制，部署在 G:\Workspace\ds2api\，端口 5001。支持 deepseek-v4-flash / pro / search / vision（各带 thinking 变体），可通过本地 WebUI 管理。<br><strong>可复用经验</strong>：预编译二进制的部署方式比源码编译快得多，适合 AI 工具类的快速实验。DS2API 可以当作本地 DeepSeek 网关，绕过网页版限额限制。</span></div>
+
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>Hermes Switcher v12 新增 429 黑名单机制</strong><br>为 Hermes Switcher 新增 429 黑名单功能：心跳检测到 429 自动标记为黑名单组；仪表盘按 M 键手动标记当前组；每天早上 8:00 自动清除所有标记；全组被禁时自动恢复。版本号升级至 v12。<br><strong>可复用经验</strong>：代理场景下 429 是高频问题，黑名单机制让系统自动避开不可用组，而不是反复尝试失败。每天 8:00 自动刷新确保不会永久屏蔽可用组。</span></div>
+  </div>
+
+  <div class="card" style="border:1px solid rgba(196,90,90,0.15)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>没有明显的不好的事，但工作深度略浅</strong><br>今天的项目日志显示 6 个空间都有变动，但没有特别深入的大项目。火祭占用了大半天时间，下午/晚上的工作时间偏短。<br><strong>改进方案</strong>：火祭日可预期，提前安排好晚上深度工作时间。如果白天被占，晚上集中攻克 1-2 个核心项目，不要分散到 6 个空间。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>Claw 7 个自动化提醒更新</strong><br>加入三问："你有没有陷入事情？有没有执着于事情？有没有完全交托给母亲？"</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>12:20 到达火祭现场（陈岗的家）</strong><br>克服重重阻碍，终于到达要做法事的现场。原本说是一早就到，实际中午才到。</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>14:41 做好火祭准备</strong><br>下午两点左右睡醒（估计是母亲在叫，刚好睡到 1:59），收拾到 14:41 做好火祭准备。</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:05 火祭完成</strong><br>火祭结束，主人自评"能量挺好的"。</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:00~20:00 技术工作 · 多项目并行</strong><br>
+    • <strong>Claw</strong>：更新 7 个自动化提醒，加入三问机制（陷入事情？执着？交托给母亲？）<br>
+    • <strong>agents-ip-api</strong>：新增 simple_switch.py 简易 6 按钮切换器（国内直连 + 5 组代理）<br>
+    • <strong>codex-proxy</strong>：创建独立 HTTP CONNECT 代理 + OpenAI API 网关（:8081），通过 SOCKS5 :23456 转发<br>
+    • <strong>free-models</strong>：DS2API 安装完成，DeepSeek V4 本地化<br>
+    • <strong>hermes-switcher</strong>：v12 新增 429 黑名单功能（自动标记/手动标记/每日 8:00 自动刷新）<br>
+    • <strong>personal-diary</strong>：恢复 100-days-huangting 项目 + 自动化</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>19:00 晚饭</strong><br>孩子积食，煮苹果山楂水。蒸布米（Bhumi）八桂香米。吃红烧茄子肉、鸭蛋粉皮。买生西红柿和黄瓜。</span></div>
+  </div>
+
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">💬</span> 全天生话评价</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>"能量挺好的" ← 来自下午火祭后的感受</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
