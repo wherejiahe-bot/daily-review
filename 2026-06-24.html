@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .subtitle{font-size:15px;color:var(--ink-secondary);margin-top:8px;font-weight:400}
+.hero .tags{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:12px}
+.hero .tags .tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.text-content strong{color:var(--ink);font-weight:600}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.bug-card{border-color:rgba(196,90,90,0.15)}
+.bug-card .card-title{color:var(--red)}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-06-24 · 周三</div>
+    <h2>每日全局复盘</h2>
+    <div class="subtitle">飞书WS全线打通 · amruta对齐修复 · hindsight修复 · multi-agent-team升级 · 特质五&六发现</div>
+    <div class="tags">
+      <span class="tag">Claw</span>
+      <span class="tag">Claw-No1</span>
+      <span class="tag">Claw-No3</span>
+      <span class="tag">amruta-daily-push</span>
+      <span class="tag">3rd-career</span>
+      <span class="tag">personal-diary</span>
+    </div>
+  </section>
+
+  <!-- Stats Summary -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> 今日统计</div>
+    <div class='bp-item'><span class='num'>5</span><span class='text-content'>项目活跃</span></div>
+    <div class='bp-item'><span class='num'>12+</span><span class='text-content'>工具调用</span></div>
+    <div class='bp-item'><span class='num'>✅</span><span class='text-content'>整体评价：虽身体累（昨天火祭后反应），但发现新的自我特质，系统修复多个，进展扎实</span></div>
+  </div>
+
+  <!-- 🔥 三条最佳经验 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>飞书长连接WebSocket全线打通</strong><br>飞书 WS 从建连→LLM→回复飞书完整链路已验证成功（15:29 首次回复 ✅）。模型统一为 deepseek-v4-flash-free（opencode.ai 直连，国内无代理需求）。WS v2 升级加 10 轮上下文记忆 + 加强 system prompt。<br><em>可复用经验</em>：LLM 调用用 <code>requests</code> + SOCKS5 代理替代 urllib + socks（避免全局 socket 污染导致飞书 API SSL 失败）。重启后需人工双击启动 Bat，或通过 WorkBuddy run_in_background 启动。</span></div>
+
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>amruta 句级对齐 LLM 改造 + 验收机制</strong><br>删除 450 行 LaBSE + DP 动规算法，改为 LLM API（Mistral Small 4）做句级对齐。修复根因：所有段落英文合并扁平列表 vs 段落级中文做全局 N:M 对齐导致跨段串段。改为每段分别切句、分别调用 LLM。+161/-823 行。<br><em>可复用经验</em>：先查架构依赖比逐层修补更有效——修复 hindsight-api 的 8 个错误同样验证了这一点。大改动后要等 workflow 跑完、看到实际效果才算验收通过。</span></div>
+
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>主人发现第5特性 & 特质六</strong><br>主人今早发现：系统出 bug 瞬间来劲想修（第5特性）；享受 AI 刷刷跑的可视化反馈（特质六）。两个发现可善加利用：把任何事情看成搭系统/完善玩具就特别有力量，同时要交托——在母亲连接中，是母亲在做事情。<br><em>可复用经验</em>：行动力的来源是执着，但执着可以善加用在灵性升进和做母亲工具上。短视频选题已定："让生命能量喜欢你"。</span></div>
+  </div>
+
+  <!-- ⚠️ 做得不好的事 -->
+  <div class="card bug-card">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>飞书 WS 多实例进程冲突</strong><br>WS 启动时发现 12 个残留进程阻塞端口 → 全部清理后单实例成功。问题根源：之前进程未正常退出。<br><em>改进方案</em>：启动脚本加 kill 旧进程逻辑；考虑用 PID 文件 + 端口检测双重防冲突。</span></div>
+
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>hindsight-api 先跑 SQLite 弯路</strong><br>先试图让 hindsight-api 跑在 SQLite 上，修了 8 个兼容补丁后才发现引擎层硬编码 asyncpg，SQLite 不可行。最终改用嵌入式 PostgreSQL pg0。<br><em>改进方案</em>：先查架构依赖（engine/db/ 目录结构）比逐层修补更有效——如果一开始发现 engine/db/ 只有 postgresql.py，能省大量时间。</span></div>
+  </div>
+
+  <!-- 🛠️ 今日技能变化 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>multi-agent-team skill</strong> — 新增 Analyst + Monitor 两个角色，角色分工流：Manager→Analyst→Executor→QA→Monitor。加强 Executor 自检反馈回路（编码完成自检编译/启动/核心路径）。含角色职责文档、协作流程图、阶段判断规则。</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>scan-new-projects skill</strong> — 补充排序规则：新卡片按版本号倒序插入（V004→V003→V002→V001），修复了版本卡片乱序问题。</span></div>
+  </div>
+
+  <!-- 📋 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>08:10 上班提醒推送</strong> (personal-diary) — 发送上班提醒（连母亲、不执着、交托）到微信，推送成功</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>主人早间感悟</strong> (自我认知) — 发现第5特性（出bug来劲）+ 特质六（享受AI可视化反馈），写出行动力反思和短视频选题</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>飞书 WS 全线打通</strong> (Claw) — 修正 LLM 调用模型为 deepseek-v4-flash-free（免费），修复 urllib + socks 导致的 SSL 失败问题。WS 连→LLM→回复飞书链路 15:29 首次成功 ✅。v2 升级加 10 轮上下文</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>amruta 句级对齐修复</strong> (amruta-daily-push) — LaBSE+DP → LLM（Mistral Small 4），每段分别切句对齐。新建邮件验收机制（6维度自动验收）。multi-agent-team 团队修复对齐质量（+161/-823，commit 9427850）</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>hindsight-api 修复</strong> (Claw-No3) — SQLite 补丁 8 个 → 发现引擎硬编码 asyncpg，改用 pg0（嵌入式 PostgreSQL 5433 端口）。运行中 ✅，health: 200</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>multi-agent-team 升级</strong> (Claw-No1) — 新增 Analyst + Monitor 角色，多Agent协作调研（12个开源项目分析），结论：直接在现有 skill 迭代</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>3rd-career 版本卡片修复</strong> (3rd-career-exploration) — index.html 版本卡片排序 V004→V003→V002→V001 倒序纠正</span></div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天生话评价</strong> — 今日虽身体累（昨天火祭后反应），但发现新的自我特质，系统修复多个，进展扎实 👍</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
