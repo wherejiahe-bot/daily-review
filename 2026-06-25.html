@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .subtitle{font-size:14px;color:var(--ink-secondary);margin-top:8px;font-weight:400}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.text-content strong{font-weight:600;color:var(--ink)}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="date">2026-06-25 · 周四</div>
+    <h2>每日全局复盘</h2>
+    <div class="subtitle">签到脚本v2.3 · 战略认知圆桌启动 · Hermes飞书优化 · Shadowsocks修复 · 商业思维笔记扩容</div>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📗</span> 最佳经验一</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>"卖已火的产品，换卖点重新卖"原则</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>不用从0造产品，找已经验证过的火产品，换卖点/换人群/换形式重新卖。清华奶爸（免费网站→广告联盟变现）、Spicy Brain（3个月AI产品赚50万）都是这个逻辑。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用</strong>：第三职业的产品设计可以直接套用——不是从0发明冥想课程，而是把已有的霎哈嘉冥想换卖点（情绪梳理/减压/休息术）卖给不同人群。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📗</span> 最佳经验二</div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>Hermes飞书端消息格式全线优化</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>全天完成 Hermes 飞书端的 8 项优化：SOCKS5 代理冲突修复、text→interactive 卡片、回复风格 technical→concise、关闭中间状态消息/tool_progress/加速通知/心跳消息/工作简报自动化、表格支持。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用</strong>：飞书卡片消息格式已打通，后续任何需要飞书通知的场景都可直接复用 interactive card 模版。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📗</span> 最佳经验三</div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>签到脚本 v2.3 最终版：CEF 浮动层瞬发点击</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>从 v2.0→v2.3，逐步攻破：动态窗口定位（pygetwindow）→按钮精确查找（win32gui）→最大化固定位置→发现"立即领取"是CEF浮动层而非独立弹窗→win32 API 瞬发点击。实测通过。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用</strong>：浮动层点击用 win32 API 直接发送鼠标消息，比模拟点击更可靠。</span></div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);background:var(--red-light)">
+    <div class="card-title"><span class="icon">🔴</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>Shadowsocks 进程杀不死导致切换失败 × 多天</strong> — agents-ip-api 的 Shadowsocks 切换一直有问题：taskkill /f 杀不死主进程（PID 8676），老进程继续占端口，新启动检测到已在运行→弹窗报错。</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'>根因分析：taskkill 对某些进程无效，wait_port() 又误判为成功。改进：双保险（taskkill + wmic）+ wait_port_free() 等待端口彻底释放。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>/tmp/ 路径跨环境不一致反复踩坑</strong> — Python /tmp/ → G:\tmp\，Git Bash /tmp/ → C:\Users\temp。改进方案：用 cp /c/Users/... 跨环境传文件。</span></div>
+  </div>
+
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">💡</span> 战略认知圆桌：原创概念落地</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>3rd-career-exploration 项目：cheat-on-money 全套导入 → 霎哈嘉中国发展项目启动 → 安装4个角色Skill（马斯克/芒格/荣格/曼昆）+ 战略认知圆桌框架 → 10K字项目文档《霎哈嘉+x-中国发展构想》</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>商业模式从"免费为主"→"付费咨询+免费送冥想"，先用战略认知圆桌吸引高认知人群，再自然过渡。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>GitHub 确认"战略认知圆桌"是原创概念，无同款开源项目。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 商业思维笔记更新</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>周小满战略圆桌会议</strong> — 卖点转换策略（长脑子/打破思维僵局）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>清华奶爸</strong> — 免费网站获流量→商业联盟广告变现，补充7条商业思维点（付费变免费、先闭环后提效、增值服务变现等）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>Spicy Brain 播客</strong> — 3个月AI产品赚50万，提取10条商业思维点</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>"卖已火的产品"</strong> — 不用从0造产品，找验证过的火产品，换卖点/人群/形式重新卖</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> Hermes 飞书端 8 项优化（Claw-No2）</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>SOCKS5 代理冲突修复 → interactive 卡片消息格式 → concise 回复风格 → 关闭 tool_progress → 关闭加速通知 → 关闭心跳消息 → 关闭工作简报自动化 → 表格支持（markdown 表格→飞书原生 table 组件）</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> amruta-daily-push：Queen Victoria</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>手动构建 1995-06-25 "Queen Victoria"（维多利亚女王，Richmond Park picnic）中英 pairs</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>SSH 推送成功（2e18eff..a9f80a2），仓库 wherejiahe-bot/amruta-daily-archive → main</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日项目一览</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>Claw-No1</strong> — 签到脚本 v2.0→v2.3：动态窗口定位→按钮查找→最大化固定→CEF瞬发点击</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>agents-ip-api</strong> — Shadowsocks 进程管理修复：双保险杀进程、wait_port_free</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>amruta-daily-push</strong> — 手动推送 Queen Victoria 文章（SSH）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>3rd-career-exploration</strong> — 霎哈嘉中国发展项目 + 战略认知圆桌 + 4个角色Skill安装</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>Claw-No2</strong> — Hermes 飞书端 8 项优化</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>personal-diary</strong> — 商业思维笔记扩容（周小满/清华奶爸/Spicy Brain）</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
