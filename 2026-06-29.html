@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-06-29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .subtitle{font-size:14px;color:var(--ink-secondary);margin-top:4px;max-width:500px;margin-left:auto;margin-right:auto}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.tag.green{background:var(--green-light);color:var(--green)}
+.tag.red{background:var(--red-light);color:var(--red)}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.text-content strong{font-weight:600}
+.text-content .meta{font-size:12px;color:var(--ink-tertiary)}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.card-error{border:1.5px solid var(--red);background:var(--red-light)}
+.card-error .card-title{color:var(--red)}
+.timeline-item{padding:12px 0;border-bottom:1px solid var(--border)}
+.timeline-item:last-child{border-bottom:none}
+.timeline-item .time{font-size:12px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.3px}
+.timeline-item .title{font-size:14px;font-weight:600;color:var(--ink);margin-top:2px}
+.timeline-item .desc{font-size:13px;color:var(--ink-secondary);margin-top:2px;line-height:1.5}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-06-29 · 周一</div>
+    <h2>每日全局复盘</h2>
+    <div class="subtitle">阿芬的穿透力与威仪 · 内心情感的深层涌动 · Hermes 飞书超时修复 · 第3职业周扫描V005</div>
+  </section>
+
+  <!-- Tags -->
+  <div class="card" style="padding:16px 24px">
+    <div class="tag-list" style="margin-bottom:0">
+      <span class="tag">阿芬的注意力</span>
+      <span class="tag">妻子的痛</span>
+      <span class="tag green">飞书修复</span>
+      <span class="tag">周扫描V005</span>
+      <span class="tag">女神护身颂</span>
+    </div>
+  </div>
+
+  <!-- 🔥 三条最佳经验 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+
+    <div class="bp-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>阿芬的穿透力和威仪</strong><br>
+      阿芬读颂文的每一个句子、带班时每一个口诀，都非常深入、穿透性地连接到母亲，进而完全融入母亲。深邃、纯净、有穿透性的注意力，和母亲的连接到达非常深入的境地。阿芬姐姐有一种「一念便让众生臣服」的气质——让周围所有焦躁不安的负面能量变得完全安静、肃静。<br>
+      <span class="meta">可复用经验：注意力可以像光束一样聚焦，深邃而纯净地连接到母亲。不是表面的念诵，而是每一次发声都带着全然的融入。</span></span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">2</span>
+      <span class="text-content"><strong>觉察：有钱了会怎样——内心诚实的看见</strong><br>
+      主人诚实觉察到：如果像天空大姐炒股赚100万，基本上就会去享受生活、躺平——霎哈嘉也不练了，天天开心去玩，母亲的工具随便做做。"所以母亲不给我钱是有原因的。现在也不缺钱。"<br>
+      <span class="meta">可复用经验：对自己诚实是最好的觉察。看清了"有钱→堕落"的内心模式后，反而释然——母亲的不给是最好的给。</span></span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">3</span>
+      <span class="text-content"><strong>妻子的话与内心的痛——爱还在路上</strong><br>
+      妻子说两人只是母亲安排的一起做功课的人。主人感到内心很痛、很受伤，哭了很久。后来想通：即使是得到自觉的瑜伽士也有辱骂的时候——那也要爱他们。对妻子也是一样——"大家都在路上"。<br>
+      <span class="meta">可复用经验：关系中的痛感是功课本身。"不起反应"和"有爱流动"之间不是非此即彼——大家都在路上，爱并不因此而减少。</span></span>
+    </div>
+  </div>
+
+  <!-- ⚠️ 做得不好的事 -->
+  <div class="card card-error">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+
+    <div class="bug-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>飞书超时问题复盘（Hermes 级联故障）</strong><br>
+      Hermes 飞书 18:45~19:01 出现消息超时。根因是三层链故障：hindsight API 因 HuggingFace 模型下载被墙而崩溃（SSL 超时→进程退出）→ gateway 无法连接 hindsight→ API 调用 opencode.ai timeout。这暴露了系统对单个组件崩溃的抗性不足。<br>
+      <span class="meta">改进方案：hindsight 已以离线模式重启（HF_HUB_OFFLINE=1），使用本地缓存模型。Gateway 已重启并清理 pycache。需考虑引入更健壮的故障隔离或降级机制。</span></span>
+    </div>
+  </div>
+
+  <!-- 🛠️ 今日技能变化 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>第3职业每周扫描 V005</strong><br>
+      6/22~6/28 周扫描完成：AI技能搭建 26→27，翻译流水线 23→24，100天黄庭 20→21。主题：灵性安息周·基础加固·方向确认。</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>Hermes 运维</strong><br>
+      hindsight 离线模式启动 + HF_HUB_OFFLINE=1 + Gateway 重启 + pycache 清理</span>
+    </div>
+  </div>
+
+  <!-- 📋 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class="timeline-item">
+      <div class="time">12:55</div>
+      <div class="title">女神护身颂自动化提醒 <span class="tag" style="font-size:10px;padding:1px 6px">✅</span></div>
+      <div class="desc">引导自问三个问题：有没有陷入事情里？有没有执着？有没有交托给母亲？</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">16:59</div>
+      <div class="title">阿芬领会的穿透力与威仪</div>
+      <div class="desc">阿芬读颂文的注意力深邃纯净，和母亲连接达到非常深入境地。"一念便让众生臣服"——让周围所有焦躁不安的负面能量变得完全安静。</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">17:18</div>
+      <div class="title">赚钱信息差</div>
+      <div class="desc">天空大姐炒股赚了100万</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">17:28</div>
+      <div class="title">带班可用语句</div>
+      <div class="desc">"请生命能量完全的降临，降临在这个空间。让所有的负面安静下来……"</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">18:45~19:01</div>
+      <div class="title">Hermes 飞书超时修复 <span class="tag" style="font-size:10px;padding:1px 6px">✅</span></div>
+      <div class="desc">根因：hindsight API 崩溃（HuggingFace 被墙）→ gateway 断连 → API timeout。修复：hindsight 离线模式重启，Gateway 重启+清理</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">19:04</div>
+      <div class="title">吸引力法则与显化讨论</div>
+      <div class="desc">可以进入吸引力法则、显化这个行业来带自觉</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">19:39</div>
+      <div class="title">觉察：有钱了会怎样 <span class="tag" style="font-size:10px;padding:1px 6px">✅</span></div>
+      <div class="desc">诚实地看见自己有钱会堕落——"母亲不给我钱是有原因的"</div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="time">20:27</div>
+      <div class="title">妻子的话与内心的痛 <span class="tag" style="font-size:10px;padding:1px 6px">❤️</span></div>
+      <div class="desc">妻子说两人只是"一起做功课的人"。主人哭了很久，后来想通：大家都在路上，爱不减少。</div>
+    </div>
+  </div>
+
+  <!-- 附录：各项目 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📂</span> 附录：各工作空间纪要</div>
+
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>13:00 personal-diary</strong> — 女神护身颂自动化提醒执行。引导自问三个问题：有没有陷入事情里？有没有执着？有没有交托给母亲？</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>16:59~20:27 personal-diary</strong> — 密集的灵性感悟与情感记录：阿芬的穿透力与威仪、赚钱信息差、带班可用语句、吸引力法则与显化讨论、有钱后堕落觉察、妻子的话引发的内心痛感与最终放下。</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>18:45~19:01 Claw</strong> — Hermes 飞书超时修复。hindsight 因 HuggingFace 被墙崩溃，导致 gateway 断连、API timeout 的三层链故障。修复后恢复正常。</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>3rd-career-exploration</strong> — 第3职业每周扫描 V005。6/22~6/28 评分更新：AI技能搭建 26→27，翻译流水线 23→24，100天黄庭 20→21。主题：灵性安息周·基础加固·方向确认。</span>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
