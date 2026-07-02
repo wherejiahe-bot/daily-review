@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-02</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-02 · 周四</div>
+    <h2>条件化觉察 · Codex修复 · amruta全线通过</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>父亲条件化事件的深度觉察</strong>——"被推开就缩回去"的自动化程序识别。发现注意力-亲近模式后，追溯到童年父亲一句"你管这些干嘛？"——写入内心的条件化程序。引用母亲1984/1987年关于条件化的讲话，解决方案：感觉一来就把注意力沉到心口，说"母亲，请住进我的心。"</span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>Codex++ 管理工具 config.toml 写入 bug 终极修复</strong>——彻底放弃管理工具写 config.toml，从 settings.json 提取 US configContents 直接写入，SHA256 哈希校验一致，HTTP 200 ✅</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>amruta-daily-push IMA 格式支持 + 全线审计通过</strong>——IMA KB 搜索结果可视化、EN-all-first/ZH-all-after 分离格式支持、4轮审计修复，Run #28556917010 9/9 [OK] ✅</span></div>
+  </div>
+
+  <div class="card" style="background:var(--red-light);border-color:rgba(196,90,90,0.15)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>DS2API 503 排查耗费大量时间</strong>——根因在 DeepSeek 平台侧封号（GitHub Issues #508/#510），但到 GitHub 调查前一直在本地排查。改进：上游503/5xx优先查GitHub Issues。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>Codex++ 管理工具 bug 排查路径不够直接</strong>——分析SHA256、对比设置、杀进程重拉，最终发现是管理工具校验逻辑本身的bug。改进：管理工具功能报错时，优先考虑工具本身bug。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>amruta-daily-push</strong> — IMA KB搜索结果可视化 + EN-all-first/ZH-all-after格式支持 + 4轮审计修复，Run #28556917010 9/9 [OK]</span></div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>Hermes</strong> — hermes-agnes-config新技能，Hermes proxy配置完成并验证通过</span></div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>feishu-codex-bridge</strong> — typing指示器、启动脚本、桌面快捷方式</span></div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>personal-diary</strong> — daily-wechat-reminder自动化prompt加入显式发送命令，7提醒修复</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>00:55 · 日记深度觉察——条件化模式</strong><br>注意力-亲近模式（别人减少注意力→自己缩回去），追溯到父亲童年条件化事件（"你管这些干嘛？"），引用母亲1984/1987讲话剖析。灵性觉察 → 日记</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>凌晨 · Headroom安装 + DS2API诊断</strong><br>headroom-ai 0.28.0 安装成功（清华镜像，3分38秒）。DS2API 503诊断。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>07:47 · DS2API根因确认</strong><br>GitHub Issues确认DeepSeek自2026-05-12大规模封号（Issues #508/#510），非本地配置问题。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>08:00 · Hermes Agnes配置完成 + 7提醒修复</strong><br>Hermes默认模型设为agnes-2.0-flash并验证通过。7提醒自动化prompt修复。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>~11:47 · Codex++管理工具bug终极修复</strong><br>放弃管理工具写config.toml，从settings.json提取US configContents直接写入→HTTP 200 ✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>~14:30-15:30 · Feishu-Codex桥接完善</strong><br>typing指示器、启动脚本、桌面快捷方式。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>~15:30 · amruta-daily-push全线修复</strong><br>IMA KB搜索结果可视化 + 分离格式支持 + 4轮审计修复 → Run #28556917010 9/9 [OK] ✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天能量评价</strong><br>灵性觉察深度——条件化模式从"知道"到"真实看见"。Codex管理工具修复+amruta全线通过+Feishu桥接完善。DS2API封号确认（非本地问题）。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
