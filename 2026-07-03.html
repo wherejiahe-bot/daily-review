@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-03 · 周五</div>
+    <h2>飞书桥接大清理 · 正则修复 · lark项目新建</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>飞书桥接全链路彻底清理</strong><br>经过一整天大清理，解决了三个飞书连环问题：① <strong>bridge.py 重复消息</strong>——源代码112-135行是86-110行的完全复制；② <strong>Hermes自我循环</strong>——根因是 `_bot_open_id` 为空，获取后写入 `.env`；③ <strong>代码块正则</strong>——第190行 `.sub("", text)` 改为 lambda 替换保留内容。可复用经验：飞书问题排查路线：多进程残留 → 代码重复 → self_echo配置 → markdown清洗。</span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>代码块清洗正则两次修复的教训</strong><br>第一次错误的修复（删除整个代码块，导致内容消失）和第二次正确的修复（lambda保留内容）。修"内容不显示"的 bug 时，先确认发送路径是卡片还是纯文本，再对症修。</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>lark-codex-bridge 新建 + WebSocket接入</strong><br>创建新项目 lark-codex-bridge，使用 lark-oapi SDK 实现 WebSocket 长连接机器人。飞书应用"卢艳鹰 Codex"（cli_aacd18daf4b89be0），连接测试通过，旧连接全清理。</span></div>
+  </div>
+
+  <div class="card" style="background:var(--red-light);border-color:rgba(196,90,90,0.15)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>同一个正则 bug 修了两次</strong>——`helpers.py` 第173行 `_RE_CODE_BLOCK` 正则第一次删除了代码块内容，第二次才用 lambda 保留。根因：没在修改前全面测试两种发送路径（卡片 vs 纯文本）。改进：修改共享工具函数时，同时验证所有调用路径的输出效果。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>REFLECTION.md</strong> — 新增 helpers.py 正则踩坑 + Hermes 工具链截断长字符串踩坑</span></div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>amruta-daily-push</strong> — 重构项目结构：shared/目录（需求/验收/架构文档），更新skill移除GitHub Actions，改用本地搜索</span></div>
+    <div class='bp-item'><span class='num'>📝</span><span class='text-content'><strong>lark-codex-bridge</strong> — 新建项目，飞书应用 WebSocket 长连接，自动重连</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:00~11:27 · 日记修习——清理功课、合一视角、安静模式</strong><br>清理功课（两条道路）、合一视角（顶轮观）、"真正安静的方式"（被默默注视的安心感），特质七记录</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:45 · 上午清理提醒自动化</strong><br>daily-wechat-reminder 微信+弹窗双发成功</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>11:27 · 特质七"被默默注视的安心感"</strong><br>Felix-PersonalityTraits.md 更新</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>12:19 · "看着自己"章节</strong><br>日记记录观察自己想法的状态</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>13:08 · Feishu bridge 重复消息修复</strong><br>删除 bridge.py 重复代码块（112-135行是86-110行的复制），bat同步更新</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>14:08 · 误判纠正——循环问题根因</strong><br>实际是 bridge.py 多进程未清干净 → 杀所有进程，恢复延迟为2秒</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>15:40 · 彻底清理 bridge.py 进程</strong><br>所有 bridge.py 进程已 kill，两个飞书应用完全独立</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:01 · Hermes 飞书双重修复</strong><br>① 循环问题——获取 bot_open_id 写入 .env；② 代码块正则——lambda 正确保留内容</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:01 · "思念与交托"日记</strong><br>思念大过对方的错、顶轮之上的困惑与交托</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:50 · 休息提醒自动化</strong><br>晚间清理消息，微信+弹窗双发成功</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天 · lark-codex-bridge 新建</strong><br>WebSocket 长连接机器人，飞书应用"卢艳鹰 Codex"配置完成</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天评价</strong><br>飞书桥接全链路大清理——从代码重复到进程残留到正则修复，四个独立问题逐个击破。灵性方面有觉察日记深化。amruta 项目文档结构理顺。新项目 lark-codex-bridge 基础搭建完成。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
