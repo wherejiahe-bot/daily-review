@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.text-content strong{color:var(--accent)}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.skill-card{border-left:3px solid var(--accent)}
+.kv-row{display:grid;grid-template-columns:80px 1fr;gap:6px 12px;font-size:13px;margin-bottom:8px}
+.kv-row .k{color:var(--ink-tertiary);font-weight:500}
+.kv-row .v{color:var(--ink)}
+.timeline-detail-item{padding:12px 0;border-bottom:1px solid var(--border)}
+.timeline-detail-item:last-child{border-bottom:none}
+.timeline-detail-item .time{font-size:12px;font-weight:600;color:var(--accent);margin-bottom:2px}
+.timeline-detail-item .event{font-size:14px;color:var(--ink);line-height:1.5}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-08 · 周三</div>
+    <h2>amruta全线修复 · 微信token仍未恢复</h2>
+    <div class="tag-list" style="margin-top:12px;justify-content:center">
+      <span class="tag">基础设施</span>
+      <span class="tag">自动化维护</span>
+      <span class="tag">踩坑反思</span>
+      <span class="tag">灵修</span>
+    </div>
+  </section>
+
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+
+    <div class="bp-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>amruta Step1 today 模式 Bug 修复</strong> — 法文文章拦截修复。cron 凌晨 4:10 抓到了法文 "Le jour de Sankranti"，根因：日期比较逻辑多横杠 + 取最新而非英文。一次修三个层次（比较逻辑 + 英文筛选 + 逐篇处理）。</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">2</span>
+      <span class="text-content"><strong>Step3/Step4 文件路径系统性修复</strong> — 从 /tmp/ 改用项目目录 + 加载 .env，GitHub Token 和 SMTP 配置全部到位。多步流水线每步应显式确认文件来源和环境变量。</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">3</span>
+      <span class="text-content"><strong>飞书桥接教训——先查现有方案，别造轮子</strong> — gen_bridge.py 修了两天未果，回头发现 cc-connect 早已装好，启动即可。教训已写入 REFLECTION.md。</span>
+    </div>
+  </div>
+
+  <div class="card" style="border:1px solid var(--red-light)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+
+    <div class="bug-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>微信推送连续三天故障</strong> — ClawBot token 过期已第三天（7/6→7/8）。黄昏冥想、晚间清理均触发但微信发送失败，仅本地弹窗。需在 skill 中加入 token 健康检查前置步骤，不能 silent fail 跑三天。</span>
+    </div>
+
+    <div class="bug-item">
+      <span class="num">2</span>
+      <span class="text-content"><strong>飞书桥接自己造轮子修了两天</strong> — gen_bridge.py 修超时/502/乱码/竞态，结果 cc-connect 已装好。任何连接两个系统的任务，第一优先级是查已有方案。</span>
+    </div>
+  </div>
+
+  <div class="card skill-card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class="tag-list">
+      <span class="tag">amruta-daily-push/SKILL.md</span>
+      <span class="tag">MEMORY.md</span>
+      <span class="tag">REFLECTION.md</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>amruta-daily-push/SKILL.md</strong>：同步更新 Step1 today 模式规则 + Step2 流程编号 + Step3/Step4 文件路径</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>REFLECTION.md</strong>：新增飞书桥接教训（cc-connect 已存在）</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class="timeline-detail-item">
+      <div class="time">07:00~07:30</div>
+      <div class="event"><strong>amruta Step2 流程编号重排收尾</strong> — Step2.4(对齐)→2.5(自检)→2.6(标题)→2.7(HTML) 编号+脚本名+docstring 全部同步</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">07:30~08:00</div>
+      <div class="event"><strong>Step1 today 模式修复——法文拦截</strong> — 日期比较逻辑修正 + 英文筛选 + 逐篇处理。正确找到 1990-07-08 英文文章 "Zen Tea Ceremony and Guru Principle"</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">09:30~10:00</div>
+      <div class="event"><strong>Step3/Step4 文件路径修复</strong> — 从 /tmp/ 改为项目目录 + 加载 .env → GitHub Token/SMTP 认证通过</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">10:00~10:10</div>
+      <div class="event"><strong>导航页损坏卡片清理</strong> — 删除法文脏数据卡片（20263/undefined/NaN），GitHub commit 清理</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">20:50</div>
+      <div class="event"><strong>晚间清理提醒</strong> — 交托一日+三问+清理三脉。微信❌（token 过期第3天） 本地弹窗✅</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">全天</div>
+      <div class="event"><strong>飞书桥接——cc-connect 已存在</strong> — gen_bridge.py 修了两天未果→发现 cc-connect 已装好→启动即可。教训已写入 REFLECTION.md</div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
