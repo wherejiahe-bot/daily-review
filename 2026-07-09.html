@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-09</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.text-content strong{color:var(--accent)}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.skill-card{border-left:3px solid var(--accent)}
+.kv-row{display:grid;grid-template-columns:80px 1fr;gap:6px 12px;font-size:13px;margin-bottom:8px}
+.kv-row .k{color:var(--ink-tertiary);font-weight:500}
+.kv-row .v{color:var(--ink)}
+.timeline-detail-item{padding:12px 0;border-bottom:1px solid var(--border)}
+.timeline-detail-item:last-child{border-bottom:none}
+.timeline-detail-item .time{font-size:12px;font-weight:600;color:var(--accent);margin-bottom:2px}
+.timeline-detail-item .event{font-size:14px;color:var(--ink);line-height:1.5}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-09 · 周四</div>
+    <h2>GitHub API sha trap 终修复 · 微信 token 恢复 · 女性的力量</h2>
+    <div class="tag-list" style="margin-top:12px;justify-content:center">
+      <span class="tag">基础设施</span>
+      <span class="tag">脚本修复</span>
+      <span class="tag">灵修</span>
+      <span class="tag">能量经验</span>
+    </div>
+  </section>
+
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+
+    <div class="bp-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>GitHub API sha trap 最终修复</strong> — `githubPut` 返回 HTTP 200 但 `content.sha == old.sha`，文件未更新。根因：GitHub Contents API sha 竞争条件静默失败。修复：step3_push.py 内置 git fallback——API 推送后自动复制 HTML 到本地 clone，执行 git add/commit/push --force。API+git 双重保障生效，HEAD 有 15 个正确 pair ✅</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">2</span>
+      <span class="text-content"><strong>女性的力量——Lakshmi 驱动整体柔软</strong> — 与妻子从矛盾到感情融洽甜蜜（Lakshmi 能量）之后，swami 对妈妈也更柔软了，身体也不再拉肚子。"因为老婆宝宝的柔软，swami 今天对妈妈也更加的柔软了。"经验：Lakshmi 是真实可感的，家庭和谐直接影响身心健康。不过度宠溺也不疏离，将妈妈也交托给太初之母。</span>
+    </div>
+
+    <div class="bp-item">
+      <span class="num">3</span>
+      <span class="text-content"><strong>正反馈驱动 & 1V1 真心求助效应</strong> — 觉察到没有正反馈就不太想干，但有人 1V1 真心求助时特别愿意全力以赴。根本解决：回到顶轮之上、无思虑觉知之中——那里不需要别人给正反馈，自己就在圆满里。加上终局思维：站在霎哈嘉农业的终点往回推，当下该做什么自然清晰。</span>
+    </div>
+  </div>
+
+  <div class="card" style="border:1px solid var(--red-light)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+
+    <div class="bug-item">
+      <span class="num">1</span>
+      <span class="text-content"><strong>微信推送连续四天故障后今天上午仍失败</strong> — ClawBot token 过期从 7/6 持续到 7/8，今天 08:10 上班提醒仍然失败 ❌。但 14:10 下午上班提醒已恢复正常 ✅。token 未经手动刷新就恢复了，说明 ClawBot 有自愈机制但不可靠。仍应在 skill 中加入前置 token 健康检查。</span>
+    </div>
+  </div>
+
+  <div class="card skill-card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class="tag-list">
+      <span class="tag">amruta-daily-push</span>
+      <span class="tag">step3_push.py</span>
+      <span class="tag">push_article.js</span>
+      <span class="tag">SKILL.md</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>step3_push.py</strong>：新增 git fallback 逻辑——API 推送后自动复制文件到本地 clone，执行 git add/commit/push --force</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>push_article.js</strong>：新增 `smartPut` 函数 + 写本地文件</span>
+    </div>
+    <div class="bp-item">
+      <span class="num">→</span>
+      <span class="text-content"><strong>SKILL.md + MEMORY.md</strong>：Step3 添加 git fallback 说明 + sha trap 修复记录</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class="timeline-detail-item">
+      <div class="time">08:10</div>
+      <div class="event"><strong>上班提醒自动化</strong> — 微信❌（token 仍过期第4天） 本地弹窗✅。连母亲 + 三问 + 主人指定两段话</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">14:10</div>
+      <div class="event"><strong>下午上班提醒自动化</strong> — 微信✅ 发送成功（token 已恢复） 本地弹窗✅。连母亲 + 三问 + 顶轮 + 两段静观引语</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">全天</div>
+      <div class="event"><strong>amruta GitHub API sha trap 最终修复</strong> — `githubPut` HTTP 200 但 sha 不更新。修复：step3_push.py 内置 git fallback（API+git 双重保障）。HEAD 有 15 个正确 pair ✅</div>
+    </div>
+
+    <div class="timeline-detail-item">
+      <div class="time">全天</div>
+      <div class="event"><strong>灵性感悟——女性的力量 + 正反馈驱动 + 终局思维</strong> — Lakshmi 能量真实可感。觉察到正反馈驱动模式，意识到回到顶轮才是真解。终局思维：站在霎哈嘉农业终点往回推。</div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
