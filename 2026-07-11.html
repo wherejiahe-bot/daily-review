@@ -33,14 +33,26 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .hero{text-align:center;padding:36px 20px 28px}
 .hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
 .hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .subtitle{font-size:14px;color:var(--ink-secondary);margin-top:8px;font-weight:400}
 .card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
 .card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
 .card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
 .card-title .icon{font-size:14px}
 .tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
 .tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
 .text-content{font-size:14px;color:var(--ink);line-height:1.6}
-.text-content strong{color:var(--accent)}
+.text-content strong{color:var(--accent);font-weight:600}
+.card-sub{font-size:12px;color:var(--ink-tertiary);margin-top:8px}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
 .back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
 .back-btn:hover{color:var(--accent)}
 @media(max-width:600px){
@@ -60,19 +72,63 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div class="container">
   <section class="hero">
     <div class="date">2026-07-11 · 周六</div>
-    <h2>灵修安息日 · 无工作记录</h2>
-    <div class="tag-list" style="margin-top:12px;justify-content:center">
-      <span class="tag">休息日</span>
-      <span class="tag">灵修</span>
-      <span class="tag">周末</span>
-    </div>
+    <h2>休息日 · 项目清理</h2>
+    <div class="subtitle">amruta 全面审计 + 6月25日日期事故修复 · 周末简版</div>
   </section>
 
   <div class="card">
-    <div class="card-title"><span class="icon">📋</span> 今日总结</div>
-    <div class="text-content">
-      <p style="padding:8px 0">周末休息日，各项目均无工作记录。好好休息，养精蓄锐 🦞</p>
-    </div>
+    <div class="card-title"><span class="icon">📋</span> 今日概览</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>周六休息日，各项目无新开发任务</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>amruta-daily-push 项目做了全面审计清理</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>6月25号文章全流程完成（28 个句子对，Step1-4 全成功）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>23:50 每日复盘自动化正常执行</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>amruta 项目全面审计清理</strong><br>删除了 32 个废弃脚本、2 个测试文件、8 个调试文本、3 个 .bak 备份、旧实验数据目录。scripts/ 目录从 47 个文件精简到 15 个。发现 coordinator.py（38KB）完全无人引用。</span></div>
+    <div class="card-sub">可复用：定期批量审计比逐文件清理效率高得多</div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>6月25日日期事故的根本修复</strong><br><code>push_input.json</code> 的 date 字段被误写成演讲原始日期 1995-06-25，导致所有下游产物日期错误。修复后加了预防检查：Step3 前必检查 date 字段是否以 <code>2026-</code> 开头。</span></div>
+    <div class="card-sub">可复用：上游入口加"断言式检查"而非下游逐级修复</div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>Step3 git fallback 日期匹配修复</strong><br>修复了 index.html 卡片日期替换 bug：改用 <code>\d{4}-MM-DD</code> 匹配任意年份，而非仅匹配新日期。</span></div>
+    <div class="card-sub">可复用：Plan B 也可能有 bug，走完 fallback 要验证最终产物</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>6月25日事故的根因是人而非工具</strong><br>日期用错演讲原始年份（1995 vs 2026）是助手在生成 push_input.json 时犯了错误。流水线没有在第一步加日期格式校验，导致错误蔓延到最终产物。</span></div>
+    <div class="card-sub">改进：Step3 前加日期格式断言校验，不通过则中止</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>amruta-daily-push SKILL.md</strong> — 删除重复内容、废弃引用、脚本清单中的 daily_pipeline.py 条目和 3 个不存在的 references 引用</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>MEMORY.md（amruta）</strong> — 全面精简：删除过时设计缺陷、multi-agent-team 强制加载描述、审核流程描述等，保留核心技术决策</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>删除废弃文件</strong> — 32 个废弃脚本 + 2 个测试 + 8 个调试文本 + 3 个 .bak 备份 + 旧实验数据目录</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> amruta 清理明细</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>删除清单</strong>：32 个废弃脚本（step2.py, step2_extract.py, step2_llm.py 等）、2 个测试文件（test_build.js, test_push_html.js）、8 个调试文本、3 个 .bak 备份、daily/1995-06-25.html（修复后已重命名）、daily/1986-07-06/ 目录、__pycache__/ 缓存</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>待删除（标记）</strong>：coordinator.py（38KB，无人引用）、daily_pipeline.py（24KB，SKILL.md 中已移除引用）、step2_translate.py.backup_20260705（88KB）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>当前 scripts/ 目录</strong>：15 个文件，包括 push_article.js、run_workflow.py、step1-4 八步流程、step3_push.py 等</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>项目根目录</strong>：23 个文件，tmp01.md 为流程中间产物（保留，每次运行被覆盖）</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 6月25日事故修复详情</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>问题</strong>：push_input.json 的 date 字段被写成演讲原始日期 1995-06-25，而非 2026-06-25</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>影响</strong>：HTML 文件名、articles.json、index.html 卡片、git commit message 全部用了错误年份 1995</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>修复</strong>：daily/1995-06-25.html → daily/2026-06-25.html，并更新所有引用</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>预防</strong>：Step3 前必检查 push_input.json 的 date 字段是否以 2026- 开头</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 附录：各项目日志摘要</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 项目 | 内容 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>|---|---|</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| amruta-daily-push | 全面审计清理：47→15个脚本，修复6月25日日期事故，6月25号文章全流程完成，SKILL.md & MEMORY.md 更新 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| personal-diary | 23:50 每日复盘自动化正常执行（各项目无7/11工作日志，周六休息日） |</span></div>
   </div>
 
   <a href="index.html" class="back-btn">← 返回总览</a>
