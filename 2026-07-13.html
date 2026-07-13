@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-13</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-13 · 周一</div>
+    <h2>签到回归稳定 · amruta全线 · 周扫描V007</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>签到自动化回归稳定——v2.6连续成功</strong><br>自动化排程 · 稳定性 · 已验证<br>Claw-No1 WorkBuddy每日签到v2.6成功执行，余额1882.94→1982.94（+100）。近10天签到自动化9次失败后彻底修复：根因model_id :free后缀→custom-local。今天v2.6首次无故障运行。<br><strong>可复用经验</strong>：久治不愈的问题先查配置层（model_id/环境变量），而非代码层。</span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>amruta全线流程顺畅——06-13文章完整推送</strong><br>amruta-daily-push · 自动化流水线 · 已验证<br>amruta-daily-push 完整跑通7步流程：抓取"Value through testing"→搜F盘"追寻那超越之境"→LLM摘取4段→14句对齐+自检→中文标题"通过实践体现价值"→HTML生成2386字符→GitHub推送→QQ邮件发送成功。<br><strong>可复用经验</strong>：多轮修复后流水线已趋于稳定，每次修复积累到buglist可防止回退。</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>3rd职业周扫描V007完成——状态稳定</strong><br>每周例行 · 项目管理 · 已验证<br>3rd-career-exploration每周扫描V007执行：扫描personal-diary (7/6~7/12) + 项目目录。19项目（无增减），0项评分变动。主题：灵性回归周·赚钱执念脱落·Book of Adi Shakti视频立项。<br><strong>可复用经验</strong>：每周扫描是项目健康检查关键节奏，本周新增主题总结维度让周报更有叙事感。</span></div>
+  </div>
+
+  <div class="card insight-card" style="border-color:rgba(196,90,90,0.15)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>100天黄庭未打卡</strong><br>日常定课 · 打卡习惯<br>100-days-huangting 今天未在 log.md 找到打卡记录，已发送微信提醒但主人仍未打卡。周一可能事务杂乱，定课注意力分散。<br><strong>改进方案</strong>：恢复微信token后重新发送提醒，考虑增加本地弹窗+微信双通道提醒。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>📝 Claw-No1 签到脚本 v2.6</strong><br>稳定版，easyocr 积分余额识别完整流程，无新bug。连续成功验证 model_id 修复有效。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>🦞 amruta-daily-push</strong><br>Step1 英文筛选Bug修复（法文/西文/意文常见词检测）；Step2.2 搜索通配符修复；损坏卡片修复（`buildIndexHtml` 加脏数据过滤）；Cron任务更新为完整7步流程。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>05:56 签到自动化执行成功</strong><br>Claw-No1 v2.6 · WorkBuddy每日签到自动执行，余额+100，稳定运行。✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>（上午）100天黄庭提醒发送但未打卡</strong><br>100-days-huangting · 已发送微信提醒但今日 log.md 无打卡记录。可能微信token过期影响送达。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>（全天）amruta-daily-push 全流程</strong><br>amruta · "通过实践体现价值"全线跑通，推送+邮件全部成功。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>（全天）3rd职业周扫描V007</strong><br>3rd-career-exploration · 19项目（无增减），0项评分变动。v007.html + index.html更新。SSH推送+微信通知成功。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:50 敢不敢交托·存盘下线</strong><br>personal-diary · 闯关风格晚间提醒。ClawBot token过期导致微信推送失败，本地弹窗成功。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天生话评价</strong><br>周一休整维护日——签到回归稳定 ✅、amruta全线顺畅、周扫描V007完成。100天黄庭未打卡是明日改进方向。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 附录：各工作空间日志摘要</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>Claw-No1</strong>：签到v2.6 ✅ 余额+100。9连败后首次无故障运行。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>amruta-daily-push</strong>：06-13文章"Value through testing"完整推送，7步全部通过。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>3rd-career-exploration</strong>：每周扫描V007，19项目，主题：灵性回归周。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>100-days-huangting</strong>：未打卡，已发提醒。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>personal-diary</strong>：20:50闯关风格晚间提醒，微信推送因token过期失败。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
