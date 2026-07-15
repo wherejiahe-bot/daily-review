@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-15</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-15 · 周三</div>
+    <h2>Agnes退役 · NVIDIA Mistral接管 · 三相神原理触达</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>触达三相神原理——Shiva·Vishnu·Brahma的本质</strong><br>灵性体验 · 冥想 · 已验证<br>早上冥想中感受到湿婆神——纯洁的仁慈、纯洁的毁灭；毗湿奴——纯洁的平衡；梵天——纯洁的创造。后来查"原理"的含义，才知道触达的是三神的神圣品质本质——这就是霎哈嘉讲的"原理"。<br><strong>可复用经验</strong>：冥想中触达的不是概念或形象，而是品质本身（纯度），不需要定义或分析，在状态里自然知道。以后修炼中安静感受品质的临在——仁慈、平衡、创造本身。</span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>Agnes AI 退役 — NVIDIA Mistral 全面接管</strong><br>amruta-daily-push · 基础设施 · LLM切换 · 已验证<br>Agnes AI（agnes-2.0-flash）因频繁超时、HTTP 500、空响应被全面替换。Step2.3~2.6 全部切换至 NVIDIA mistralai/mistral-small-4-19b-2603，环境变量 AGNES_API_KEY → NVAPI_KEY。Python 内部 timeout 移除，依赖 Hermes 120 秒硬截断。<br><strong>可复用经验</strong>：LLM 持续不稳定时果断切换而非反复调优——API 可靠性优先级高于模型精度。</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>6月28号文章全线重做成功 — 全流程 7 步一次通过</strong><br>amruta-daily-push · 流水线 · 已验证<br>之前 Agnes AI 残留的 6月28号文章全线失败。切换 NVIDIA 后 Step1~Step4 全流程一次性通过 ✅。Step2.6 两级搜索策略（整句搜索 pairs→关键词搜索→兜底自行翻译）确认无报错。中文标题："霎哈嘉瑜伽的渊源"。<br><strong>可复用经验</strong>：Agnes 遗留的失败文章不需手动修——等新管线就绪后重新运行即可。Step2.5 自检已正式废弃，"F盘官方翻译就是权威"铁律落地。</span></div>
+  </div>
+
+  <div class="card insight-card" style="border-color:rgba(196,90,90,0.15)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>三相神原理的日记记载太短</strong><br>记录习惯<br>早上的灵性体验非常深刻——触达了 Shiva、Vishnu、Brahma 三相神品质的本质——但日记只记录了寥寥几句，没有记下状态细节（能量感受、具体知觉、持续时间等）。<br><strong>改进方案</strong>：日后遇到突破性灵性体验，多记录几个维度：① 当时能量感受（顶轮/眉心轮等）② 体感/视觉/内觉 ③ 持续时间 ④ 事后对日常的影响。细节对日后回顾和分享很宝贵。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>📝 amruta-daily-push</strong><br>Step2.5 已废弃（删除旧内容）。Step2.6 兜底翻译策略改为"自行翻译，参考术语对照表"（不再向用户报告）。删除重复条目。超时描述更新为"不设 Python 内部 timeout"。Cron Job prompt 改为 today 模式。MEMORY.md 同步更新。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>📝 personal-diary 自动化定课</strong><br>7 个闯关节拍器全线使用 Bash 脚本发送微信，三发全中 ✅（07:20/13:00/20:50）。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>07:20 幻相战场·闯关提醒</strong><br>personal-diary · 微信发送 ✅（Bash），本地弹窗 ✅<br>闯关风格「幻相战场 · 开启」+ 连母亲 + 三问 + 指定两段话</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>（白天）LLM API 切换 — Agnes → NVIDIA</strong><br>amruta-daily-push · Step2.3~2.6 全部切换<br>Agnes AI 因频繁超时/HTTP 500/空响应退役。环境变量 NVAPI_KEY 接管。Python timeout 移除。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>（白天）6月28号文章全线重做 ✅</strong><br>amruta-daily-push · Step1~Step4 全流程一次性通过<br>中文标题："霎哈嘉瑜伽的渊源"。Step2.6 两级搜索策略确认无报错。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>（白天）文件审计 + Skill/Prompt 更新</strong><br>amruta-daily-push · SKILL.md/cron prompt/MEMORY.md 同步更新<br>step2_5_selfcheck.py 废弃待主人确认。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>（早上）触达三相神原理</strong><br>灵性突破 · 冥想<br>Shiva=纯洁仁慈/毁灭，Vishnu=纯洁平衡，Brahma=纯洁创造。"原理"即神圣品质的本质。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>13:00 女神护身颂·护身结界提醒</strong><br>personal-diary · 微信 ✅ 本地弹窗 ✅<br>闯关风格「护身结界 · 展开」+ 15~20分钟诵颂 + 拷问三问</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:50 敢不敢交托·存盘下线提醒</strong><br>personal-diary · 微信 ✅ 本地弹窗 ✅<br>闯关风格「敢不敢交托 · 存盘下线」+ 交托一日三步</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天生话评价</strong><br>周三 — Amruta 基础设施重构日（Agnes 退役+NVIDIA接管+6月28号重做）+ 灵性突破日（三相神原理触达）。闯关节拍器全线成功三发全中。</span></div>
+  </div>
+</div>
+
+</body>
+</html>
