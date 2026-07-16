@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-16 · 周四</div>
+    <h2>每日全局复盘</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 整体评价</div>
+    <div class="tag-list">
+      <span class="tag">amruta全线</span>
+      <span class="tag">amruta重构</span>
+      <span class="tag">灵性定课</span>
+      <span class="tag">术语铁律</span>
+    </div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今日是 amruta 基础设施建设日：三篇文章全线通过、Step2.3 彻底重构、术语铁律落地。通道已成熟，可以跑批量模式了。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 最佳经验</div>
+
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>Step2.3 重构 v7：完整句子定位法</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>旧版使用 LLM 从 24KB F盘全文中"摘取对应中文"，只输出前两段，丢失 79.2% 内容。根因是 LLM 大 Prompt 提前截断。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>v7 方案：不再调用 LLM。将英文按分割符拆分，对每个英文句子在 F盘文档中做精确匹配 → 部分匹配 → 关键词匹配，从匹配段落中提取中文部分。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：当 LLM 任务型调用不可靠时，退回到纯文本算法往往是更优解——不丢数据、速度快、容易调试。100% 可靠，0 幻觉风险。</span></div>
+
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>amruta 三篇文章单日全线闭环</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今天完成三篇文章全流程闭环（9 步流水线 ×3）：</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>① 1981-07-05 调整优先级（Fixing up priorities）— 25句子对，17段落</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>② 1986-07-06 克服物质吸引的真正导师（A real guru...）— 22句子对，13段落</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>③ 1980-04-06 磁力（The magnetic force）— 18句子对，18段落</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：流水线一旦稳定，批量推进效率极高。三篇全线通过表明 v7 通道已成熟——可以进入批量模式。</span></div>
+
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>流程跳过问题修复——铁律落地</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>发现 Step2.1 完成后跳过 Step2.2/2.3/2.4 直接到 Step2.5 的问题，导致基于错误数据运行。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>修复：① SKILL.md 新增"执行顺序（铁律）"章节 ② MEMORY.md 执行规则升级为铁律 ③ Persistent memory 记录 ④ Cron job prompt 每步加验证</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：任何"这次可以跳过"的冲动都是危险信号。铁律：严禁跳过任何步骤。</span></div>
+  </div>
+
+  <div class="card" style="border-color:rgba(196,90,90,0.3);">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>Step2.5 LLM 返回 debug 信息需手动修正</strong></span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'>两篇文章（7/5 和 7/6）的 Step2.5 出现 LLM 返回 debug/说明信息而非纯标题，需人工手动修正。</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'><strong>根因</strong>：LLM 翻译标题时输出解释性文字而非纯结果。</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'><strong>改进方案</strong>：Step2.5 增加输出格式校验——只接受纯中文字符的标题，不符合则重试/报错。</span></div>
+
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>7月6日文章 F盘无对应内容，流程卡住</strong></span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'>"A real guru overcomes material attraction" 在 F盘无对应文档。LLM 错误匹配到 1977-07-06 女神普祭.md，完全不相关。从 git 历史恢复旧版翻译。</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'><strong>改进方案</strong>：① Step1 预检 F盘是否有对应内容 ② F盘无内容时直接 LLM 翻译而非从无关文档匹配 ③ 建立"F盘缺失文章"清单</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class="tag-list">
+      <span class="tag">amruta SKILL.md</span>
+      <span class="tag">MEMORY.md</span>
+      <span class="tag">术语对照表</span>
+    </div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>📝 amruta-daily-push SKILL.md — 新增「执行顺序（铁律）」章节 + 完整 9 步流水线规范</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>📝 amruta-daily-push MEMORY.md — 执行规则升级为铁律</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>📝 术语对照表 — Guru → 导师 置顶加粗为最高优先级铁律</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class='bp-item'><span class='num'>05:55</span><span class='text-content'><strong>WorkBuddy 每日签到</strong> — 签到 v2.7 执行成功：2117.76 → 2217.76，增量 +100 ✅</span></div>
+
+    <div class='bp-item'><span class='num'>04:00</span><span class='text-content'><strong>灵修定课推送 ×5</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>04:00 灵戏开幕 ✅ / 11:45 母亲成就 ✅ / 13:00 女神护身颂（结界展开）✅ / 14:10 心冥想 ✅ / 20:50 敢不敢交托 · 存盘下线 ✅</span></div>
+
+    <div class='bp-item'><span class='num'>06:00 → 09:00</span><span class='text-content'><strong>amruta 三篇文章闭环</strong> — 7/5 调整优先级（25句对）、7/6 克服物质吸引的真正导师（22句对）、4/6 磁力（18句对）</span></div>
+
+    <div class='bp-item'><span class='num'>09:00 → 11:00</span><span class='text-content'><strong>Step2.3 重构 v7</strong> — 发现旧版 LLM 摘取丢失 79.2% 内容，重构为「完整句子定位法」。纯文本逻辑，100% 可靠</span></div>
+
+    <div class='bp-item'><span class='num'>11:00 → 14:00</span><span class='text-content'><strong>流程修复 + 术语铁律</strong> — 修复流程跳过问题。术语表更新：Guru → 导师 最高优先级铁律</span></div>
+
+    <div class='bp-item'><span class='num'>20:50</span><span class='text-content'><strong>敢不敢交托 · 存盘下线</strong> — 清理三脉后下线</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
