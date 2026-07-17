@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-17 · 周五</div>
+    <h2>每日全局复盘</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>Step2.3支持交替排列结构·流水线全线闭环</strong></span></div>
+    <div class='tag-list'><span class='tag'>amruta流水线</span><span class='tag'>已验证</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>amruta-daily-push 今天同时完成了三件事：7/7「挑战过去」全流程闭环——F盘文档使用交替排列（EN→ZH→EN→ZH），Step2.3原脚本只支持混排（MIX），新加 classify_paragraph() 和 find_chinese_paragraph() 后 12/14 匹配（85.7%）；4/6「磁力」全流程闭环；Step3 git fallback 完整重建 index.html（不再做正则替换）。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：classify_paragraph() 函数可以区分 EN/ZH/MIX 三种段落类型，写入 skill 后后续遇到任何结构类型都能自动处理。</span></div>
+
+    <div class='bp-item' style='border-top:1px solid var(--border);margin-top:8px;padding-top:14px'><span class='num'>2</span><span class='text-content'><strong>7条闯关提醒加入Shri Mataji引语·每天一句4天一循环</strong></span></div>
+    <div class='tag-list'><span class='tag'>闯关提醒</span><span class='tag'>增强</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>从「母亲108句话」PDF提取了104句Shri Mataji引语，为7个关卡（灵戏开幕/幻相战场/母亲成就/女神护身颂/对某人心冥想/投射纯真/敢不敢交托）各配4句，每天轮换不同的一句，4天一循环。删掉了每条末尾的"静观+三脉一轮"长说明，格式更精简有力。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：Shri Mataji引语加粗 + 简短提醒 = 有效组合。闯关类提醒不需要操作说明，核心是保持能量状态。</span></div>
+
+    <div class='bp-item' style='border-top:1px solid var(--border);margin-top:8px;padding-top:14px'><span class='num'>3</span><span class='text-content'><strong>index.html彻底重建·不再用正则修补</strong></span></div>
+    <div class='tag-list'><span class='tag'>amruta流水线</span><span class='tag'>修复</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>Step3 git fallback之前只做正则替换，导致7/6、7/7卡片内容未更新、4/6卡片完全缺失、7/14标题HTML实体双重转义。修复方案：从 articles.json 完整重建 index.html，title字段先 html.unescape() 再 html.escape() 转义。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：HTML内容生成不要用正则做局部替换——容易漏边界情况。完整重建更可靠，一次性解决所有潜在bug。</span></div>
+  </div>
+
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>Step2.3原设计未考虑交替排列结构</strong></span></div>
+    <div class='tag-list'><span class='tag'>中等</span><span class='tag'>架构设计</span><span class='tag'>没有覆盖F盘的第二种段落组织形式</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'>amruta-daily-push 的 Step2.3 只测试了混排（MIX）结构，没想到F盘 1986-07-07 用的是交替排列，第一次跑匹配 0/14。</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'><strong>根因分析</strong>：设计时只用一个测试用例验证就认为通用，没有盘点F盘所有文档的段落结构类型。</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'><strong>改进方案</strong>：① 设计阶段先盘点输入数据的全部变体 ② 代码写通用逻辑，不用特例驱动</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>amruta-daily-push SKILL.md — Step2.3 描述改为"完整句子定位法摘取官方中文"，git fallback描述改为"从 articles.json 完整重建 index.html"，HTML实体处理说明更新</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>MEMORY.md — 全项目审计状态更新</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>05:55</span><span class='text-content'><strong>WorkBuddy每日签到</strong> — Claw-No1 v2.7 ✅ 余额+100.0，微信通知已发送</span></div>
+    <div class='bp-item'><span class='num'>清晨~上午</span><span class='text-content'><strong>amruta流水线全线推进</strong> — amruta-daily-push 7/7「挑战过去」+ 4/6「磁力」双文章全流程闭环；Step2.3交替排列结构修复；Step3 git fallback index.html彻底重建</span></div>
+    <div class='bp-item'><span class='num'>上午</span><span class='text-content'><strong>7条闯关提醒加入母亲引语</strong> — Claw 从「母亲108句话」PDF提取104句引语，为7个关卡各配4句，4天一循环</span></div>
+    <div class='bp-item'><span class='num'>20:50</span><span class='text-content'><strong>敢不敢交托提醒</strong> — personal-diary 🌙 关卡·敢不敢交托 · 存盘下线，三脉清理完毕</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 附录：今日各工作空间发生了什么</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| ⏰ | 工作空间 | 做了什么 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>|---|---|---|</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 05:55 | Claw-No1 | WorkBuddy每日签到 v2.7 ✅ 余额+100.0 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 清晨 | amruta-daily-push | 7/7「挑战过去」+ 4/6「磁力」双文章全流程闭环；Step2.3交替排列结构修复；index.html彻底重建 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 上午 | Claw | 7条闯关提醒升级：从PDF提取104句Shri Mataji引语，各配4句，4天一循环 |</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>| 20:50 | personal-diary | 敢不敢交托提醒推送 ✅ |</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
