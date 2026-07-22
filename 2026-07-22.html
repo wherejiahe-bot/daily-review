@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .sub{font-size:14px;color:var(--ink-secondary);margin-top:4px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.text-content strong{color:var(--accent)}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.bug-card{border-left:3px solid var(--red)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-22 · 周三</div>
+    <h2>免费大模型终身学习日</h2>
+    <div class="sub">Hermes配置全链路纠错 · 自动化提醒三大调整</div>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>免费模型调研第一步：先查清哪些真的免费，旧推荐不可靠</strong><br>为 Hermes Agent 选免费主模型时发现残酷事实：上一轮推荐的 gpt-oss-120b:free、Groq 全系、deepseek-r1:free 全部失效（已下架或已付费）。OpenRouter 免费层每月轮换。实测 2026-07-22 在线 10 款免费模型，最终产出完整参考卡。<br><small style="color:var(--ink-tertiary)">→ 可复用：做免费模型选型前，用 OpenRouter API + freellm.net + 社区反馈三重验证，不盲目信旧推荐</small></span></div>
+
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>config 被自动改写时，重新推断实际配置比"纠正"更明智</strong><br>Hermes 运行时自动改写 config.yaml（base_url/provider/default 全变）。多次手动改回又被改写。最后发现实际生效的是 OpenRouter 端的 nemotron-3-ultra:free，而非我配的 NVIDIA 直连 gpt-oss-120b。<br><small style="color:var(--ink-tertiary)">→ 可复用：配置被改写后，先查 runtime 实际用什么在跑，推断变更来源，再决策是否干预</small></span></div>
+
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>白天首要做事，其余放松——自动化提醒同步修正</strong><br>主人今天明确了"白天首要做事，其余时间放松练霎哈嘉/连接"。相应调整了 3 个自动化提醒内容，保持一致。<br><small style="color:var(--ink-tertiary)">→ 可复用：自动化提醒的内容要和主人的当下态度保持一致，避免脱节</small></span></div>
+  </div>
+
+  <div class="card bug-card">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>Hermes config 被自动改写后盲目重配</strong><br>在 config.yaml 上花了大量不必要时间：被改写→读出来→改回去→又被改写。第一次发现改写后应推断变更来源（用户操作/程序自改写），而非假设冲突就覆盖。<br><small style="color:var(--ink-tertiary)">→ 改进：先查 runtime 实际谁在跑、配置为何变了，再决策</small></span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>Claw 自动化提醒 × 3</strong> — 07:30幻相战场+14:10对某人的心冥想→prompt增加白天做事提醒；13:00女神护身颂→提前到12:30</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>Claw-No1 免费大模型参考卡 × 2</strong> — ① 免费大模型选型参考(10个模型社区口碑) ② 免费可用大模型清单(实测10款在线免费)</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>04:00 灵戏开幕·第十关（黎明场）</strong> — Quote C「所有戏剧要上演都不过是要证明大能，神的大能存在」，连母亲三问 ✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>07:30 幻相战场·开启</strong> — Quote C「祷告：让我看见自己的错误」，prompt增加白天做事提醒。微信发送 ❌（ClawBot token 过期）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天 免费大模型调研（给 Hermes Agent 用）</strong> — 发现 gpt-oss-120b:free 已非免费；NVIDIA直连vs Groq(gsk_)身份纠错；最终保持OpenRouter nemotron-3-ultra:free现状；实测10款在线免费模型+产出参考卡</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天 自动化提醒三大调整</strong> — 幻相战场+对某人的心冥想prompt增加白天做事提醒；女神护身颂13:00→12:30</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>14:10 对某人的心冥想 💗</strong> — 闯关风格·Quote B「你要数算你爱多少人」，传送凉风到心上 ✅</span></div>
+  </div>
+
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">💡</span> 全天印象</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>学习日（实际是调研日）：围绕免费大模型做了一天的终身学习。Claw-No1 为 Hermes Agent 做全面的大模型摸底，产出两份参考卡。灵修定课三发（灵戏第十关✅、幻相战场❌微信、对某人的心冥想✅）。自动化提醒同步修正三处。周三平稳充实。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
