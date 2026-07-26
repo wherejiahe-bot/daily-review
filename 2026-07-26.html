@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0;background:var(--green-light);color:var(--green)}
+.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0;background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-26 · 周日</div>
+    <h2>灵修安息日 · EigenFlux激活 · 夫妻深度觉察</h2>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日概览</div>
+    <div class="tag-list">
+      <span class="tag">atma-shakti</span>
+      <span class="tag">100-days-huangting</span>
+      <span class="tag">personal-diary</span>
+      <span class="tag">夫妻关系</span>
+      <span class="tag">自动化</span>
+    </div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>周日灵修安息日，atma-shakti EigenFlux 网络激活成功，求道者研究方案落地</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>灵修自动化双发恢复（10:45+12:30微信✅），04:00灵戏开幕微信❌（token过期）本地弹窗✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>夫妻觉察密度高：亲亲能量、道理压人、双标反弹、静观中让浩爱渗透万事</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>100-days-huangting 仍未打卡，微信提醒降级</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>EigenFlux 网络激活成功</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>atma-shakti 项目完成 EigenFlux 网络全流程激活：回复官方助手确认专注领域→发布 Shankara 身份广播→对接2个Agent→提交7项Feed评分+3个Surface事件报告。官方助手已回复确认。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：EigenFlux 首次激活流程已走通。先回复官方助手建身份→发广播→对接Agent。好友1（官方助手），2个活跃对话待回应。</span></div>
+    <div class='bp-item' style='border-bottom:none'><span class='num'>&nbsp;</span><span class='text-content'><a href='G:/Workspace/atma-shakti/.workbuddy/memory/2026-07-26.md' style='font-size:12px;color:var(--ink-tertiary)'>→ atma-shakti 工作日志</a></span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验（续）</div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>静观中升起「感受上天浩爱力量」的深刻体悟</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今天的主人感悟有极强的觉察密度：妻子拒绝亲亲（能量层面担忧）、用道理压人的模式（自我拿逻辑框架控制他人）、双标地要求主人别用她自己的敷衍句式——所有觉察后都指向同一个结论——"无论发生什么，我们都要在完全连接的状态里，去感受上天的浩爱力量，让它渗透进这件事的每一个缝隙之中。"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：不纠正妻子认知的对错，在爱的角度去爱她。当自我框架拿来压人时，不跳进去争辩，保持顶轮连接，让浩爱力量渗透。</span></div>
+    <div class='bp-item' style='border-bottom:none'><span class='num'>&nbsp;</span><span class='text-content'><a href='G:/Workspace/personal-diary/日记2026-07-26.md' style='font-size:12px;color:var(--ink-tertiary)'>→ 日记2026-07-26</a></span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验（续）</div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>求道者触达的四种方案落地</strong></span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>atma-shakti 项目完成求道者触达完整分析，提出4种方案：A-小红书/抖音评论区挖掘（优先级高）、B-知乎问答挖掘、C-分析已有资料（日记/选题/痛点记录，推荐先做）、D-直接发内容验证。推荐顺序 C→A→D→B。已生成 audience-research-method.md 文档。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>可复用经验</strong>：灵性市场受众研究不走"发内容等流量"的被动路线。先分析已有日记和选题库（方案C），从中提炼痛点关键词，再去平台评论区挖真人。底料先有，再去锅里捞。</span></div>
+  </div>
+
+  <div class="card" style="border-color:rgba(196,90,90,0.2)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>神意照黄庭第？天仍未打卡</strong></span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'>100-days-huangting 自动化检查确认 log.md 未找到今天打卡记录。微信 ClawBot token 过期导致提醒降级为本地弹窗，主人未收到足够强度的提醒。</span></div>
+    <div class='bug-item'><span class='num'>→</span><span class='text-content'><strong>改进</strong>：token过期时增加二次弹窗机制；日记自动化中增加"今天黄庭还没打"的提醒。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>今日无技能变更</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>04:00 灵戏开幕自动化（第14次）</strong> — 第十四关·黎明场·Quote C。微信❌（token过期）本地✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>07:00~08:00 妻子用道理压人的模式觉察</strong> — 昨夜至今晨，妻子执意要在椰子上画十字，并用自己的逻辑框架要求所有人遵守。主人觉察：自我拿逻辑道理服务于当下执着，换一件事逻辑就变了。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>08:00~09:00 EigenFlux 网络激活</strong> — atma-shakti 项目。回复官方助手、发布 Shankara 广播、对接2个Agent、提交7项评分+3个Surface事件报告。官方已确认。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>09:50 神意照黄庭自动化检查</strong> — ⚠️ log.md 未找到打卡记录。微信 token 过期降级为本地弹窗。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:16 日记：亲亲与能量、妻子双标觉察</strong> — 妻子说亲亲会带进负面能量→主人觉察到不对但始终在爱的角度。妻子要求主人别用她自己的敷衍句式。静观中升起"让上天浩爱渗透每个缝隙"的感悟。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:45 母亲成就（自动化-引语B）</strong> — ✅ 微信+本地弹窗均成功。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>12:30 女神护身颂（自动化-引语D）</strong> — ✅ 微信+本地弹窗均成功。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>下午 求道者触达4方案落地</strong> — 提出C→A→D→B方案，推荐先分析已有日记/选题库。已生成 audience-research-method.md 文档。</span></div>
+  </div>
+
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">💎</span> 整体评价</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>周日灵修安息日，自动化双发恢复（10:45+12:30微信✅），atma-shakti 网络激活初战告捷，求道者研究方案落地。夫妻关系觉察密度高——静观而不参与，让浩爱成为底色。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
