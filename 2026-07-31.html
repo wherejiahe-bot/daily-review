@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-07-31</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-07-31 · 周五</div>
+    <h2>自动化故障日 · DNS 502 批量失败 · 本地弹窗兜底经证有效</h2>
+  </section>
+
+  <!-- 三条最佳经验 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class="tag-list">
+      <span class="tag">自动化巡检</span>
+      <span class="tag">故障复盘</span>
+      <span class="tag">兜底机制</span>
+    </div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>从 automation_runs 表完整还原故障链</strong><br>今天各项目没有写入任何日志，但 automation_runs 表完整记录了今日故障链：04:00~16:25 七个每日提醒全部失败，错误为 Network error: 502 getaddrinfo ENOTFOUND copilot.tencent.com（DNS 解析失败）；20:50 网络恢复，提醒成功。故障可观测性是排查的第一工具——日志缺席时，运行记录表就是现场。<br><br><strong>可复用经验：</strong>自动化连续失败时，先查 automation_runs 的 result_success 和错误信息，判断是网络/DNS、模型还是 token 问题，再动手修，不盲猜。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ automation_runs 数据库</span></span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>本地弹窗兜底机制经故障日验证有效</strong><br>20:50「敢不敢交托」在微信推送失败（ClawBot token 过期）的情况下，本地弹窗照常发出，任务整体判定成功。多通道降级（微信失败→本地弹窗兜底）在故障日证明了价值。<br><br><strong>可复用经验：</strong>对外推送类任务保留多通道降级，主通道失败不阻断任务完成，次通道至少保证主人本机可见。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ 20:50 节拍器运行记录</span></span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>微信 token 过期识别模式成型</strong><br>ClawBot token 过期已是第四次出现（7/19、7/20、7/30、7/31）。识别模式明确：微信发送失败 + 本地弹窗成功 = token 问题而非网络问题。7/30 已记录解决方式：需主人先给 ClawBot 发一条消息刷新 token。<br><br><strong>可复用经验：</strong>固定故障模式要沉淀成识别口诀，下次遇到直接按已知路径处理，不重复排查。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ personal-diary 7/30 记忆</span></span></div>
+  </div>
+
+  <!-- 做得不好的事 -->
+  <div class="card" style="border-color:rgba(196,90,90,0.25)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class="tag-list">
+      <span class="tag">自动化稳定性</span>
+      <span class="tag">网络容错</span>
+      <span class="tag">配置维护</span>
+    </div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>7/30 复盘自动化失败，daily-review 断档一天</strong><br>7/30 23:50 的复盘任务以 "Automation prompt stopped before completion" 失败，导致 7/30 无复盘产出（daily-review 从 7/29 直接跳到 7/31）。<br><br><strong>根因：</strong>复盘任务对模型/网络依赖无容错，失败即断档。<br><strong>改进：</strong>复盘任务增加失败重试；若连续失败，次日复盘顺带补记昨日摘要。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>今日 7 个每日提醒中 6 个失败</strong><br>04:00 灵戏开幕、06:50 签到、07:30 幻相战场、10:00 神意照黄庭、11:00 母亲成就、12:30 女神护身颂、14:10 对某人心冥想、16:25 投射纯真全部因 DNS 502 失败，仅 20:50 敢不敢交托在下午网络恢复后成功。<br><br><strong>根因：</strong>copilot.tencent.com DNS 解析失败持续了大半天，自动化无重试机制。<br><strong>改进：</strong>提醒类自动化可增加"失败后延迟 10~30 分钟重试一次"的兜底；或本地弹窗作为独立通道先行。</span></div>
+    <div class='bug-item'><span class='num'>3</span><span class='text-content'><strong>ClawBot token 过期问题第四次复发未根治</strong><br>微信推送在 7/30、7/31 连续两天无法送达，token 需主人手动刷新（给 ClawBot 发消息）。系统侧没有自动刷新机制。<br><br><strong>改进：</strong>研究 ClawBot token 自动刷新的可行路径；在 token 过期前主动提示主人刷新，而不是等发送时才暴露。</span></div>
+  </div>
+
+  <!-- 技能变化 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>无技能变更</strong> — 今日各项目 .workbuddy/memory/2026-07-31.md 均不存在，无技能/配置更新记录</span></div>
+  </div>
+
+  <!-- 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>04:00</strong> 灵戏开幕 — 失败（DNS 502，copilot.tencent.com 无法解析，网络故障开始）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>05:55~16:20</strong> 六个提醒连续失败 — 签到 / 幻相战场 / 神意照黄庭 / 母亲成就 / 女神护身颂 / 对某人心冥想 / 投射纯真，全部 502</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:50</strong> 敢不敢交托 — 本地弹窗成功 ✅，微信仍失败（ClawBot token 过期，同 7/19、7/20、7/30）</span></div>
+  </div>
+
+  <!-- 附录 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">📌</span> 附录：今日全局评价</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>周五，自动化故障日。</strong>项目无日志写入，系统观察为主：DNS 502 批量失败 + token 过期未根治。需要主人给 ClawBot 发消息刷新 token，并留意 7/30 复盘断档（daily-review 缺一天）。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
