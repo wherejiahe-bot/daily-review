@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-08-04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-08-04 · 周二</div>
+    <h2>Hermes 飞书第三次修复 · 微信上午挂下午恢复 · token 第八次过期 · 黄庭连续四天未打卡</h2>
+  </section>
+
+  <!-- 三条最佳经验 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 三条最佳经验</div>
+    <div class="tag-list">
+      <span class="tag">网关诊断</span>
+      <span class="tag">系统自愈</span>
+      <span class="tag">内容运营</span>
+    </div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>Hermes 飞书修复沉淀关键判断：进程活着 ≠ WS 活着</strong><br>第三次同类故障修复完成（发消息无回复）。两个根因：① 飞书 WS 长连接反复被掐，gateway_state.json 显示 connected 只是启动时的旧值不可信，真正健康信号是 feishu_seen_message_ids.json 的修改时间是否近期 + errors.log 有无新断开记录；② cron jobs.json 的 provider 写成 custom:agnes（无效）改为 custom。杀挂死 gateway → 重启新进程 23036，08:46 恢复连接。<br><br><strong>可复用经验：</strong>诊断长连接类服务，先看"最近有数据流吗"（seen_ids 时间戳），而不是"进程活着吗"——状态文件可能是启动时的旧快照。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ Claw 8/4 日志</span></span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>微信通道上午挂、下午自愈恢复，5 连全通</strong><br>昨日全天 0 成功为历史最差，今日上午 03:55/07:25/09:50 三次仍失败（token 过期第八次），但 10:55 起自动恢复，母亲成就、女神护身颂、心冥想、投射纯真、敢不敢交托 5 连全通。投射纯真是"连续 3 天失败后恢复"。<br><br><strong>可复用经验：</strong>微信通道故障有周期性且不可预测，但"本地弹窗兜底 + 恢复后自动接管"的双通道设计再次经受验证——上午丢的通知，下午通道恢复后内容节奏照常。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ automation_runs 8/4 记录</span></span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>女神护身颂消息与当日日记主线呼应，双渠道全成</strong><br>12:30 女神护身颂（引语 C·杜迦女神在心中祷告，闯关风格「护身结界·展开」）切入主人今日日记主线——早上脚被风扇吹凉进风、烦躁、站桩交托祷告「我什么都不要，只要母亲」——"早上那阵烦、脚上那阵凉，午间护盾时刻都交给母亲"。微信 + 本地弹窗双成功。<br><br><strong>可复用经验：</strong>提醒内容结合当日日记主线比固定模板更贴近主人状态，值得坚持。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ personal-diary 8/4 日志</span></span></div>
+  </div>
+
+  <!-- 做得不好的事 -->
+  <div class="card" style="border-color:rgba(196,90,90,0.25)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class="tag-list">
+      <span class="tag">反复故障</span>
+      <span class="tag">定课纪律</span>
+      <span class="tag">基础设施</span>
+    </div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>微信通道上午 3 次失败，ClawBot token 第八次过期</strong><br>03:55 灵戏开幕、07:25 幻相战场、09:50 黄庭检查三次发送均失败（token 过期）。7/19、7/20、7/30、7/31、8/1、8/2、8/3、8/4 连续八次 token 过期。与昨日"全天挂"不同，今日下午自动恢复，但上午三条提醒未达微信端（本地弹窗兜底成功）。<br><br><strong>根因：</strong>无自动刷新机制，token 何时过期、何时恢复完全随机。<br><strong>改进：</strong>ClawBot token 自动刷新脚本已连续八天提上日程，必须落地；在机制修复前默认"微信可能上午失败"，本地弹窗为唯一可靠通道。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>100 天黄庭连续第四天未打卡</strong><br>09:50 神意照黄庭提醒检查 log.md，今日仍无打卡记录。提醒自动化每天在跑，行为闭环仍未建立，连续四天（8/1、8/2、8/3、8/4）无记录。<br><br><strong>根因：</strong>提醒只到"提醒"层，没有"到点必做"的强制动作。<br><strong>改进：</strong>在提醒消息中附上打卡文件路径 + 一句话模板（连续四天同建议），把"提醒"升级为"引导执行"。</span></div>
+    <div class='bug-item'><span class='num'>3</span><span class='text-content'><strong>Hermes 飞书网关第三次同类故障，本机无看门狗</strong><br>飞书 WS 长连接反复被掐，gateway-exit-diag.log 显示 6 月以来数十次 start，本机无可靠看门狗。状态文件误导诊断（connected 显示旧值），本轮靠人工比对 seen_ids 时间戳才发现问题。<br><br><strong>根因：</strong>无看门狗 + 状态文件不刷新，故障发现滞后。<br><strong>改进：</strong>若再复发可考虑加 watchdog，但注意"进程活着 ≠ 飞书 WS 活着"，单看进程存活不够；诊断信号应以 seen_ids 时间戳为准。</span></div>
+  </div>
+
+  <!-- 技能变化 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>无新增技能</strong> — 项目内变更：① Hermes jobs.json provider "custom:agnes" → "custom"（model 保持 agnes-2.5-flash），网关重启至新进程 23036；② 8/1 日记补记万教练嘱咐并 FREEZE 锁定（相信霎哈嘉瑜伽士的创造力 / 功课量远远不够 / 35 岁仍拼搏年纪深入一个行业），术语统一 4 处：沙哈加→霎哈嘉、瑜伽室→瑜伽士、供货量→功课量、静坐冥想→内省和静坐</span></div>
+  </div>
+
+  <!-- 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>03:55</strong> 灵戏开幕 — 弹窗 ✅ 微信 ❌（周二 · Quote D 一棵树怎样生长；token 第八次过期）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>05:55</strong> 签到脚本 — 成功 ✅（余额 3999.16 → 4099.16 +100；微信通知超时不影响本体）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>07:25</strong> 幻相战场 — 弹窗 ✅ 微信 ❌（引语 D 句；token 过期）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>08:46</strong> Hermes 飞书修复完成 ✅（gateway 新进程 23036 feishu connected；jobs.json provider 修正）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>09:50</strong> 神意照黄庭 — 弹窗 ✅ 微信 ❌（log.md 无今日打卡，连续第四天；token 过期）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:55</strong> 母亲成就提醒 — 微信 ✅ 弹窗 ✅（引语 C："太初之母是你的母亲！你的注意力现在又去了哪里？"微信通道自愈恢复）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>12:30</strong> 女神护身颂 — 微信 ✅ 弹窗 ✅（引语 C·杜迦女神在心中祷告，闯关「护身结界·展开」；呼应日记主线「我什么都不要，只要母亲」）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>14:05</strong> 对某人的心冥想 — 微信 ✅ 弹窗 ✅（引语 C，上次 C 是 07-27 隔一周轮换到位）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:25</strong> 投射纯真 — 微信 ✅ 弹窗 ✅（引语 C："你要对自己有完全的信心，那个「你自己」不是其它，正是纯真。"连续 3 天失败后恢复）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:45</strong> 敢不敢交托 — 微信 ✅ 弹窗 ✅（引语 C："假如有甚么失望，只要一笑置之……"今日微信 5 连全通）</span></div>
+  </div>
+
+  <!-- 附录 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">📌</span> 附录：今日全局评价</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>周二，自动化执行 9 项 9 成功（昨日 1 失败，今日无缺失项）。</strong>微信通道"上午挂、下午恢复"：上午 3 次失败后 10:55 起 5 连全通，token 第八次过期但当天自愈。Hermes 飞书第三次修复完成，沉淀"进程活着 ≠ WS 活着"关键经验。签到 +100 稳定。黄庭连续四天未打卡。8/1 日记补记万教练嘱咐（功课量、35 岁拼搏、母亲祝福），术语统一 4 处并 FREEZE 锁定。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
