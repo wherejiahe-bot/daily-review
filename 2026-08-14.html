@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-08-14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-08-14 · 周五</div>
+    <h2>不焦虑实验室立项 · 主人拍板母品牌/入口定位 · 微信第八天全挂（token 第十五次过期） · 本地弹窗9/9兜底 · 灵戏第32关 · 黄庭连续十四天未打卡</h2>
+  </section>
+
+  <!-- 今日亮点 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 今日亮点</div>
+    <div class="tag-list">
+      <span class="tag">不焦虑实验室立项</span>
+      <span class="tag">内容面恢复</span>
+      <span class="tag">灵戏第32关</span>
+    </div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>不焦虑实验室立项 · 主人拍板母品牌/入口定位 · 打破连续三个纯自动化日</strong><br>Claw 项目今日启动"不焦虑实验室"可行性评估：inner-explore-team 总管判断立得住——本质是对外去宗教化品牌壳，承接体呼吸+状态梳理+冥想，符合 2026-07-24 定调（霎哈嘉不收费、公众面去宗教化、钱在外层实体）；德波顿做内容维度分析（命名巧：具象化焦虑+实验室规避承诺；素材宽：日常焦虑场景；调性稳：反贩卖焦虑）。主人拍板：不焦虑实验室 = 母品牌/入口，承接焦虑人群，再用体呼吸+状态梳理转化。<br><br><strong>可复用经验：</strong>新品牌壳立项流程可复制——先让"总管"判断定位合规与可行性（对照 7/24 定调），再让"内容官"做命名/素材/调性分析，最后由主人拍板层级关系。三层走完，项目骨架立住。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ Claw 项目日志 2026-08-14</span></span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>德波顿产出第一批 8 个「日常焦虑场景」短视频选题 + 口播脚本</strong><br>定位拍板后产出 8 个选题：睡前思绪乱飞 / 高功能紧绷 / 消息未回关系焦虑 / 我不够好 / 冲突发抖 / 不敢休息 / 替别人情绪负责 / 模糊恐慌，服务"接人入口"定位，落点统一"看见即治愈"，不强卖方法。随后展开第 8 选题「说不清怕什么但就是慌」完整口播脚本（开篇钩子/主体共鸣拆解/收尾落点），全程未提体呼吸/状态梳理方法。<br><br><strong>可复用经验：</strong>接人入口内容的原则——先共鸣不转化。选题全部来自日常高频场景（人人有体验），方法层内容留到转化环节，入口内容只负责"让人觉得自己被说中"。</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>灵戏第32关 · 引语轮换 B 档 · 32 天连续运行零断档</strong><br>04:00 灵戏开幕已到第三十二关，引语轮换至 B 档（昨日 A → 今日 B）：「祷告：把我的思维拿走，给我旁观见证的境界，好使我能看见整出戏剧。」——正好扣灵戏开幕主题。灵戏/幻相战场组 B 档、其余组 A 档，双轨轮换体系保持健康，32 天连续运行零人工干预。<br><br><strong>可复用经验：</strong>引语四句轮换（A→B→C→D→A）由各自动化 memory 自动推算，已稳定运行超一个月、灵戏组走完 8 轮——确定性轮换表让机器长期零维护。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ automation_runs 表 9/9 success</span></span></div>
+  </div>
+
+  <!-- 做得不好的事 -->
+  <div class="card" style="border-color:rgba(196,90,90,0.25)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class="tag-list">
+      <span class="tag">基础设施</span>
+      <span class="tag">定课纪律</span>
+      <span class="tag">记录缺口</span>
+    </div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>ClawBot token 第十五次过期 · 微信连续八天全挂 · 自动刷新机制连续十八天未落地</strong><br>今日微信通道连续第八天全天全挂（8/8~8/14），各条自动化均报 ret=-2，token 累计过期十五次（7/19、7/20、7/30、7/31、8/1、8/2、8/3、8/4、8/8、8/9、8/10、8/11、8/12、8/13、8/14），连续 8 天 0 成功为近两月最长故障期，仍在拉长。8/5~8/7 的短暂"健康期"后复发不断，"健康期只是运气不是机制"早已坐实——自动刷新机制连续十八天提上日程仍未落地。<br><br><strong>根因：</strong>无自动刷新脚本，token 过期/恢复完全被动，依赖主人手动刷新。<br><strong>改进：</strong>明日必须落地最小自动刷新机制（检测 ret=-2 自动给 ClawBot 发消息触发刷新）；主人今天给 ClawBot 发条消息恢复通道；若持续不恢复，把微信通知从"必需"降级为"尽力而为"，以本地弹窗+日终复盘为可靠底座。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>100 天黄庭连续第十四天未打卡，log 停留 8/1（缺口超两周仍在拉大）</strong><br>09:50 神意照黄庭提醒检查 log.md，今日仍无打卡记录。连续十四天（8/1~8/14）无新增，log.md 最后一条仍是 8/1 Day 9（❌ 未完整达成）。提醒自动化每天在跑，"强引导补一行"已连续建议十天，行为闭环始终未建立。<br><br><strong>根因：</strong>提醒只到"提醒"层，主人当天可能确实没做，也可能做了没记录，两者无法区分；定课与生活节奏未绑定。<br><strong>改进：</strong>黄庭提醒升级为"立即打开 log.md 补一行"强引导需主人确认落地方式；建议把黄庭绑定在固定动作后（如晨起站桩后），与已有修行节奏衔接。</span></div>
+    <div class='bug-item'><span class='num'>3</span><span class='text-content'><strong>今日日记未生成 · 内容面已恢复但没沉淀成日记</strong><br>今日 Claw 项目有实质产出（不焦虑实验室立项 + 8 选题 + 口播脚本），打破连续三天纯自动化日——但 personal-diary 今日日记文件未生成，复盘只能从项目日志还原，主人口语版的一手感悟缺位。<br><br><strong>根因：</strong>有产出但没落纸，日记生成依赖晚间总结环节。<br><strong>改进：</strong>内容产出的当天日记是复盘的一手素材，建议睡前用一两句记下当天做的大事（项目/感悟均可），无需完整润色。</span></div>
+  </div>
+
+  <!-- 技能变化 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class="tag-list">
+      <span class="tag">无变化</span>
+    </div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>今日无技能新增/更新</strong>——内容面：Claw 项目新增"不焦虑实验室"评估结论与 8 个选题素材（非技能文件）。自动化 9/9 全成，灵戏闯关至第三十二关。</span></div>
+  </div>
+
+  <!-- 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>03:55</strong> 灵戏开幕（第三十二关）— 微信 ❌ 弹窗 ✅（周五 · Quote B「祷告：把我的思维拿走，给我旁观见证的境界，好使我能看见整出戏剧。」昨日 A → 今日 B。微信 token 过期 ret=-2，本地弹窗成功）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>05:55</strong> 签到脚本 — 执行 ✅（脚本独立跑通：easyocr 加载约 1 分钟、全流程 2-3 分钟，WorkBuddy 窗口检测到流程正常；OCR 余额未识别延续，微信通知失败不影响签到）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>07:25</strong> 幻相战场 — 微信 ❌ 弹窗 ✅（引语 B（今日轮换至 B）。微信发送失败连续第 7 天 token 过期，本地弹窗成功）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>白天</strong> Claw 项目 · 不焦虑实验室立项 — 内容产出 ✅（可行性评估：inner-explore-team 总管判断立得住 + 德波顿定位/命名/素材分析 → 主人拍板母品牌/入口 → 德波顿产出 8 个日常焦虑场景选题 + 第 8 选题「说不清怕什么但就是慌」完整口播脚本）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>09:50</strong> 神意照黄庭 — 微信 ❌ 弹窗 ✅（log.md 无今日打卡 → 黄庭连续第十四天未打卡，最后记录停留 8/1 Day 9 ❌）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:55</strong> 母亲成就提醒 — 微信 ❌ 弹窗 ✅（引语 A（昨日 D → 今日 A）。微信 token 过期，本地弹窗成功）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>12:25</strong> 女神护身颂 — 微信 ❌ 弹窗 ✅（引语 A（无思虑觉醒是堡垒）：「在无思虑觉醒中，无人可以碰你一下，那是你的堡垒。」关卡「护身结界 · 展开」。微信发送失败连续第 7 天，本地弹窗成功）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>14:10</strong> 对某人的心冥想 — 微信 ❌ 弹窗 ✅（引语 A「唯一能真正给我喜乐的是我爱你，而你们又彼此相爱。」午后传送凉风，把注意力放到某人的心上。微信 token 过期，本地弹窗成功）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:25</strong> 投射纯真 — 微信 ❌ 弹窗 ✅（引语 A「锡吕．格涅沙是纯真和纯洁的原理。在你自己里面感受这些质素吧。」日落时刻，把根轮的纯真投射出去。微信发送失败连续第 7 天 ClawBot 连接问题，本地弹窗成功）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:50</strong> 敢不敢交托 — 微信 ❌ 弹窗 ✅（引语 A「把注意力放在问题上且有信心上天的大能可以处理它。」存盘，下线。微信 token 过期连续第 8 天，本地弹窗成功。今日微信 0 成功，弹窗 9/9）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天</strong> 项目产出：Claw 项目实质产出（不焦虑实验室立项），打破连续三天纯自动化日；personal-diary 今日日记未生成</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天生话评价</strong>：周五，自动化执行 9 项 9 成功（本地弹窗全兜底），微信通道连续第八天全天全挂——ClawBot token 过期（累计第十五次：7/19、7/20、7/30、7/31、8/1、8/2、8/3、8/4、8/8、8/9、8/10、8/11、8/12、8/13、8/14），连续 8 天 0 成功为近两月最长故障期，需主人给 ClawBot 发消息刷新。内容面恢复：不焦虑实验室立项为今日最大产出（母品牌/入口定位拍板 + 德波顿 8 选题 + 口播脚本），灵戏闯关至第三十二关，引语轮换正常（灵戏/幻相战场 B 档、其余组 A 档）。持续缺口：黄庭连续十四天未打卡（8/1~8/14）、ClawBot token 自动刷新机制连续十八天未落地、今日日记未生成。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
