@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-08-20</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(18px,3.4vw,26px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .note{font-size:12px;color:var(--ink-tertiary);margin-top:10px;line-height:1.5}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-08-20 · 周四</div>
+    <h2>Agnes 2.5 升级核实（API 切国内节点） · 微信通道波动（上午 5 连全通→14:10 再挂→深夜恢复） · 调度凌晨空窗 9 小时 · 签到 +100 余额 B 识别正常 · 灵戏第 38 关 · 黄庭连续二十天未打卡</h2>
+    <div class="note">今日复盘补跑（23:50 调度 00:11 运行，延迟约 21 分钟）。</div>
+  </section>
+
+  <!-- 今日亮点 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 今日亮点</div>
+    <div class="tag-list">
+      <span class="tag">Agnes 2.5</span>
+      <span class="tag">API 切国内节点</span>
+      <span class="tag">签到 +100</span>
+      <span class="tag">补跑链路完整</span>
+    </div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>Agnes 模型升级核实完成：agnes-2.0-flash → agnes-2.5-flash，API 接口切国内节点</strong><br>核实 <code>2AI-keys-combined.md</code> 中 Agnes 配置：模型名升级为 <code>agnes-2.5-flash</code>（官方 2026-08 全量上线，专为编码/agent/工具调用优化，512K 上下文、65.5K 输出，API 全兼容；2.0-flash 仍可回退）；接口地址从 <code>apihub.agnes-ai.com</code> 切到 <code>apihub.agnes-ai.cn</code>（2026-07-29 启用国内节点，仅改 host、Key/模型名不变）。curl 实测 <code>.cn</code> 节点返回 401（可达，仅缺 Key），确认国内节点存活，文档已更正。<br><br><strong>可复用经验：</strong>模型升级别只信文档——"节点是否活着"要用 curl 实测验证（401=可达只缺 Key）；改配置前先核对密钥文档，避免线上旧配置漏同步。<br><span style="font-size:12px;color:var(--ink-tertiary)">→ C:\Users\chenj\OneDrive\Felix\2AI key\2AI-keys-combined.md</span></span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>签到流程全绿：+100 到账（2720.52 → 2820.52），余额 B 识别恢复正常</strong><br>10:24 签到走完整流程（激活窗口→最大化→关更新提示→点头像→Buddy 加油站→立即领取→OCR 双截图验证），exit code 0，微信通知已发送。连续几天的"余额 B 偏低"问题这次没出现（+100.0 精确识别）。唯一提醒：余额 A 从昨天 3231.85 降到 2720.52，少约 511，可能期间有消费或 OCR 波动。<br><br><strong>可复用经验：</strong>OCR 双截图验证流程已稳定成肌肉记忆；余额波动要对照消费记录判断，别让"少钱"变成悬案。</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>每日工作记录自动化补跑成功（00:06）：扫描→过滤→微信简报→日记追加全链路通</strong><br>23:55 每日工作记录自动化补跑 08-20：全盘扫描确认仅 free-models 有当日日志，过滤出主人亲自参与事项（Agnes 核实），微信简报发送成功（深夜通道已恢复），简报追加到日记末尾（FREEZE 内容未动）。<br><br><strong>可复用经验：</strong>调度空窗后的补跑链路是完整的——扫描、过滤、简报、追加四步全自动，说明"延迟跑"比"missed"强，补跑机制经受住了考验。</span></div>
+  </div>
+
+  <!-- 做得不好的事 -->
+  <div class="card" style="border-color:rgba(196,90,90,0.25)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class="tag-list">
+      <span class="tag">黄庭未打卡</span>
+      <span class="tag">下午微信再挂</span>
+      <span class="tag">调度空窗</span>
+      <span class="tag">战报空白</span>
+    </div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>100 天黄庭连续第二十天未打卡，log 停留 8/1 Day 9 ❌</strong><br>10:22 黄庭提醒检查 log.md，今日仍无打卡记录。连续二十天（8/1~8/20）无新增，缺口逼近三周仍在拉大。<br><br><strong>根因：</strong>提醒仍只到"提醒"层，行为未绑定生活节奏。<br><strong>改进：</strong>强引导（"立即打开 log.md 补一行"）已连续建议十五天，需主人确认落地方式；建议绑定晨起站桩后固定动作。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>微信通道下午再挂：14:10 起 5 连败（ret=-2 token 过期），8/19 刚恢复一天又复发</strong><br>8/19 16:25 自动刷新恢复后，8/20 上午延续良好（站桩/灵戏/签到/母亲成就/女神护身颂 5 连全通），但 <strong>14:10 心冥想起 token 再次过期</strong>：14:10/16:25/19:00/19:44/20:50 微信全 ret=-2，本地弹窗全兜底；深夜 00:06 每日工作记录发送又成功。挂-通-挂-通的波动模式再次验证"健康期只是运气不是机制"。<br><br><strong>根因：</strong>token 有效期不稳定，自动刷新链路未正式落地。<br><strong>改进：</strong>自动刷新机制（检测 ret=-2 自动给 ClawBot 发消息）已连续欠账多日，趁通道波动期必须落地，否则复盘微信通知随时可能发不出去。</span></div>
+    <div class='bug-item'><span class='num'>3</span><span class='text-content'><strong>调度凌晨空窗 9 小时：00:44 后直接跳到 10:22，灵戏/站桩/签到/黄庭全延迟补跑</strong><br>00:44 战士巡检后调度空窗至 10:22，03:55 灵戏（10:29 补）、07:30 站桩（10:29 补）、08:00 签到（10:24 补）、09:00 黄庭（10:22 补）全部延迟；10:45 战士巡检失败（Run did not create a session within 60000ms）。疑似电脑休眠/客户端未常驻，与 8/16 空窗同因。<br><br><strong>根因：</strong>调度依赖客户端常驻，机器休眠即断。<br><strong>改进：</strong>关键时点（灵戏/签到）考虑 schtasks 兜底，或确认客户端常驻设置。</span></div>
+    <div class='bug-item'><span class='num'>4</span><span class='text-content'><strong>战士系统互动空白延续：主人一整天没回音，巡检 19:44 微信还失败一次</strong><br>巡检每小时正点全勤（00:44~22:44），13:44 巡检记录"主人从昨天下午到现在没回音"，全天无互动计数。8/19 拍板的"剪映图文成片第一个知识科普视频"今日也无新进展（内容面仅 Agnes 核实一项）。<br><br><strong>根因：</strong>系统与真实工作流脱节仍在。<br><strong>改进：</strong>爽点机制迭代（即时反馈/戏剧化叙事）需落地，目标"主人主动想打开系统"。</span></div>
+  </div>
+
+  <!-- 技能变化 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🛠️</span> 今日技能变化</div>
+    <div class="tag-list">
+      <span class="tag">密钥文档更正</span>
+      <span class="tag">待同步 models.json</span>
+    </div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>2AI-keys-combined.md 更正</strong>：Agnes 模型名 <code>agnes-2.5-flash</code>（2026-08 全量上线）+ 接口地址 <code>https://apihub.agnes-ai.cn/v1/chat/completions</code>（国内节点，仅改 host）。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>待办</strong>：llm-retry-guard <code>models.json</code> 中 agnes 仍是 <code>agnes-2.0-flash</code> + <code>apihub.agnes-ai.com</code> 旧配置，若线上同步升级需改 url 和 model。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>日记 FREEZE</strong>：8/20 日记已生成（60 行），主线"上午不专注杂事多，下午傍晚被色念反复拉扯"（20:50 交托状态感知转述）。</span></div>
+  </div>
+
+  <!-- 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>00:44</strong> 战士巡检 — 深夜关怀（00:44 后调度空窗至 10:22）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:22</strong> 黄庭检查（09:00 档补） — log.md 无今日记录，连续第二十天未打卡</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:24</strong> 签到（08:00 档补） — +100 到账（2720.52→2820.52），余额 B 识别正常；余额 A 较昨日少约 511 待查</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:25 / 10:29</strong> 战士巡检 + 站桩提醒（07:30 档补，微信✅）+ 灵戏第 38 关 Quote A（8-19 C → 今日 A 轮换，微信✅弹窗✅）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>10:45</strong> 战士巡检 ❌ — session 创建超时（60000ms）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>11:00</strong> 母亲成就（引语 C「太初之母是你的母亲！你的注意力现在又去了哪里？」）— 微信✅弹窗✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>11:44~15:44</strong> 战士巡检 ×4 — 13:44 记录"主人从昨天下午到现在没回音"</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>12:30</strong> 女神护身颂（引语 D「天使围绕看护」）— 微信✅弹窗✅（上午最后一通）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>14:10</strong> 心冥想（引语 C「假如你是个有爱心的人…」）— 微信❌ ret=-2，弹窗✅（<strong>token 再挂起点</strong>）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:25</strong> 练气红砂掌虎掌 — 微信❌，弹窗✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:44~18:44</strong> 战士巡检 ×3</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>19:00</strong> 八问复盘 — 微信❌（与 8/18 同因），弹窗✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>19:44</strong> 战士巡检 — 微信❌（ret=-2）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:44</strong> 战士巡检</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:50</strong> 敢不敢交托（引语 D 摩诃迦利「连愿望也交回去」）— 微信❌，弹窗✅；日记感知：上午杂事多不专注，下午傍晚色念反复拉扯</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>21:44 / 22:44</strong> 战士巡检 ×2</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>00:06</strong>（8/21）每日工作记录补跑 08-20 — 扫描确认仅 free-models 有日志，微信简报✅（<strong>深夜通道恢复</strong>），日记追加完成</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>00:09</strong>（8/21）战士巡检</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>00:10</strong>（8/21）本次复盘</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天评价</strong>：周四，内容面安静的一天——唯一产出是 free-models 的 Agnes 配置核实（2.0→2.5 升级确认 + API 切国内节点 + curl 实测存活 + 文档更正），8/19 拍板的剪映图文成片第一个知识科普视频没有新进展，文案/视频产出挂零。自动化面：<strong>微信通道波动验证</strong>——上午 5 连全通（8/19 恢复迹象延续）、14:10 起 token 再挂 5 连败（弹窗全兜底）、深夜 00:06 又恢复，"健康期只是运气不是机制"第 N 次坐实，自动刷新机制欠账继续；<strong>调度凌晨空窗 9 小时</strong>（00:44→10:22，灵戏/站桩/签到/黄庭全延迟补跑，10:45 巡检 session 超时失败），疑似电脑休眠/客户端未常驻，与 8/16 同因；灵戏第 38 关 Quote A（C→A 轮换）；签到 +100 余额 B 识别恢复正常（A 少约 511 待查）；黄庭连续第二十天未打卡（8/1~8/20）；战士系统互动空白延续（主人一整天没回音）。待办：剪映视频落地（收兵标准=视频产出）、llm-retry-guard Agnes 配置同步拍板、黄庭强引导确认、token 自动刷新机制落地、调度空窗根因排查（schtasks 兜底）。</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
