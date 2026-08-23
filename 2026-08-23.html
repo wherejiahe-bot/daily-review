@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-08-23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(18px,3.4vw,26px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .note{font-size:12px;color:var(--ink-tertiary);margin-top:10px;line-height:1.5}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-08-23 · 周日</div>
+    <h2>自动化周日静默 · 豆战士巡检成功 · 微信通道 token 过期 · 黄庭连续二十二天未打卡</h2>
+    <div class="note">周日，内容安静的一天——巡检哨兵正常运行，但微信通道 token 过期全挂，黄庭缺口逼近三周。</div>
+  </section>
+
+  <!-- 今日亮点 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 今日亮点</div>
+    <div class="tag-list">
+      <span class="tag">豆战士巡检成功</span>
+      <span class="tag">v6 流程稳定</span>
+    </div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>豆战士桌面巡检正常运行</strong><br>09:30 巡检哨兵成功执行（桌面自动化：激活窗口 → 最大化 → 点豆战士 → 点电话按钮），流程稳定。战士系统互动计数待更新。<br><br><strong>可复用经验：</strong>巡检哨兵 v6 已加入「最大化窗口」步骤，桌面自动化稳定性提升。</span></div>
+  </div>
+
+  <!-- 做得不好的事 -->
+  <div class="card" style="border-color:rgba(196,90,90,0.25)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class="tag-list">
+      <span class="tag">黄庭未打卡</span>
+      <span class="tag">微信 token 过期</span>
+      <span class="tag">纯自动化日</span>
+    </div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>黄庭连续二十二天未打卡，log 停留 8/1 Day 9 ❌</strong><br>强引导已连续建议十七天，今日仍未补。缺口逼近三周。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>微信通道 token 过期，全天 0 次成功</strong><br>20:50 交托提醒微信 ret=-2，本地弹窗兜底成功。ClawBot token 需主人发消息刷新。</span></div>
+    <div class='bug-item'><span class='num'>3</span><span class='text-content'><strong>内容面零产出，纯自动化日</strong><br>日记未生成，无项目日志写入，无技能迭代。周日灵修日，内容安静。</span></div>
+  </div>
+
+  <!-- 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>09:30</strong> 豆战士桌面巡检成功（v6 流程稳定）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>20:50</strong> 敢不敢交托提醒执行：闯关风格（关卡·敢不敢交托·存盘下线），微信 ❌ + 本地弹窗 ✅</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天评价</strong>：周日，内容安静的一天——巡检哨兵正常运行，但微信通道 token 过期全挂，黄庭缺口逼近三周。</span></div>
+  </div>
+
+  <!-- 待办 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">📌</span> 待办</div>
+    <ul class="future-list">
+      <li>黄庭强引导升级需确认落地（连续二十二天）</li>
+      <li>ClawBot token 自动刷新机制落地（趁通道恢复期）</li>
+      <li>战士系统互动计数更新（v6 巡检稳定，待主人回应）</li>
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
