@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-08-24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(18px,3.4vw,26px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .note{font-size:12px;color:var(--ink-tertiary);margin-top:10px;line-height:1.5}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-08-24 · 周一</div>
+    <h2>OpenMontage 溢出事故复盘交接 · 签到脚本 test 消息 bug 修复 · 战士巡检互动计数达 22 · 微信下午 token 过期 · 黄庭连续二十三天未打卡</h2>
+    <div class="note">周一，内容面恢复的一天——Claw 项目 OpenMontage 溢出事故复盘交接、Claw-No1 签到脚本优化；战士巡检密集稳定，但微信下午 token 过期挂掉。</div>
+  </section>
+
+  <!-- 今日亮点 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 今日亮点</div>
+    <div class="tag-list">
+      <span class="tag">OpenMontage 事故复盘</span>
+      <span class="tag">黑屏根因定位</span>
+      <span class="tag">test 消息 bug 修复</span>
+      <span class="tag">战士互动计数 22</span>
+    </div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>OpenMontage 溢出事故复盘与交接</strong><br>主人做《身弱之人财就是你的印》时核对环节撑爆 258400 token 窗口（约 10 倍溢出），会话崩溃。成片本身有效（mp4 227.6s/1080×1920/有音轨），溢出在多余核对环节。<br>已写 <code>verify_openmontage.py</code>（纯 ffprobe 零图像核对）+ MEMORY.md 防溢出铁律。<br>交接笔记写入 <code>CODEX接手指南_2026-08-24_18-04.md</code>，命名带时间戳防多版错乱。<br><br><strong>可复用经验：</strong>核对环节严禁把图像读进多模态上下文，改用 ffprobe 零图像验流。</span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>黑屏根因定位</strong><br>实测最终版视频轨全程 YAVG=0（纯黑仅字幕），s00-s11 各段插画完好（Y=104~112）。根因在合成阶段：<code>merged.mp4</code> 已损坏（moov atom not found），视频轨没接上源 → 黑底+字幕。<br>修复路径：s00-s11.mp4 用 ffmpeg concat 重拼 + 混音 + 叠字幕输出 v02。</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>签到脚本 test 消息 bug 修复</strong><br>排查 22:45 收到 test 消息问题：根因是战士巡检 automation 执行时 LLM 自发先发送测试消息 "test"，再发正式巡检消息。<br>修复：① 删除心跳保活机制（早间每条消息前发 heartbeat 导致 test 消息）；② send_wechat.py 默认消息改为"🦞 卢艳隹在"；③ automation prompt 加入禁止先发测试消息的铁律。</span></div>
+    <div class='bp-item'><span class='num'>4</span><span class='text-content'><strong>战士巡检互动计数达 22</strong><br>今日 15 次巡检（00:44~23:44），互动计数从 18 升到 22。22:44 巡检现实锤面⑤自我幸福，微信成功，霎哈嘉指引 1980-01-18 Nirmala 含义段落。</span></div>
+  </div>
+
+  <!-- 做得不好的事 -->
+  <div class="card" style="border-color:rgba(196,90,90,0.25)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class="tag-list">
+      <span class="tag">黄庭未打卡</span>
+      <span class="tag">微信 token 过期</span>
+      <span class="tag">视频黑屏</span>
+    </div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>黄庭连续二十三天未打卡，log 停留 8/1 Day 9 ❌</strong><br>强引导已连续建议十八天，今日仍未补。缺口逼近三周。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>微信通道下午 token 过期</strong><br>上午 xtuis 通道全通，15:44 起 token 过期微信失败，需主人给 ClawBot 发消息刷新。</span></div>
+    <div class='bug-item'><span class='num'>3</span><span class='text-content'><strong>OpenMontage 最终版视频黑屏</strong><br>合成阶段 merged.mp4 损坏，需重拼 v02。</span></div>
+  </div>
+
+  <!-- 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>08:00~14:00</strong> 战士巡检 7 次微信全通（xtuis）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>15:12</strong> 豆战士桌面巡检成功</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>15:44</strong> 战士巡检⑧ 微信失败（token 过期）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>17:13</strong> 豆战士桌面巡检成功</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>17:44</strong> 战士巡检⑨ 微信失败（连续第2次）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>22:44</strong> 战士巡检⑩ 现实锤面⑤自我幸福，微信成功，互动计数 22</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>22:45</strong> 发现 test 消息问题，修复自动化 prompt 铁律</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天评价</strong>：周一，内容面恢复的一天——Claw 项目 OpenMontage 溢出事故复盘交接（黑屏根因定位+防溢出铁律）、Claw-No1 签到脚本优化修复 test 消息 bug；战士系统巡检 15 次互动计数达 22；微信上午通道正常下午 token 过期挂掉。待办：OpenMontage 视频重拼 v02、token 自动刷新机制落地、黄庭强引导确认。</span></div>
+  </div>
+
+  <!-- 待办 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">📌</span> 待办</div>
+    <ul class="future-list">
+      <li>OpenMontage 视频重拼 v02（ffmpeg concat s00-s11 + 混音 + 叠字幕）</li>
+      <li>ClawBot token 自动刷新机制落地（趁通道恢复期）</li>
+      <li>黄庭强引导升级确认落地（连续二十三天）</li>
+      <li>主人定夺：OpenMontage 最终版微调还是定稿</li>
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
