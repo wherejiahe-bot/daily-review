@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-08-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(18px,3.4vw,26px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.hero .note{font-size:12px;color:var(--ink-tertiary);margin-top:10px;line-height:1.5}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-08-27 · 周四</div>
+    <h2>「正事化-回避」特性洞察落纸 · 战士巡检 2 次全通 · 黄庭连续二十七天未打卡</h2>
+    <div class="note">周四，日记主线：两次自慰射精（偏左+性冲动），觉察掉下去后拉回来的方法——注意力坚定放顶轮，边看边念轮穴口诀；「正事化-回避」特性应用：把自媒体当正事→自然去搞医学。战士巡检 2 次微信全通；黄庭连续二十七天未打卡。</div>
+  </section>
+
+  <!-- 今日亮点 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔥</span> 今日亮点</div>
+    <div class="tag-list">
+      <span class="tag">正事化-回避特性</span>
+      <span class="tag">战士巡检 2 次全通</span>
+      <span class="tag">xtuis 通道健康</span>
+      <span class="tag">觉察方法落地</span>
+    </div>
+    <div class='bp-item'><span class='num'>1</span><span class='text-content'><strong>日记核心洞察：「正事化-回避」特性应用</strong><br>利用人生特性 10（正事化-回避）驱动行动：有能量流动型特质，想做好自媒体但总做不好、能量撑不住。但可以<strong>逼着自己做自媒体</strong>——把它变成"正事"，触发回避机制，就会逃避到搞医学那边去，至少有行动。反过来，如果把"做玄学研究"当成正事，连玄学都不做了，只能玩手机玩一整天。<br><br>策略：用"想逃避的那件事"的反面当正事，借回避机制把自己推到该去的方向。<br><br><strong>成功经验佐证</strong>：过去两周逼自己做自媒体（当作正经工作），医学自然成了逃避去处，变相把医学做了。路验证过，走得通。</span></div>
+    <div class='bp-item'><span class='num'>2</span><span class='text-content'><strong>战士巡检全通（xtuis）</strong><br>22:44/23:44 共 2 次巡检，xtuis 通道全通。面①收入与担子；霎哈嘉引语：腹轮洁净→明白一切。</span></div>
+    <div class='bp-item'><span class='num'>3</span><span class='text-content'><strong>觉察掉落方法落地</strong><br>掉下去后想回来困难，但可玩游戏/看小说/看视频缓冲——关键是注意力坚定放在顶轮之上，边看边念每个轮穴的口诀和肯定语句。这个方法要坚持，掉下去了就用它拉回来。</span></div>
+  </div>
+
+  <!-- 做得不好的事 -->
+  <div class="card" style="border-color:rgba(196,90,90,0.25)">
+    <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+    <div class="tag-list">
+      <span class="tag">黄庭未打卡</span>
+      <span class="tag">偏左+性冲动</span>
+      <span class="tag">巡检密度低</span>
+    </div>
+    <div class='bug-item'><span class='num'>1</span><span class='text-content'><strong>黄庭连续二十七天未打卡，log 停留 8/1 Day 9 ❌</strong><br>强引导已连续建议二十一天，缺口逼近四周。</span></div>
+    <div class='bug-item'><span class='num'>2</span><span class='text-content'><strong>自慰两次，偏左+性冲动主线</strong><br>第一次约 09:30（和妻子闹别扭，她想去非洲→偏左→刷抖音→性冲动→射精）；第二次约 15:00（B 站内容→看了太爽满足→射精）。两次都挺满足，但偏左状态持续。</span></div>
+    <div class='bug-item'><span class='num'>3</span><span class='text-content'><strong>战士巡检密度低</strong><br>仅 2 次 vs 昨日 6 次 vs 前日 39 次，主人下午至晚间可能离线或会话中断。</span></div>
+  </div>
+
+  <!-- 今日时间线 -->
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>09:30</strong> 第一次自慰（偏左+性冲动，和妻子闹别扭触发）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>15:00</strong> 第二次自慰（B 站内容，太爽满足）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>16:30~21:00</strong> 日记主笔：正事化-回避特性洞察落纸</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>22:44</strong> 战士巡检① 现实锤面①收入与担子，微信成功（xtuis）</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>23:44</strong> 战士巡检② 现实锤面①收入与担子（新一轮①），微信成功（xtuis），霎哈嘉引语：腹轮洁净→明白一切</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>23:50</strong> 每日复盘自动化执行中</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'><strong>全天评价</strong>：周四，日记主线是自我觉察——两次自慰射精后，落纸「正事化-回避」特性应用洞察，路验证过走得通；战士巡检 2 次全通但密度偏低；黄庭连续二十七天未打卡缺口逼近四周。</span></div>
+  </div>
+
+  <!-- 待办 -->
+  <div class="card insight-card">
+    <div class="card-title"><span class="icon">📌</span> 待办</div>
+    <ul class="future-list">
+      <li>黄庭强引导确认落地（连续二十七天，缺口逼近四周）</li>
+      <li>战士巡检密度回升（今日仅 2 次）</li>
+      <li>「正事化-回避」特性实践验证（自媒体当正事→自然做医学，需观察落地效果）</li>
+      <li>ClawBot token 自动刷新机制落地（趁通道恢复期）</li>
+    </ul>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
