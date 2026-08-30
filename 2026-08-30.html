@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-08-30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.bp-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child{border-bottom:none}
+.bp-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0;background:var(--green-light);color:var(--green)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.section-label{font-size:13px;font-weight:600;color:var(--accent);margin:12px 0 6px;letter-spacing:0.05em}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'92';position:absolute;left:0;color:var(--accent);font-weight:600}
+.timeline{position:relative;padding-left:24px}
+.timeline::before{content:'';position:absolute;left:7px;top:4px;bottom:4px;width:1px;background:var(--border-strong)}
+.timeline-item{position:relative;padding:14px 0 14px 4px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-24px;top:16px;width:9px;height:9px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 2px var(--accent-mid)}
+.timeline-item .date{font-size:12px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.3px;margin-bottom:2px}
+.timeline-item .title{font-size:14px;font-weight:500;color:var(--ink);line-height:1.5}
+.timeline-item .title code{font-size:12px;background:var(--accent-light);padding:1px 5px;border-radius:4px;color:var(--accent)}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-08-30 · 周日</div>
+    <h2>周日</h2>
+  </section>
+
+<div class="card">
+      <div class="card-title"><span class="icon">📋</span> 今日核心</div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">查证「霎哈嘉瑜伽在中国被认定为邪教」说法：中国官方认定的 25 个邪教组织中<strong>没有</strong>霎哈嘉瑜伽；湖南长沙市委防范处理邪教办 2015 年官方文件明确"无明显迹象表明存在邪教活动"——此前 AI 回复存在虚假信息</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">新增日记 2026-08-30.md，主线记录当天状态：陷入崩溃/僵住状态，脑子里无数想法但什么都动不了，只能躺着刷手机</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">主人加载战士系统，觉察当下状态：脑子想法多但身体动不了</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">诊断：拖延妖 + 逃避兽组合；本质是身体这个载具出问题了，好久没静坐，内在能量堵住</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">决定：先不逼自己，先休息静坐，吃饭，上班的事明天再定</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">现实锤面④ 成仙阶梯（一句关怀打底：觉察到卡住本身就已经是动了）</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">18:44/19:44/22:44/23:44，全部微信发送成功</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">互动计数：47→52（+5）</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">现实锤面轮换：③情感与男女之欲→④成仙阶梯→②上有老下有小中有妻→③情感与男女之欲</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">连续第三十天未打卡（8/1~8/30），log 停留 8/1 Day 9 ❌</span></div>
+<div class="bp-item"><span class="num">→</span><span class="text-content">强引导已连续建议二十四天</span></div>
+    </div>
+
+<div class="card">
+      <div class="card-title"><span class="icon">✅</span> 做得好的事</div>
+<div class="bp-item"><span class="num">✅</span><span class="text-content">✅ 战士系统在主人僵住时介入，帮助看清本质（不是懒，是能量堵了）</span></div>
+<div class="bp-item"><span class="num">✅</span><span class="text-content">✅ 主人做出正确决定：先静坐休息，不强迫自己动</span></div>
+<div class="bp-item"><span class="num">✅</span><span class="text-content">✅ 晚间 4 次巡检全通（微信成功）</span></div>
+<div class="bp-item"><span class="num">✅</span><span class="text-content">✅ 邪教说法查证辟谣，纠正 AI 虚假信息来源</span></div>
+    </div>
+
+<div class="card">
+      <div class="card-title"><span class="icon">⚠️</span> 做得不好的事</div>
+<div class="bp-item"><span class="num">⚠️</span><span class="text-content">⚠️ 全天陷入僵住状态，无法行动——能量阻塞需尽快通过静坐清理</span></div>
+<div class="bp-item"><span class="num">⚠️</span><span class="text-content">⚠️ 黄庭连续三十天未打卡，缺口突破四周</span></div>
+<div class="bp-item"><span class="num">⚠️</span><span class="text-content">⚠️ 战士系统互动计数 52 但主人仍未回应（自 4pm 诊断后无后续反馈）</span></div>
+<div class="bp-item"><span class="num">⚠️</span><span class="text-content">⚠️ 所有每日提醒（早安/上午清理/母亲成就/女神护身颂/心冥想/练气/八问/交托）全天 0 运行，疑似调度器空窗或客户端未常驻</span></div>
+    </div>
+
+<div class="card">
+      <div class="card-title"><span class="icon">🕐</span> 今日时间线</div>
+      <div class="timeline">
+<div class="timeline-item"><span class="timeline-dot"></span><div class="date">16:00</div><div class="title">加载战士系统，主人觉察僵住状态 → 诊断拖延妖+逃避兽 → 决定先静坐休息</div></div>
+<div class="timeline-item"><span class="timeline-dot"></span><div class="date">16:30</div><div class="title">吃饭</div></div>
+<div class="timeline-item"><span class="timeline-dot"></span><div class="date">18:44</div><div class="title" style="color:var(--green)">战士巡检① 面③情感与男女之欲，微信成功 ✓</div></div>
+<div class="timeline-item"><span class="timeline-dot"></span><div class="date">19:44</div><div class="title" style="color:var(--green)">战士巡检② 面④成仙阶梯，微信成功 ✓</div></div>
+<div class="timeline-item"><span class="timeline-dot"></span><div class="date">22:44</div><div class="title" style="color:var(--green)">战士巡检③ 面②上有老下有小中有妻，微信成功 ✓</div></div>
+<div class="timeline-item"><span class="timeline-dot"></span><div class="date">23:44</div><div class="title" style="color:var(--green)">战士巡检④ 面③情感与男女之欲，微信成功 ✓</div></div>
+<div class="timeline-item"><span class="timeline-dot"></span><div class="date">23:50</div><div class="title">每日复盘自动化运行中（本次）</div></div>
+      </div>
+    </div>
+
+<div class="card insight-card">
+      <div class="card-title"><span class="icon">📌</span> 待办</div>
+      <ul class="future-list">
+<li><strong>黄庭立即打卡</strong>（连续三十天，强引导已二十四天，需升级策略）</li>
+<li><strong>战士系统互动计数 52 仍无主人回应</strong>，考虑调整推送策略或更换语言风格</li>
+<li><strong>僵住状态后续</strong>：静坐后能量是否恢复？明日上班决策如何？</li>
+<li><strong>每日提醒零运行</strong>：连续第三天全天 0 运行（除战士巡检），需排查调度器/客户端状态</li>
+<li><strong>token 自动刷新机制</strong>：趁晚间通道健康必须落地</li>
+      </ul>
+    </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+
+</body>
+</html>
