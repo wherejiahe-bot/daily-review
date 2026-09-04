@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-09-04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-09-04 · 周五</div>
+    <h2>象棋AI练棋助手全线升级</h2>
+    <div class="tag-list" style="margin-top:12px">
+      <span class="tag">xiangqi-ai</span>
+      <span class="tag">引擎修复</span>
+      <span class="tag">音效v8</span>
+      <span class="tag">讲解人格</span>
+      <span class="tag">对局收录</span>
+    </div>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日核心</div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>引擎加载修复</strong>：file:// 协议下 Web Worker/SharedArrayBuffer 被禁，加提示框 + try/catch 安全降级</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>棋盘视觉优化</strong>：CELL=46, MX=16, MY=23 对称 padding，石板灰配色替代黄木</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>行棋音效 v8 接入</strong>：三层带通噪声"大石块相撞"，删 speechSynthesis 人声，Cache-Control: no-store 防缓存</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>讲解人格系统</strong>：chess-systems.js 管理体系话术，8 类局面输出三段式脚本，slogan 触发概率 22%</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>对局收录功能</strong>：自动/手动收录 + localStorage 持久化 + 回看 ◀▶ + 复制棋谱</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>棋谱复盘 + 存档</strong>：19回合棋谱验证 checkmate，顿挫布饵一炮换一车，铁门栓将死</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>深度讲解升级</strong>：deepExplain 落点语境 + 顿挫识别 + 吃子反吃链 + 弃子信号 + 重炮/绝杀</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>主线引导</strong>：systemMainlineMove() 重放历史算"我方已连续走完的主线步数 k"，AI 推荐主动体现体系</span></div>
+    <div class="bp-item"><span class="num">!</span><span class="text-content"><strong>体系误删纠正</strong>：主人说「删第29集字样」→ 我误理解为「下架整套」→ 从 backup 恢复 + 写入 MEMORY.md 铁律7</span></div>
+    <div class="bp-item"><span class="num">!</span><span class="text-content"><strong>res.captured 空格 bug</strong>：空格 ' ' 在 JS 中是 truthy → 普通走子走吃子分支 → 修成 !== ' '</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 做得好的事</div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">xiangqi-ai 练棋助手从 0 到功能完备（引擎/音效/讲解人格/对局收录/棋谱复盘）</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">五条深度讲解：坐标级 + 因果级 + 战术名 + 顿挫识别 + 吃子反吃链</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">真实音效接入，延迟根因彻底消除（文档级手势解锁 + 预加载）</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">棋盘视觉优化：padding 对称 + 石板灰配色 + 棋子适配</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 做得不好的事</div>
+    <div class="bug-item"><span class="num">!</span><span class="text-content">体系误删：主人说「删第29集字样」→ 我扩大成「下架整套体系」→ 重大教训写入 MEMORY.md 铁律7</span></div>
+    <div class="bug-item"><span class="num">!</span><span class="text-content">res.captured 空格 truthy bug：未想到空格在 JS 中是 truthy，导致普通走子走吃子音效分支</span></div>
+    <div class="bug-item"><span class="num">!</span><span class="text-content">同机 G 盘有 xiangqi（博主复盘）和 xiangqi-ai（练棋助手）两个项目，别混淆</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">上午：引擎加载修复（file:// 协议）、棋盘视觉优化（CELL/MX/MY 参数）</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">下午：行棋音效 v8 接入、讲解人格系统上线、对局收录功能开发</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">晚间：棋谱复盘 + 存档、UX 修复（音频 bug + 棋盘配色）、体系手册精简</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">深夜：难度默认改高手、深度讲解升级、异步竞态修复、体系误删纠正恢复、真实音效接入</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📌</span> 待办</div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">体系手册后续扩展：CHESS_SYSTEMS 框架已好，随时可 push 新体系</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">对局收录：后续可考虑"粘贴导入复现"功能</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">黄庭打卡：检查今日是否完成</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
