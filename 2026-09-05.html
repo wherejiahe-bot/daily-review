@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>每日复盘 — 2026-09-05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root {
+  --white:#ffffff;--bg:#f8f8f8;
+  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
+  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
+  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --radius:12px;--radius-sm:8px;--radius-lg:16px;
+  --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
+  --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
+}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
+.hero{text-align:center;padding:36px 20px 28px}
+.hero .date{font-size:13px;color:var(--ink-tertiary);font-weight:500;letter-spacing:0.3px}
+.hero h2{font-family:var(--font-serif);font-size:clamp(22px,4vw,32px);font-weight:900;color:var(--ink);letter-spacing:-0.01em;margin-top:6px}
+.card{background:var(--bg-card);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-bottom:14px;box-shadow:var(--shadow-sm);transition:box-shadow 0.25s,background 0.25s}
+.card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
+.card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.card-title .icon{font-size:14px}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
+.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child,.bug-item:last-child{border-bottom:none}
+.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
+.bp-item .num{background:var(--green-light);color:var(--green)}
+.bug-item .num{background:var(--red-light);color:var(--red)}
+.text-content{font-size:14px;color:var(--ink);line-height:1.6}
+.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
+.insight-card .card-title{color:var(--accent)}
+.future-list{list-style:none;padding:0}
+.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
+.back-btn:hover{color:var(--accent)}
+@media(max-width:600px){
+  .app-header{top:12px;margin:0 12px 20px;padding:10px 16px;border-radius:var(--radius)}
+  .hero{padding:24px 12px 20px}
+  .card{padding:18px;border-radius:var(--radius)}
+}
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <h1>每日复盘</h1>
+  <span class="header-badge">Daily Review</span>
+</header>
+
+<div class="container">
+  <section class="hero">
+    <div class="date">2026-09-05 · 周六</div>
+    <h2>WorkBuddy签到修复 + 象棋AI六套人格体系大成</h2>
+    <div class="tag-list" style="margin-top:12px">
+      <span class="tag">Claw-No1</span>
+      <span class="tag">xiangqi-ai</span>
+      <span class="tag">签到修复</span>
+      <span class="tag">人格体系</span>
+      <span class="tag">谱面解析</span>
+    </div>
+  </section>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日核心</div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>WorkBuddy签到v2.10修复</strong>：根因是win32api.mouse_event在CEF网页里被吞，改用pyautogui.click（SendInput）投到Web元素；坐标手动定位确认；脚本加OCR上限校验+微信60s超时+截图重试</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>xiangqi-ai棋盘操作升级</strong>：删棋盘坐标数字（renderBoard for循环整段删除）+ 棋谱点击跳转视图（viewBoard实例+viewIdx状态+enterView/exitView/renderViewBoard/hotlightViewedMove全部实现）</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>第六套体系接入</strong>：「弃子飞刀强攻 vs 硬碰硬对攻」blade-vs-duel，红kind=blitz/黑kind=duel，话术按sub.kind分流，pawn分支按中边兵区分</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>棋盘flip镜像修复</strong>：FILE_X漏加flip翻转→加`(flip ? 8 - f : f)`，棋子文字保持正立不整体旋转，记谱与视觉层解耦</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>棋子繁体化</strong>：PIECE_LABEL中车/马改繁体（車/馬），河界补字体对齐（KaiTi），讲解文本保留简体</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>雷公炮vs鸳鸯炮体系第三套</strong>：id leigong-vs-yuanyang，_lyScript话术，引擎验证opening合法，术语查证纠正"后炮平8"记法</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>公瑾象棋+季哥象棋第四第五套</strong>：gongjin（铁滑车/敢死炮/空城计/八卦阵）+ jige（仙人指路/瞎眼狗/黄金肋道），9/9 Node单测PASS</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>一步一道·霎哈嘉天地大道第六套</strong>：sahaja-dao，红守中/黑应物，17条映射库（道一至十七），每步棋蕴含天地自然道理，讲解加【天地之道】点题行</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>棋即道场手册+金刚经收录</strong>：主人贴《棋即道场》全文+《棋道与金刚经》，棋即道场十章+一步一道三层语域升级（道十一爱/十二众/十三衡/十四慧/十五创/十六美/十七言）</span></div>
+    <div class="bp-item"><span class="num">!</span><span class="text-content"><strong>谱面损坏识别方法论</strong>：01:34局红位黑着+列序错位+重复→标记corrupt只分析可信前缀；01:56局黑着滞后一行→自动归位完整重建；教训：损坏不只一种模式</span></div>
+    <div class="bp-item"><span class="num">!</span><span class="text-content"><strong>术语辨析先查证</strong>：雷公炮是阵式名不是杀法名→文件不改；主人"隔卒算不算"纠正了我上轮过度纠错（阵式成立≠当时发得出重炮）</span></div>
+    <div class="bp-item"><span class="num">!</span><span class="text-content"><strong>MultiEdit编辑事故</strong>：第二项new_string漏写逗号→node --check报SyntaxError；教训：改CHESS_SYSTEMS用Edit整块替换更安全</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 做得好的事</div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">WorkBuddy签到真正修好根因（不是UI假通），v2.10稳定可用</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">象棋AI六套人格体系全部接入并验证通过，主页面可自由切换</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">谱面损坏分析方法论沉淀（两种错位模式+自动归位策略）</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">术语查证先查再下结论，不瞎编（雷公炮百科同款定义）</span></div>
+    <div class="bp-item"><span class="num">✓</span><span class="text-content">Node单测+页面端到端双验，不依赖单一测试手段</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 做得不好的事</div>
+    <div class="bug-item"><span class="num">!</span><span class="text-content">术语纠错过度：把"当时发不出重炮"≈"不算雷公炮"，实际阵式成立，误伤文件名</span></div>
+    <div class="bug-item"><span class="num">!</span><span class="text-content">MultiEdit编辑事故：new_string漏逗号导致JS语法错误</span></div>
+    <div class="bug-item"><span class="num">!</span><span class="text-content">编辑前未想清old_string边界→吞了blade-vs-duel red头5行</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 今日时间线</div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">06:00 WorkBuddy签到v2.10，pyautogui.click修根因，主人确认成功</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">09:30 棋谱点击跳转视图完整实现+flip镜像修复+繁体化+河界字体统一</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">10:00 雷公炮vs鸳鸯炮体系第三套接入+术语查证+多套编辑验证</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">11:00 公瑾象棋+季哥象棋第四第五套接入（Node单测9/9 PASS）</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">12:55 一步一道·霎哈嘉天地大道第六套接入，17条映射库上线</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">14:13 对局存档+短视频分析（鸳鸯炮弃卒钓兵局）</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">深夜 棋即道场手册扩章+金刚经收录+恒慧创美言三道扩展</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> 待办</div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">体系按钮已满6个，第7套前需做多行布局</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">黄庭打卡：检查今日是否完成</span></div>
+    <div class="bp-item"><span class="num">→</span><span class="text-content">01:34局谱面损坏，需主人从页面重新导出完整版</span></div>
+  </div>
+
+  <a href="index.html" class="back-btn">← 返回总览</a>
+</div>
+</body>
+</html>
