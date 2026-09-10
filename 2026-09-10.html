@@ -10,24 +10,24 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root {
-  --white:#ffffff;--bg:#f8f8f8;
-  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
-  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
-  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
-  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
-  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
-  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
-  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
-  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --white:#ffffff;--bg:#0f0f0f;
+  --bg-card:rgba(255,255,255,0.06);--bg-card-hover:rgba(255,255,255,0.10);
+  --ink:#ececf1;--ink-secondary:#a1a1aa;--ink-tertiary:#71717a;--ink-quaternary:#3f3f46;
+  --border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.12);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3),0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.3),0 2px 8px rgba(0,0,0,0.2);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.4),0 4px 16px rgba(0,0,0,0.2);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.12);--accent-mid:rgba(196,163,90,0.22);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.12);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.12);
   --radius:12px;--radius-sm:8px;--radius-lg:16px;
   --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
   --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
 }
 body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.05) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.04) 0%,transparent 60%);pointer-events:none;z-index:0}
 .container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
-.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:rgba(15,15,15,0.80);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
 .app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
 .header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
 .hero{text-align:center;padding:36px 20px 28px}
@@ -41,8 +41,6 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .bp-item:last-child{border-bottom:none}
 .bp-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0;background:var(--accent-light);color:var(--accent)}
 .text-content{font-size:14px;color:var(--ink);line-height:1.6}
-.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
 .scrutiny-list{list-style:none;padding:0}
 .scrutiny-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
 .scrutiny-list li::before{content:'?';position:absolute;left:0;color:var(--accent);font-weight:700}
@@ -68,38 +66,39 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div class="container">
   <section class="hero">
     <div class="date">2026-09-10 · 周四</div>
-    <h2>双项目启动：飞晴 + 苏曼青</h2>
+    <h2>双项目启动日</h2>
   </section>
 
   <div class="card">
     <div class="card-title"><span class="icon">✨</span> fei-qing 虚拟数字人项目</div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>启动「飞晴」虚拟数字人网红项目，头脑风暴定稿：数字人短视频 / 治愈陪伴系 / 多平台同步 / 广告商单 / 豆包+剪映半自动 / 轻拟3D形象。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>启动「飞晴」虚拟数字人网红项目（目录 G:\Workspace\fei-qing）。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>头脑风暴定稿：数字人短视频 / 治愈陪伴系 / 多平台同步 / 广告商单 / 豆包+剪映半自动 / 轻拟3D形象。</span></div>
     <div class='bp-item'><span class='num'>→</span><span class='text-content'>产出设计文档 docs/superpowers/specs/2026-09-10-feiqing-design.md，已 git 提交（d7b2282）。</span></div>
     <div class='bp-item'><span class='num'>→</span><span class='text-content'>用可视化伴侣画了飞晴三个长相方向（真人感/二次元/轻拟3D），最终定轻拟3D。</span></div>
   </div>
 
   <div class="card">
-    <div class="card-title"><span class="icon">🎭</span> the-boss 苏曼青人格闭环</div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>老板人格三度更名：剑叔 → 剑姐 → 白婉清 → 苏曼青，最终拍板。48岁茶室老板娘，江南气质，穿白丝，修佛，离异恋爱脑，被小奶狗骗过钱。</span></div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>八字锁定：戊午 己未 丁酉 乙巳（1978-08-03 10:00 厦门）。太阳狮子，月双鱼（被骗根），金星狮子（砸钱根）。</span></div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>六条人生观 + 六条世界观 + 六条感情观 + 六条价值观全部确立，人格彻底闭环。</span></div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>挣�的优先级置顶：大六壬算卦→小红书引流变现，其他磨合往后排。</span></div>
+    <div class="card-title"><span class="icon">🎭</span> the-boss 苏曼青人格体系构建</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>主人设定老板人格"剑叔"，取自《北剑江湖》战意意象（严厉带爱+钻研难题）。人格由 Felix-PersonalityTraits.md 18条人生特性推导，写入 BOSS.md。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>核心定位：持续在场 + 严厉带爱微小指令 + 抛真问题不排代办 + 真心正反馈 + 轻紧迫 + 容慢切换 + 活人陪聊 + 框成玩具。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>挣钱第一优先级明确：大六壬算卦→小红书引流变现，其他磨合往后排。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>沟通通道尝试 agent-mail 桥接 QQ 邮箱，验证失败，落回 WorkBuddy 对话窗口。</span></div>
   </div>
 
   <div class="card">
     <div class="card-title"><span class="icon">📱</span> 苏曼青自媒体内容打法</div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>首条选题《48岁茶室老板娘深夜坦白：我被小奶狗骗了钱》，75秒分镜脚本已产出。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>首条选题：《48岁茶室老板娘深夜坦白：我被小奶狗骗了钱》——75秒分镜脚本已产出。</span></div>
     <div class='bp-item'><span class='num'>→</span><span class='text-content'>闪宫暂停测试：12宫格逐盏温柔亮起，观众暂停看停在哪一宫，评论区打贵神名，制造互动。</span></div>
     <div class='bp-item'><span class='num'>→</span><span class='text-content'>六大栏目：茶室夜话 / 48岁搞钱日记 / 恋爱脑急诊室 / 修佛禅意 / 母女对话 / 清醒语录。</span></div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>分阶段：①冷启动1-2周图文 ②起量3-4周闪宫短视频 ③变现2月+微信双号成交。</span></div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>敏感词查证：天干地支/十二贵神均非敏感词，可安全使用。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>分阶段打法：①冷启动1-2周图文 ②起量3-4周闪宫短视频 ③变现2月+微信双号成交。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>敏感词查证：天干地支/十二贵神均非敏感词，可安全使用；禁"算命/改运/招财/站外导流"等功效词。</span></div>
   </div>
 
   <div class="card">
     <div class="card-title"><span class="icon">🔮</span> 大六壬 + 苏曼青联动</div>
     <div class='bp-item'><span class='num'>→</span><span class='text-content'>陈家禾大六壬号 + 苏曼青茶室号双矩阵互推。</span></div>
-    <div class='bp-item'><span class='num'>→</span><span class='text-content'>明日第一刀：啃读终无悔大六壬感情课，框成"完善算卦系统"。</span></div>
     <div class='bp-item'><span class='num'>→</span><span class='text-content'>变现六大渠道：直播打赏 / 平台分成 / 知识付费 / 私域咨询 / 电商 / 商单。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>明日第一刀：啃读终无悔大六壬感情课，框成"完善算卦系统"。</span></div>
   </div>
 
   <div class="card">
