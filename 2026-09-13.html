@@ -10,24 +10,24 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root {
-  --white:#ffffff;--bg:#f8f8f8;
-  --bg-card:rgba(255,255,255,0.85);--bg-card-hover:rgba(255,255,255,0.95);
-  --ink:#1a1a1a;--ink-secondary:#6e6e7a;--ink-tertiary:#9a9aa8;--ink-quaternary:#c4c4d0;
-  --border:rgba(0,0,0,0.05);--border-strong:rgba(0,0,0,0.08);
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.02);
-  --shadow-md:0 4px 16px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.02);
-  --shadow-lg:0 8px 32px rgba(0,0,0,0.05),0 4px 16px rgba(0,0,0,0.02);
-  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.10);--accent-mid:rgba(196,163,90,0.20);
-  --green:#5a9a7a;--green-light:rgba(90,154,122,0.10);
-  --red:#c45a5a;--red-light:rgba(196,90,90,0.10);
+  --white:#ffffff;--bg:#0f0f0f;
+  --bg-card:rgba(255,255,255,0.06);--bg-card-hover:rgba(255,255,255,0.10);
+  --ink:#ececf1;--ink-secondary:#a1a1aa;--ink-tertiary:#71717a;--ink-quaternary:#3f3f46;
+  --border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.12);
+  --shadow-sm:0 1px 3px rgba(0,0,0,0.3),0 1px 2px rgba(0,0,0,0.2);
+  --shadow-md:0 4px 16px rgba(0,0,0,0.3),0 2px 8px rgba(0,0,0,0.2);
+  --shadow-lg:0 8px 32px rgba(0,0,0,0.4),0 4px 16px rgba(0,0,0,0.2);
+  --accent:#c4a35a;--accent-light:rgba(196,163,90,0.12);--accent-mid:rgba(196,163,90,0.22);
+  --green:#5a9a7a;--green-light:rgba(90,154,122,0.12);
+  --red:#c45a5a;--red-light:rgba(196,90,90,0.12);
   --radius:12px;--radius-sm:8px;--radius-lg:16px;
   --font-serif:'Noto Serif SC','Source Han Serif SC',serif;
   --font-sans:'Noto Sans SC',-apple-system,'PingFang SC','Helvetica Neue',sans-serif;
 }
 body{font-family:var(--font-sans);background:var(--bg);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.04) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 5%,rgba(196,163,90,0.05) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 95%,rgba(106,138,184,0.04) 0%,transparent 60%);pointer-events:none;z-index:0}
 .container{max-width:720px;margin:0 auto;padding:0 20px 60px;position:relative;z-index:1}
-.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:var(--bg-card);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
+.app-header{position:sticky;top:20px;z-index:100;max-width:680px;margin:0 auto 24px;padding:12px 24px;background:rgba(15,15,15,0.80);backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between}
 .app-header h1{font-family:var(--font-serif);font-size:clamp(16px,2.2vw,20px);font-weight:700;color:var(--ink);letter-spacing:0.02em}
 .header-badge{font-size:12px;padding:4px 12px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:600;letter-spacing:0.3px}
 .hero{text-align:center;padding:36px 20px 28px}
@@ -37,19 +37,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .card:hover{box-shadow:var(--shadow-md);background:var(--bg-card-hover)}
 .card-title{font-size:11px;font-weight:600;color:var(--ink-tertiary);letter-spacing:0.8px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
 .card-title .icon{font-size:14px}
-.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.tag{font-size:12px;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);font-weight:500}
-.bp-item,.bug-item{padding:10px 0;border-bottom:1px solid var(--border)}
-.bp-item:last-child,.bug-item:last-child{border-bottom:none}
-.bp-item .num,.bug-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0}
-.bp-item .num{background:var(--green-light);color:var(--green)}
-.bug-item .num{background:var(--red-light);color:var(--red)}
+.bp-item{padding:10px 0;border-bottom:1px solid var(--border)}
+.bp-item:last-child{border-bottom:none}
+.bp-item .num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:600;margin-right:8px;flex-shrink:0;background:var(--accent-light);color:var(--accent)}
 .text-content{font-size:14px;color:var(--ink);line-height:1.6}
-.insight-card{background:var(--accent-light);border:1px solid rgba(196,163,90,0.15);border-radius:var(--radius)}
-.insight-card .card-title{color:var(--accent)}
-.future-list{list-style:none;padding:0}
-.future-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
-.future-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
+.scrutiny-list{list-style:none;padding:0}
+.scrutiny-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.scrutiny-list li::before{content:'?';position:absolute;left:0;color:var(--accent);font-weight:700}
+.todo-list{list-style:none;padding:0}
+.todo-list li{font-size:14px;color:var(--ink);padding:6px 0 6px 20px;position:relative}
+.todo-list li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:600}
 .back-btn{display:inline-block;margin-top:20px;font-size:13px;color:var(--ink-tertiary);text-decoration:none;font-weight:500}
 .back-btn:hover{color:var(--accent)}
 @media(max-width:600px){
@@ -69,37 +66,40 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 <div class="container">
   <section class="hero">
     <div class="date">2026-09-13 · 周日</div>
-    <h2>静默日</h2>
-    <div class="tag-list" style="margin-top:12px">
-      <span class="tag">静默</span>
-      <span class="tag">自检</span>
-    </div>
+    <h2>结构建设日：大六壬知识库 + 霎哈嘉术语统一</h2>
   </section>
 
   <div class="card">
-    <div class="card-title"><span class="icon">📋</span> 扫描结果</div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>Claw</strong>：无 .workbuddy/memory/2026-09-13.md</span></div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>Claw-No1</strong>：无日志</span></div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>Claw-No2 / Claw-No3</strong>：无日志</span></div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>xiangqi / xiangqi-ai</strong>：无日志</span></div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>warrior-system</strong>：无日志</span></div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>fei-qing / the-boss</strong>：无日志</span></div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>100-days-huangting</strong>：无日志</span></div>
-    <div class="bp-item"><span class="num">✓</span><span class="text-content"><strong>heyi / skill-usage-report / 3rd-career-exploration</strong>：无日志</span></div>
+    <div class="card-title"><span class="icon">♟️</span> ren-xue 大六壬反馈库</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>提取 OneDrive 655 个 MD 中「#反馈」文档，共 77 篇归档至 G:\Workspace\ren-xue\大六壬反馈库\。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>产物：index.html 单文件知识库（搜索+筛选）+ 总览 MD + feedback_data.json + cases/ 原文副本。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>原则：原文如实保留，不做吉凶判断，只按案例领域归档。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>迭代修复（22:23）：弹窗空白 Bug — openDoc 传序号误当对象，已改为直接传对象。</span></div>
   </div>
 
-  <div class="card insight-card">
-    <div class="card-title"><span class="icon">📋</span> 自检三问</div>
-    <div class="bp-item"><span class="num">?</span><span class="text-content"><strong>是否陷入事情？</strong> — 被外部事务拖着走，没有主动觉察</span></div>
-    <div class="bp-item"><span class="num">?</span><span class="text-content"><strong>是否执着？</strong> — 心里挂着某事放不下，能量被吸走</span></div>
-    <div class="bp-item"><span class="num">?</span><span class="text-content"><strong>是否交托母亲？</strong> — 把结果交给太初之母，还是自己在扛？</span></div>
+  <div class="card">
+    <div class="card-title"><span class="icon">🕉️</span> sahaja-translator 术语统一</div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>完成 1991-04-14 Ganesha Puja Canberra 双语学习文档（184 句逐句对照）。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>主人确认「母亲讲话」目录术语表为权威参考，今后所有翻译优先查表。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>统一四轮：maryada→份际 / Atharva Sheersha→格涅沙颂 / personality→人格 / petal→块花瓣。</span></div>
+    <div class='bp-item'><span class='num'>→</span><span class='text-content'>教训：此前自定译法无出处，今后必须以语料库为准。</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🧘</span> 自检三问</div>
+    <ul class="scrutiny-list">
+      <li>是否陷入事情？— 今日工作节奏可控，两项任务均有实质推进。</li>
+      <li>是否执着？— 大六壬反馈库和翻译术语统一均为结构性工作，非情绪性执着。</li>
+      <li>是否交托母亲？— 术语修正经主人确认后执行，符合源头原则。</li>
+    </ul>
   </div>
 
   <div class="card">
     <div class="card-title"><span class="icon">📋</span> 待办</div>
-    <ul class="future-list">
+    <ul class="todo-list">
+      <li>大六壬反馈库：后续月度增量重跑脚本</li>
+      <li>霎哈嘉翻译：petal 译法待主人审阅后统一</li>
       <li>黄庭打卡今日缺口待补</li>
-      <li>检视今日能量状态，是否需要调整作息</li>
     </ul>
   </div>
 
